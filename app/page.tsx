@@ -894,7 +894,6 @@ export default function HomePage() {
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700;800;900&display=swap');
 
-        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
         html { scroll-behavior: smooth; }
 
@@ -908,9 +907,7 @@ export default function HomePage() {
 
         ::selection { background: #AAFF00; color: #0A0A0A; }
 
-        ::-webkit-scrollbar { width: 4px; }
-        ::-webkit-scrollbar-track { background: #0A0A0A; }
-        ::-webkit-scrollbar-thumb { background: #AAFF00; border-radius: 2px; }
+       
 
         @keyframes marquee {
           0% { transform: translateX(0); }
@@ -954,12 +951,10 @@ export default function HomePage() {
 
         /* Responsive: nav */
         @media (max-width: 768px) {
-          .nav-desktop { display: none !important; }
-          .nav-mobile-toggle { display: flex !important; }
+          
           .about-grid, .contact-grid { grid-template-columns: 1fr !important; }
           .portfolio-grid { grid-template-columns: 1fr !important; }
           .industries-grid { grid-template-columns: repeat(2, 1fr) !important; }
-          .footer-grid { grid-template-columns: 1fr 1fr !important; }
           .hero-cards { display: none !important; }
         }
       `}</style>
