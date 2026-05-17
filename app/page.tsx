@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+// import Navbar from "./Navbar";
+// import Footer from "./Footer";
 
 // ─── Types ────────────────────────────────────────────────────────────────────
 interface FAQ {
@@ -253,76 +255,10 @@ function Counter({ value }: { value: string }) {
   return <span ref={ref}>{inView ? display : "0"}</span>;
 }
 
-// ─── Navbar ───────────────────────────────────────────────────────────────────
-// function Navbar() {
-//   const [scrolled, setScrolled] = useState(false);
-//   const [menuOpen, setMenuOpen] = useState(false);
-
-//   useEffect(() => {
-//     const fn = () => setScrolled(window.scrollY > 50);
-//     window.addEventListener("scroll", fn);
-//     return () => window.removeEventListener("scroll", fn);
-//   }, []);
-
-//   const links = ["Services", "Work", "About", "Process", "Blog", "Contact"];
-
-//   return (
-//     <nav style={{
-//       position: "fixed", top: 0, left: 0, right: 0, zIndex: 1000,
-//       padding: "0 2.5rem",
-//       background: scrolled ? "rgba(10,10,10,0.92)" : "transparent",
-//       backdropFilter: scrolled ? "blur(20px)" : "none",
-//       borderBottom: scrolled ? "1px solid rgba(255,255,255,0.06)" : "none",
-//       transition: "all 0.4s ease",
-//       display: "flex", alignItems: "center", justifyContent: "space-between", height: 72,
-//     }}>
-//       <a href="#" style={{ textDecoration: "none", display: "flex", alignItems: "center", gap: "0.6rem" }}>
-//         <span style={{ width: 32, height: 32, background: "#AAFF00", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", fontSize: "1rem" }}>⚡</span>
-//         <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "1.15rem", color: "#fff", letterSpacing: "-0.02em" }}>
-//           AI Solution<span style={{ color: "#AAFF00" }}>.</span>
-//         </span>
-//       </a>
-
-//       {/* Desktop links */}
-//       <div style={{ display: "flex", gap: "2.5rem", alignItems: "center" }} className="nav-desktop">
-//         {links.map(l => (
-//           <a key={l} href={`#${l.toLowerCase()}`} style={{ color: "rgba(255,255,255,0.7)", textDecoration: "none", fontSize: "0.88rem", fontWeight: 500, letterSpacing: "0.02em", transition: "color 0.2s" }}
-//             onMouseEnter={e => (e.currentTarget.style.color = "#AAFF00")}
-//             onMouseLeave={e => (e.currentTarget.style.color = "rgba(255,255,255,0.7)")}
-//           >{l}</a>
-//         ))}
-//         <a href="#contact" style={{ background: "#AAFF00", color: "#0A0A0A", padding: "0.55rem 1.4rem", borderRadius: 100, fontSize: "0.85rem", fontWeight: 700, textDecoration: "none", letterSpacing: "0.02em", transition: "transform 0.2s, box-shadow 0.2s" }}
-//           onMouseEnter={e => { e.currentTarget.style.transform = "scale(1.04)"; e.currentTarget.style.boxShadow = "0 0 24px rgba(170,255,0,0.5)"; }}
-//           onMouseLeave={e => { e.currentTarget.style.transform = "scale(1)"; e.currentTarget.style.boxShadow = "none"; }}
-//         >
-//           Start a Project ↗
-//         </a>
-//       </div>
-
-//       {/* Mobile menu toggle */}
-//       <button onClick={() => setMenuOpen(!menuOpen)} className="nav-mobile-toggle" style={{ display: "none", background: "none", border: "none", color: "#fff", fontSize: "1.5rem", cursor: "pointer" }}>
-//         {menuOpen ? "✕" : "☰"}
-//       </button>
-
-//       {/* Mobile menu */}
-//       {menuOpen && (
-//         <div className="nav-mobile-menu" style={{ position: "fixed", top: 72, left: 0, right: 0, background: "rgba(10,10,10,0.97)", backdropFilter: "blur(20px)", padding: "2rem", display: "flex", flexDirection: "column", gap: "1.5rem", borderBottom: "1px solid rgba(255,255,255,0.1)" }}>
-//           {links.map(l => (
-//             <a key={l} href={`#${l.toLowerCase()}`} onClick={() => setMenuOpen(false)} style={{ color: "#fff", textDecoration: "none", fontSize: "1.4rem", fontFamily: "'Outfit', sans-serif", fontWeight: 700 }}>{l}</a>
-//           ))}
-//           <a href="#contact" onClick={() => setMenuOpen(false)} style={{ background: "#AAFF00", color: "#0A0A0A", padding: "0.8rem 1.8rem", borderRadius: 100, fontSize: "1rem", fontWeight: 700, textDecoration: "none", textAlign: "center" }}>
-//             Start a Project ↗
-//           </a>
-//         </div>
-//       )}
-//     </nav>
-//   );
-// }
-
 // ─── Hero ─────────────────────────────────────────────────────────────────────
 function Hero() {
   return (
-    <section style={{ minHeight: "100vh", background: "#0A0A0A", display: "flex", alignItems: "center", position: "relative", overflow: "hidden", padding: "7rem 2.5rem 4rem" }}>
+    <section style={{ minHeight: "100vh", background: "#0A0A0A", display: "flex", alignItems: "center", position: "relative", overflow: "hidden", padding: "9rem 2.5rem 4rem" }}>
       {/* Animated grid bg */}
       <div style={{ position: "absolute", inset: 0, backgroundImage: "linear-gradient(rgba(170,255,0,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(170,255,0,0.04) 1px, transparent 1px)", backgroundSize: "80px 80px", animation: "gridPulse 4s ease-in-out infinite" }} />
 
@@ -949,59 +885,6 @@ function FinalCTA() {
     </section>
   );
 }
-
-// ─── Footer ───────────────────────────────────────────────────────────────────
-// function Footer() {
-//   const cols = [
-//     { title: "Company", links: ["About", "Culture", "Careers", "Blog", "Contact"] },
-//     { title: "Services", links: ["AI Development", "Web Apps", "Mobile Apps", "SaaS", "Cloud"] },
-//     { title: "Work", links: ["Portfolio", "Case Studies", "Testimonials", "Process"] },
-//   ];
-
-//   return (
-//     <footer style={{ background: "#0A0A0A", borderTop: "1px solid rgba(255,255,255,0.07)" }}>
-//       <div style={{ maxWidth: 1200, margin: "0 auto", padding: "5rem 2.5rem 3rem" }}>
-//         <div style={{ display: "grid", gridTemplateColumns: "2fr 1fr 1fr 1fr", gap: "3rem", marginBottom: "4rem" }} className="footer-grid">
-//           <div>
-//             <div style={{ display: "flex", alignItems: "center", gap: "0.6rem", marginBottom: "1.5rem" }}>
-//               <span style={{ width: 32, height: 32, background: "#AAFF00", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center" }}>⚡</span>
-//               <span style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "1.1rem", color: "#fff" }}>AI Solution<span style={{ color: "#AAFF00" }}>.</span></span>
-//             </div>
-//             <p style={{ color: "rgba(255,255,255,0.4)", fontSize: "0.88rem", lineHeight: 1.8, maxWidth: 280, marginBottom: "2rem" }}>
-//               An AI-powered software and digital transformation company helping businesses automate and scale.
-//             </p>
-//             <div style={{ display: "flex", gap: "0.7rem" }}>
-//               {["𝕏", "in", "gh", "be"].map((s, i) => (
-//                 <a key={i} href="#" style={{ width: 36, height: 36, background: "rgba(255,255,255,0.06)", border: "1px solid rgba(255,255,255,0.08)", borderRadius: 8, display: "flex", alignItems: "center", justifyContent: "center", color: "rgba(255,255,255,0.5)", textDecoration: "none", fontSize: "0.75rem", fontWeight: 700, transition: "all 0.2s" }}
-//                   onMouseEnter={e => { const d = e.currentTarget as HTMLAnchorElement; d.style.background = "rgba(170,255,0,0.1)"; d.style.borderColor = "rgba(170,255,0,0.3)"; d.style.color = "#AAFF00"; }}
-//                   onMouseLeave={e => { const d = e.currentTarget as HTMLAnchorElement; d.style.background = "rgba(255,255,255,0.06)"; d.style.borderColor = "rgba(255,255,255,0.08)"; d.style.color = "rgba(255,255,255,0.5)"; }}
-//                 >{s}</a>
-//               ))}
-//             </div>
-//           </div>
-//           {cols.map((col, ci) => (
-//             <div key={ci}>
-//               <h4 style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 700, fontSize: "0.85rem", color: "#fff", letterSpacing: "0.05em", marginBottom: "1.2rem" }}>{col.title}</h4>
-//               {col.links.map((l, li) => (
-//                 <a key={li} href="#" style={{ display: "block", color: "rgba(255,255,255,0.4)", textDecoration: "none", fontSize: "0.85rem", marginBottom: "0.7rem", transition: "color 0.2s" }}
-//                   onMouseEnter={e => e.currentTarget.style.color = "#AAFF00"}
-//                   onMouseLeave={e => e.currentTarget.style.color = "rgba(255,255,255,0.4)"}
-//                 >{l}</a>
-//               ))}
-//             </div>
-//           ))}
-//         </div>
-
-//         <div style={{ borderTop: "1px solid rgba(255,255,255,0.07)", paddingTop: "2rem", display: "flex", justifyContent: "space-between", alignItems: "center", flexWrap: "wrap", gap: "1rem" }}>
-//           <div style={{ fontFamily: "'Outfit', sans-serif", fontWeight: 800, fontSize: "clamp(2rem, 6vw, 4rem)", color: "rgba(255,255,255,0.05)", letterSpacing: "-0.04em", lineHeight: 1 }}>
-//             Crafting since 2018
-//           </div>
-//           <p style={{ color: "rgba(255,255,255,0.25)", fontSize: "0.78rem" }}>© AI Solution Technologies 2026 · All Rights Reserved</p>
-//         </div>
-//       </div>
-//     </footer>
-//   );
-// }
 
 // ─── Main Page ────────────────────────────────────────────────────────────────
 export default function HomePage() {

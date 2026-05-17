@@ -1,65 +1,270 @@
-import Link from 'next/link';
-import { NAV_LINKS } from '@/lib/constants';
+"use client";
 
 export default function Footer() {
+  const cols = [
+    {
+      title: "Company",
+      links: ["About", "Culture", "Careers", "Blog", "Contact"],
+    },
+    {
+      title: "Services",
+      links: ["AI Development", "Web Apps", "Mobile Apps", "SaaS", "Cloud"],
+    },
+    {
+      title: "Work",
+      links: ["Portfolio", "Case Studies", "Testimonials", "Process"],
+    },
+  ];
+
+  const socials = [
+    { label: "𝕏", href: "#" },
+    { label: "in", href: "#" },
+    { label: "gh", href: "#" },
+    { label: "be", href: "#" },
+  ];
+
   return (
-    <footer className="bg-card border-t border-border">
-      <div className="max-w-7xl mx-auto px-6 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-12 mb-12">
-          {/* Company Info */}
-          <div>
-            <div className="flex items-center gap-2 mb-4">
-              <span className="w-8 h-8 bg-gradient-to-br from-primary to-secondary rounded" />
-              <span className="text-xl font-bold text-white">AI Solutions</span>
+    <>
+      <style>{`
+        .footer-grid {
+          display: grid;
+          grid-template-columns: 2fr 1fr 1fr 1fr;
+          gap: 3rem;
+          margin-bottom: 4rem;
+        }
+        @media (max-width: 768px) {
+          .footer-grid {
+            grid-template-columns: 1fr 1fr !important;
+          }
+        }
+        @media (max-width: 480px) {
+          .footer-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+      `}</style>
+
+      <footer
+        style={{
+          background: "#0A0A0A",
+          borderTop: "1px solid rgba(255,255,255,0.07)",
+        }}
+      >
+        <div
+          style={{
+            maxWidth: 1200,
+            margin: "0 auto",
+            padding: "5rem 2.5rem 3rem",
+          }}
+        >
+          <div className="footer-grid">
+            {/* Brand Column */}
+            <div>
+              <a
+                href="#"
+                style={{
+                  textDecoration: "none",
+                  display: "flex",
+                  alignItems: "center",
+                  gap: "0.6rem",
+                  marginBottom: "1.5rem",
+                  width: "fit-content",
+                }}
+              >
+                <span
+                  style={{
+                    width: 32,
+                    height: 32,
+                    background: "#AAFF00",
+                    borderRadius: 8,
+                    display: "flex",
+                    alignItems: "center",
+                    justifyContent: "center",
+                  }}
+                >
+                  ⚡
+                </span>
+                <span
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 800,
+                    fontSize: "1.1rem",
+                    color: "#fff",
+                  }}
+                >
+                  AI Solution<span style={{ color: "#AAFF00" }}>.</span>
+                </span>
+              </a>
+
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.4)",
+                  fontSize: "0.88rem",
+                  lineHeight: 1.8,
+                  maxWidth: 280,
+                  marginBottom: "2rem",
+                }}
+              >
+                An AI-powered software and digital transformation company
+                helping businesses automate, innovate, and scale with
+                confidence.
+              </p>
+
+              {/* Social Links */}
+              <div style={{ display: "flex", gap: "0.7rem" }}>
+                {socials.map((s, i) => (
+                  <a
+                    key={i}
+                    href={s.href}
+                    style={{
+                      width: 36,
+                      height: 36,
+                      background: "rgba(255,255,255,0.06)",
+                      border: "1px solid rgba(255,255,255,0.08)",
+                      borderRadius: 8,
+                      display: "flex",
+                      alignItems: "center",
+                      justifyContent: "center",
+                      color: "rgba(255,255,255,0.5)",
+                      textDecoration: "none",
+                      fontSize: "0.75rem",
+                      fontWeight: 700,
+                      transition: "all 0.2s",
+                    }}
+                    onMouseEnter={(e) => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.background = "rgba(170,255,0,0.1)";
+                      el.style.borderColor = "rgba(170,255,0,0.3)";
+                      el.style.color = "#AAFF00";
+                    }}
+                    onMouseLeave={(e) => {
+                      const el = e.currentTarget as HTMLAnchorElement;
+                      el.style.background = "rgba(255,255,255,0.06)";
+                      el.style.borderColor = "rgba(255,255,255,0.08)";
+                      el.style.color = "rgba(255,255,255,0.5)";
+                    }}
+                  >
+                    {s.label}
+                  </a>
+                ))}
+              </div>
             </div>
-            <p className="text-muted-foreground text-sm">
-              Leading provider of enterprise AI solutions transforming businesses globally.
-            </p>
+
+            {/* Navigation Columns */}
+            {cols.map((col, ci) => (
+              <div key={ci}>
+                <h4
+                  style={{
+                    fontFamily: "'Outfit', sans-serif",
+                    fontWeight: 700,
+                    fontSize: "0.85rem",
+                    color: "#fff",
+                    letterSpacing: "0.05em",
+                    textTransform: "uppercase",
+                    marginBottom: "1.4rem",
+                  }}
+                >
+                  {col.title}
+                </h4>
+                {col.links.map((l, li) => (
+                  <a
+                    key={li}
+                    href="#"
+                    style={{
+                      display: "block",
+                      color: "rgba(255,255,255,0.4)",
+                      textDecoration: "none",
+                      fontSize: "0.88rem",
+                      marginBottom: "0.8rem",
+                      transition: "color 0.2s",
+                    }}
+                    onMouseEnter={(e) =>
+                      (e.currentTarget.style.color = "#AAFF00")
+                    }
+                    onMouseLeave={(e) =>
+                      (e.currentTarget.style.color = "rgba(255,255,255,0.4)")
+                    }
+                  >
+                    {l}
+                  </a>
+                ))}
+              </div>
+            ))}
           </div>
 
-          {/* Product */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Product</h3>
-            <ul className="space-y-2">
-              <li><Link href="/services" className="text-muted-foreground hover:text-primary transition-colors text-sm">Services</Link></li>
-              <li><Link href="/case-studies" className="text-muted-foreground hover:text-primary transition-colors text-sm">Case Studies</Link></li>
-              <li><Link href="/industries" className="text-muted-foreground hover:text-primary transition-colors text-sm">Industries</Link></li>
-            </ul>
-          </div>
+          {/* Bottom Bar */}
+          <div
+            style={{
+              borderTop: "1px solid rgba(255,255,255,0.07)",
+              paddingTop: "2.5rem",
+              display: "flex",
+              justifyContent: "space-between",
+              alignItems: "center",
+              flexWrap: "wrap",
+              gap: "1.5rem",
+            }}
+          >
+            {/* Big watermark text */}
+            <div
+              style={{
+                fontFamily: "'Outfit', sans-serif",
+                fontWeight: 800,
+                fontSize: "clamp(2rem, 6vw, 4rem)",
+                color: "rgba(255,255,255,0.05)",
+                letterSpacing: "-0.04em",
+                lineHeight: 1,
+                userSelect: "none",
+              }}
+            >
+              Crafting since 2018
+            </div>
 
-          {/* Company */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Company</h3>
-            <ul className="space-y-2">
-              <li><Link href="/about" className="text-muted-foreground hover:text-primary transition-colors text-sm">About</Link></li>
-              <li><Link href="/insights" className="text-muted-foreground hover:text-primary transition-colors text-sm">Blog</Link></li>
-              <li><Link href="/contact" className="text-muted-foreground hover:text-primary transition-colors text-sm">Contact</Link></li>
-            </ul>
-          </div>
-
-          {/* Legal */}
-          <div>
-            <h3 className="text-white font-semibold mb-4">Legal</h3>
-            <ul className="space-y-2">
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">Privacy Policy</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">Terms of Service</a></li>
-              <li><a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm">Cookies</a></li>
-            </ul>
+            <div
+              style={{
+                display: "flex",
+                flexDirection: "column",
+                alignItems: "flex-end",
+                gap: "0.5rem",
+              }}
+            >
+              <div style={{ display: "flex", gap: "1.5rem" }}>
+                {["Privacy Policy", "Terms of Service", "Cookie Policy"].map(
+                  (link, i) => (
+                    <a
+                      key={i}
+                      href="#"
+                      style={{
+                        color: "rgba(255,255,255,0.25)",
+                        fontSize: "0.75rem",
+                        textDecoration: "none",
+                        transition: "color 0.2s",
+                      }}
+                      onMouseEnter={(e) =>
+                        (e.currentTarget.style.color = "rgba(255,255,255,0.6)")
+                      }
+                      onMouseLeave={(e) =>
+                        (e.currentTarget.style.color =
+                          "rgba(255,255,255,0.25)")
+                      }
+                    >
+                      {link}
+                    </a>
+                  )
+                )}
+              </div>
+              <p
+                style={{
+                  color: "rgba(255,255,255,0.2)",
+                  fontSize: "0.78rem",
+                  margin: 0,
+                }}
+              >
+                © AI Solution Technologies 2026 · All Rights Reserved
+              </p>
+            </div>
           </div>
         </div>
-
-        {/* Bottom */}
-        <div className="border-t border-border pt-8 flex flex-col md:flex-row items-center justify-between">
-          <p className="text-muted-foreground text-sm">
-            © 2024 AI Solution Technologies. All rights reserved.
-          </p>
-          <div className="flex gap-6 mt-4 md:mt-0">
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">Twitter</a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">LinkedIn</a>
-            <a href="#" className="text-muted-foreground hover:text-primary transition-colors">GitHub</a>
-          </div>
-        </div>
-      </div>
-    </footer>
+      </footer>
+    </>
   );
 }
