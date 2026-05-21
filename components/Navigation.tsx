@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { NAV_LINKS } from '@/lib/constants';
 
 export default function Navbar() {
@@ -34,7 +35,24 @@ export default function Navbar() {
           }`}
       >
         {/* Logo */}
-        <Link href="/logo.png" className="flex items-center gap-2.5 no-underline group">
+        <Link href="/" className="flex items-center gap-2.5 no-underline group">
+        <div className="relative flex items-center justify-center transition-all duration-300 group-hover:scale-110 drop-shadow-[0_0_15px_rgba(0,210,255,0)] group-hover:drop-shadow-[0_0_15px_rgba(0,210,255,0.6)]">
+
+      <Image 
+
+        src="/logo.png" // <-- Put your logo in the 'public' folder and change this filename
+
+        alt="AI Solution Logo" 
+
+        width={36} 
+
+        height={36} 
+
+        className="object-contain rounded-full"
+
+      />
+
+    </div>
           
           <span className="font-semibold text-[1.05rem] text-white tracking-[-0.01em]">
             AI Solution Tech<span className="text-[#00D2FF] inline-block transition-transform duration-300 group-hover:translate-x-0.5">.</span>

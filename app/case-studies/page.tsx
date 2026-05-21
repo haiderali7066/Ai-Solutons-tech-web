@@ -1,7 +1,5 @@
 'use client';
 
-import Navigation from '@/components/Navigation';
-import Footer from '@/components/Footer';
 import Link from 'next/link';
 import { CASE_STUDIES } from '@/lib/constants';
 import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/AnimatedSection';
@@ -9,7 +7,6 @@ import { FadeInUp, StaggerContainer, StaggerItem } from '@/components/AnimatedSe
 export default function CaseStudies() {
   return (
     <main className="min-h-screen bg-background">
-      <Navigation />
 
       {/* Hero */}
       <section className="pt-32 pb-16 px-6 max-w-7xl mx-auto">
@@ -146,7 +143,6 @@ export default function CaseStudies() {
         </div>
       </section>
 
-      <Footer />
     </main>
   );
 }

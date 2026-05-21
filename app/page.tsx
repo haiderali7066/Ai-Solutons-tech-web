@@ -1,231 +1,355 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 import { Poppins } from "next/font/google";
+import CortexMarqueeSection from "@/components/Home/scrollCards";
+import ServicesSection from "@/components/Home/services";
+import ProcessSection from "@/components/Home/processZigzag";
+import GlobalSection from "@/components/Home/globalsection";
 
-const poppins = Poppins({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
-});
+const poppins = Poppins({ subsets: ["latin"], weight: ["300","400","500","600","700","800"] });
 
-/* ─── Minimal Global Keyframes ─── */
-const KEYFRAMES = `
-  @keyframes fadeUp { from { opacity:0; transform:translateY(28px); } to { opacity:1; transform:translateY(0); } }
-  @keyframes blink  { 0%,100%{opacity:1} 50%{opacity:0.25} }
-  @keyframes pulse  { 0%,100%{transform:scale(1)} 50%{transform:scale(1.05)} }
-  @keyframes shimmer{ 0%{background-position:-200% center} 100%{background-position:200% center} }
+/* ══════════════════════════════════════
+   GLOBAL STYLES
+══════════════════════════════════════ */
+const STYLES = `
+
+
+  @keyframes fadeUp   { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes blink    { 0%,100%{opacity:1} 50%{opacity:.25} }
+  @keyframes floatUp  { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-10px)} }
+  @keyframes shimmer  { 0%{background-position:-200% center} 100%{background-position:200% center} }
+  @keyframes mleft    { from{transform:translateX(0)} to{transform:translateX(-50%)} }
+  @keyframes mright   { from{transform:translateX(-50%)} to{transform:translateX(0)} }
+  @keyframes spinSlow { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes lineGrow { from{scaleY:0} to{scaleY:1} }
+  @keyframes popDot   { 0%{transform:scale(0)} 70%{transform:scale(1.25)} 100%{transform:scale(1)} }
+  @keyframes bgShift  { 0%,100%{background-position:0% 50%} 50%{background-position:100% 50%} }
+  @keyframes pulseRing{ 0%{box-shadow:0 0 0 0 rgba(37,99,235,0.3)} 100%{box-shadow:0 0 0 20px rgba(37,99,235,0)} }
+
   .ha1{animation:fadeUp .7s ease .10s both}
   .ha2{animation:fadeUp .8s ease .20s both}
   .ha3{animation:fadeUp .8s ease .35s both}
   .ha4{animation:fadeUp .8s ease .50s both}
   .ha5{animation:fadeUp .8s ease .65s both}
   .pip{animation:blink 2s infinite}
-  .cta-bg::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23fff' fill-opacity='0.04'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");pointer-events:none;z-index:0;}
-  .svc-card:hover .svc-icon{animation:pulse .6s ease;}
-  .gradient-text{background:linear-gradient(90deg,#60a5fa,#a5b4fc,#60a5fa);background-size:200% auto;-webkit-background-clip:text;-webkit-text-fill-color:transparent;animation:shimmer 3s linear infinite;}
+  .float-a{animation:floatUp 5s ease-in-out infinite}
+  .float-b{animation:floatUp 5s ease-in-out 1.8s infinite}
+  .float-c{animation:floatUp 6s ease-in-out 0.9s infinite}
+  .spin-slow{animation:spinSlow 22s linear infinite}
+  .pulse-ring{animation:pulseRing 2s ease-out infinite}
+
+  .grad-text {
+    background: linear-gradient(90deg,#60a5fa,#818cf8,#60a5fa);
+    background-size: 200%;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: shimmer 3s linear infinite;
+  }
+
+  /* Marquee */
+  .ml-wrap { overflow: hidden; }
+  .ml-track { display:flex; width:max-content; animation:mleft 40s linear infinite; }
+  .mr-track { display:flex; width:max-content; animation:mright 40s linear infinite; }
+  .ml-track:hover,.mr-track:hover { animation-play-state:paused; }
+
+  /* Diagonal section */
+  .diag-top    { clip-path: polygon(0 0, 100% 0, 100% 88%, 0 100%); }
+  .diag-bottom { clip-path: polygon(0 6%, 100% 0, 100% 100%, 0 100%); margin-top:-60px; }
+
+  /* Process connector */
+  .proc-line { transform-origin: top; animation: lineGrow 1s cubic-bezier(.16,1,.3,1) both; }
+
+  /* Folder tab card */
+  .folder-tab {
+    border-radius: 0 16px 16px 16px;
+    position: relative;
+  }
+  .folder-tab::before {
+    content:'';
+    position: absolute;
+    top: -26px; left: 0;
+    width: 90px; height: 26px;
+    background: inherit;
+    border-radius: 10px 10px 0 0;
+  }
+
+  /* Ghost number behind service rows */
+  .ghost-num {
+    position: absolute;
+    font-size: 100px;
+    font-weight: 900;
+    line-height: 1;
+    color: transparent;
+    -webkit-text-stroke: 1.5px rgba(37,99,235,0.08);
+    right: 0; top: -16px;
+    pointer-events: none;
+    font-family: 'Syne', sans-serif;
+    user-select: none;
+  }
+
+  /* Cortex card accent bar */
+  .cortex-bar {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 3px;
+    background: linear-gradient(90deg, #2563eb, #818cf8);
+    border-radius: 16px 16px 0 0;
+  }
+
+  /* Gradient mesh bg */
+  .mesh-bg {
+    background:
+      radial-gradient(ellipse at 10% 50%, rgba(37,99,235,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse at 90% 20%, rgba(129,140,248,0.07) 0%, transparent 50%),
+      #f8fafc;
+  }
+
+  /* Stagger items utility */
+  .stagger-1 { transition-delay: 0ms !important; }
+  .stagger-2 { transition-delay: 80ms !important; }
+  .stagger-3 { transition-delay: 160ms !important; }
+  .stagger-4 { transition-delay: 240ms !important; }
+
+  /* Orbit rings on cortex section */
+  .orbit-ring-1 {
+    width: 380px; height: 380px;
+    border: 1px dashed rgba(37,99,235,0.12);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: spinSlow 30s linear infinite;
+  }
+  .orbit-ring-2 {
+    width: 560px; height: 560px;
+    border: 1px solid rgba(37,99,235,0.06);
+    border-radius: 50%;
+    position: absolute;
+    top: 50%; left: 50%;
+    transform: translate(-50%,-50%);
+    animation: spinSlow 50s linear infinite reverse;
+  }
+
+  .cta-noise::before {
+    content:'';
+    position:absolute; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    background-size: 200px;
+    pointer-events:none; z-index:0; border-radius:inherit;
+  }
+
+  @media(max-width:768px) {
+    .ghost-num { display:none; }
+    .orbit-ring-1,.orbit-ring-2 { display:none; }
+  }
 `;
 
-/* ─── Scroll Reveal Hook ─── */
-function useReveal(threshold = 0.12) {
+/* ── Hooks ── */
+function useReveal(threshold = 0.1) {
   const ref = useRef<HTMLDivElement>(null);
-  const [visible, setVisible] = useState(false);
+  const [v, setV] = useState(false);
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
+    const el = ref.current; if (!el) return;
     const obs = new IntersectionObserver(
-      ([e]) => { if (e.isIntersecting) { setVisible(true); obs.disconnect(); } },
+      ([e]) => { if (e.isIntersecting) { setV(true); obs.disconnect(); } },
       { threshold }
     );
     obs.observe(el);
     return () => obs.disconnect();
   }, [threshold]);
-  return { ref, visible };
+  return { ref, v };
 }
 
-/* ─── Animated Counter ─── */
+function useParallax(multiplier = 0.18) {
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    let raf = 0;
+    const tick = () => {
+      if (ref.current) {
+        const r = ref.current.getBoundingClientRect();
+        const mid = (r.top + r.height / 2 - window.innerHeight / 2);
+        ref.current.style.transform = `translateY(${mid * multiplier}px)`;
+      }
+      raf = requestAnimationFrame(tick);
+    };
+    raf = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(raf);
+  }, [multiplier]);
+  return ref;
+}
+
+function useScrollY() {
+  const [y, setY] = useState(0);
+  useEffect(() => {
+    const h = () => setY(window.scrollY);
+    window.addEventListener("scroll", h, { passive: true });
+    return () => window.removeEventListener("scroll", h);
+  }, []);
+  return y;
+}
+
 function Counter({ to, suffix = "" }: { to: number; suffix?: string }) {
   const [val, setVal] = useState(0);
-  const { ref, visible } = useReveal();
+  const { ref, v } = useReveal();
   useEffect(() => {
-    if (!visible) return;
+    if (!v) return;
     let n = 0;
     const step = to / 55;
     const id = setInterval(() => {
       n += step;
-      if (n >= to) { setVal(to); clearInterval(id); }
-      else setVal(Math.floor(n));
+      if (n >= to) { setVal(to); clearInterval(id); } else setVal(Math.floor(n));
     }, 18);
     return () => clearInterval(id);
-  }, [visible, to]);
+  }, [v, to]);
   return <span ref={ref}>{val.toLocaleString()}{suffix}</span>;
 }
 
-/* ─── Reveal Wrapper ─── */
-function R({
-  children, d = 0, from = "bottom",
-}: {
-  children: React.ReactNode; d?: number; from?: "bottom" | "left" | "right";
+function R({ children, d = 0, from = "bottom" }: {
+  children: React.ReactNode; d?: number; from?: "bottom"|"left"|"right";
 }) {
-  const { ref, visible } = useReveal();
-  const init: Record<string, string> = {
-    bottom: "translateY(40px)",
-    left: "translateX(-40px)",
-    right: "translateX(40px)",
+  const { ref, v } = useReveal();
+  const t: Record<string, string> = {
+    bottom: "translateY(44px)", left: "translateX(-52px)", right: "translateX(52px)",
   };
   return (
-    <div
-      ref={ref}
-      style={{
-        opacity: visible ? 1 : 0,
-        transform: visible ? "none" : init[from],
-        transition: `opacity 0.75s ease ${d}ms, transform 0.75s cubic-bezier(.16,1,.3,1) ${d}ms`,
-      }}
-    >
+    <div ref={ref} style={{
+      opacity: v ? 1 : 0,
+      transform: v ? "none" : t[from],
+      transition: `opacity 0.85s ease ${d}ms, transform 0.9s cubic-bezier(.16,1,.3,1) ${d}ms`,
+    }}>
       {children}
     </div>
   );
 }
 
-/* ─── Tag Pill ─── */
-function Tag({ children }: { children: React.ReactNode }) {
+function Tag({ label }: { label: string }) {
   return (
-    <span className="inline-flex items-center gap-2 bg-blue-600 text-white text-xs font-semibold tracking-widest uppercase px-4 py-1.5 rounded-full">
-      <span className="pip w-1.5 h-1.5 rounded-full bg-white/60 inline-block" />
-      {children}
+    <span style={{
+      display:"inline-flex", alignItems:"center", gap:8,
+      background:"#2563eb", color:"#fff",
+      fontSize:11, fontWeight:700, letterSpacing:"0.07em", textTransform:"uppercase",
+      padding:"6px 16px", borderRadius:999,
+    }}>
+      <span className="pip" style={{ width:6, height:6, borderRadius:"50%", background:"rgba(255,255,255,0.55)", display:"inline-block" }} />
+      {label}
     </span>
   );
 }
 
-/* ─── Section Head ─── */
-function SectionHead({
-  tag, title, sub, dark = false,
-}: {
-  tag: string; title: React.ReactNode; sub?: React.ReactNode; dark?: boolean;
-}) {
+function SHead({ tag, h, sub, dark=false }: { tag:string; h:React.ReactNode; sub?:string; dark?:boolean }) {
   return (
     <R>
-      <div className="text-center mb-14">
-        <Tag>{tag}</Tag>
-        <h2
-          className={`mt-4 text-4xl md:text-5xl font-bold leading-tight tracking-tight ${
-            dark ? "text-white" : "text-slate-900"
-          }`}
-        >
-          {title}
-        </h2>
-        {sub && (
-          <p className={`mt-3 text-base font-light max-w-xl mx-auto ${dark ? "text-slate-400" : "text-slate-500"}`}>
-            {sub}
-          </p>
-        )}
+      <div style={{ textAlign:"center", marginBottom:"3.5rem" }}>
+        <Tag label={tag} />
+        <div style={{
+          marginTop:"1.1rem",
+          fontFamily:"'Syne', sans-serif",
+          fontSize:"clamp(2rem,4vw,3.2rem)",
+          fontWeight:800, lineHeight:1.1,
+          letterSpacing:"-0.03em",
+          color: dark ? "#fff" : "#0f172a",
+        }}>
+          {h}
+        </div>
+        {sub && <p style={{ marginTop:"0.75rem", fontSize:15, color: dark ? "#94a3b8":"#64748b", maxWidth:480, margin:"0.75rem auto 0", lineHeight:1.7 }}>{sub}</p>}
       </div>
     </R>
   );
 }
 
-/* ════════════════════════════════════════════
-   HERO
-════════════════════════════════════════════ */
+const W = ({ children, style }: { children: React.ReactNode; style?: React.CSSProperties }) => (
+  <div style={{ maxWidth:1200, margin:"0 auto", padding:"0 28px", ...style }}>{children}</div>
+);
+
+/* ══════════════════════════════════════
+   SECTION 1 — HERO
+══════════════════════════════════════ */
 function Hero() {
   const [loaded, setLoaded] = useState(false);
+  const scrollY = useScrollY();
+  const parallaxRef = useRef<HTMLVideoElement>(null);
+  useEffect(() => {
+    if (parallaxRef.current) {
+      parallaxRef.current.style.transform = `scale(1.1) translateY(${scrollY * 0.25}px)`;
+    }
+  }, [scrollY]);
+
   return (
-    <section className="relative min-h-screen flex items-center overflow-hidden bg-slate-950">
-      <video
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        autoPlay loop muted playsInline
-        onCanPlay={() => setLoaded(true)}
-        style={{ opacity: loaded ? 0.35 : 0, transition: "opacity 1.8s ease" }}
-      >
-        <source src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4" type="video/mp4" />
+    <section style={{ position:"relative", minHeight:"100svh", display:"flex", alignItems:"center", overflow:"hidden", background:"#020817" }}>
+      <video ref={parallaxRef} autoPlay loop muted playsInline onCanPlay={() => setLoaded(true)}
+        style={{ position:"absolute", inset:0, width:"100%", height:"100%", objectFit:"cover", zIndex:0, opacity: loaded ? 0.3 : 0, transition:"opacity 2s ease", transformOrigin:"center" }}>
+        <source src="https://videos.pexels.com/video-files/3129671/3129671-hd_1920_1080_30fps.mp4" type="video/mp4"/>
       </video>
 
-      {/* Multi-tone overlay */}
-      <div
-        className="absolute inset-0 z-10"
-        style={{
-          background:
-            "linear-gradient(135deg, rgba(15,23,42,0.97) 0%, rgba(29,78,216,0.35) 50%, rgba(15,23,42,0.97) 100%)",
-        }}
-      />
-      {/* Blue glow blob */}
-      <div
-        className="absolute z-10 rounded-full blur-3xl opacity-20"
-        style={{
-          width: 600, height: 600, top: "50%", left: "50%",
-          transform: "translate(-50%,-50%)",
-          background: "radial-gradient(circle, #3b82f6 0%, transparent 70%)",
-        }}
-      />
+      {/* layered overlays */}
+      <div style={{ position:"absolute", inset:0, zIndex:1, background:"linear-gradient(135deg,rgba(2,8,23,0.97) 0%,rgba(29,78,216,0.2) 55%,rgba(2,8,23,0.98) 100%)" }} />
+      <div style={{ position:"absolute", zIndex:1, width:700, height:700, borderRadius:"50%", background:"radial-gradient(circle,rgba(37,99,235,0.18) 0%,transparent 70%)", top:"50%", left:"50%", transform:"translate(-50%,-50%)", filter:"blur(40px)" }} />
 
-      <div className="relative z-20 w-full max-w-5xl mx-auto px-6 py-36 text-center">
-        <div className="ha1">
-          <Tag>Intelligence That Accelerates Growth</Tag>
-        </div>
+     
 
-        <h1 className="ha2 mt-6 mb-5 text-5xl md:text-7xl font-bold leading-[1.05] tracking-tight text-white">
-          Transform Your Business
-          <br />
-          With{" "}
-          <span className="gradient-text italic font-semibold">AI & Data</span>
+
+      {/* hero copy */}
+      <W style={{ position:"relative", zIndex:5, textAlign:"center", paddingTop:130, paddingBottom:110 }}>
+        <div className="ha1" style={{ marginBottom:20 }}><Tag label="Intelligence That Accelerates Growth"/></div>
+
+        <h1 className="ha2" style={{
+          fontFamily:"'Syne',sans-serif",
+          fontSize:"clamp(3rem,7.5vw,7rem)",
+          fontWeight:550, lineHeight:1.0,
+          letterSpacing:"-0.04em", color:"#fff", marginBottom:"1.25rem",
+        }}>
+          Transform Your Business<br/>With <span className="grad-text">AI & Data</span>
         </h1>
 
-        <p className="ha3 text-base md:text-lg font-light leading-relaxed text-slate-400 max-w-lg mx-auto mb-10">
-          AI Solution Tech Technologies delivers enterprise-grade AI, cloud modernisation,
-          and data engineering — from strategy to production, in weeks not months.
+        <p className="ha3" style={{ fontSize:"clamp(15px,1.8vw,18px)", fontWeight:300, color:"rgba(255,255,255,0.5)", maxWidth:520, margin:"0 auto 2.5rem", lineHeight:1.75 }}>
+          AIST delivers enterprise-grade AI, cloud modernisation, and data engineering — from strategy to production, in weeks not months.
         </p>
 
-        <div className="ha4 flex justify-center gap-3 flex-wrap">
-          <button
-            className="bg-blue-600 hover:bg-blue-700 text-white rounded-full px-8 py-3.5 text-sm font-semibold transition-all duration-200 flex items-center gap-2 hover:-translate-y-0.5 hover:shadow-[0_8px_24px_rgba(37,99,235,0.4)]"
-          >
+        <div className="ha4" style={{ display:"flex", justifyContent:"center", gap:12, flexWrap:"wrap" }}>
+          <button style={{ background:"#2563eb", color:"#fff", border:"none", borderRadius:999, padding:"15px 32px", fontSize:15, fontWeight:700, cursor:"pointer", display:"flex", alignItems:"center", gap:8, fontFamily:"inherit", transition:"all .25s", boxShadow:"0 0 40px rgba(37,99,235,0.4)" }}
+            onMouseEnter={e=>{(e.currentTarget as HTMLButtonElement).style.boxShadow="0 8px 30px rgba(37,99,235,0.6)";(e.currentTarget as HTMLButtonElement).style.transform="translateY(-2px)";}}
+            onMouseLeave={e=>{(e.currentTarget as HTMLButtonElement).style.boxShadow="0 0 40px rgba(37,99,235,0.4)";(e.currentTarget as HTMLButtonElement).style.transform="translateY(0)";}}>
             Start Your Journey
-            <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-              <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
+            <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
           </button>
-          <button className="bg-transparent text-white border-2 border-white/20 hover:border-white/50 rounded-full px-8 py-3.5 text-sm font-medium transition-all duration-200 flex items-center gap-2">
+          <button style={{ background:"transparent", color:"rgba(255,255,255,0.7)", border:"2px solid rgba(255,255,255,0.15)", borderRadius:999, padding:"15px 32px", fontSize:15, fontWeight:500, cursor:"pointer", display:"flex", alignItems:"center", gap:8, fontFamily:"inherit", transition:"all .2s" }}
+            onMouseEnter={e=>{(e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.5)";(e.currentTarget as HTMLButtonElement).style.color="#fff";}}
+            onMouseLeave={e=>{(e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.15)";(e.currentTarget as HTMLButtonElement).style.color="rgba(255,255,255,0.7)";}}>
             ▶ Watch Demo
           </button>
         </div>
 
-        <div className="ha5 flex items-center justify-center gap-3 mt-10">
-          <div className="flex">
-            {[
-              "photo-1531123897727-8f129e1bf98a",
-              "photo-1507003211169-0a1dd7228f2d",
-              "photo-1500648767791-00dcc994a43e",
-            ].map((id, i) => (
-              <img
-                key={id}
-                src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=80&q=80`}
-                alt="client"
-                className="w-9 h-9 rounded-full border-2 border-slate-950 object-cover"
-                style={{ marginLeft: i === 0 ? 0 : -8 }}
-              />
+        <div className="ha5" style={{ display:"flex", alignItems:"center", justifyContent:"center", gap:12, marginTop:"2.5rem" }}>
+          <div style={{ display:"flex" }}>
+            {["photo-1531123897727-8f129e1bf98a","photo-1507003211169-0a1dd7228f2d","photo-1500648767791-00dcc994a43e"].map((id,i)=>(
+              <img key={id} src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=80&q=80`} alt=""
+                style={{ width:34, height:34, borderRadius:"50%", border:"2px solid #020817", objectFit:"cover", marginLeft:i===0?0:-9 }}/>
             ))}
           </div>
-          <div className="text-left">
-            <div className="text-blue-400 text-sm tracking-wider">★★★★★</div>
-            <div className="text-xs text-slate-400">
-              Rated <strong className="text-white">4.9</strong> by 200+ enterprise clients
-            </div>
+          <div style={{ textAlign:"left" }}>
+            <div style={{ color:"#60a5fa", fontSize:13, letterSpacing:2 }}>★★★★★</div>
+            <div style={{ fontSize:12, color:"rgba(255,255,255,0.4)" }}>Rated <strong style={{ color:"#fff" }}>4.9</strong> by 200+ enterprise clients</div>
           </div>
         </div>
-      </div>
+      </W>
+
+      {/* bottom fade */}
     </section>
   );
 }
 
-/* ─── Press Bar ─── */
+/* ── Press Marquee ── */
 function PressBar() {
-  const names = ["Westpac", "Telstra", "ANZ Bank", "Atlassian", "Canva", "Deloitte"];
+  const clients = ["Westpac","Telstra","ANZ Bank","Atlassian","Canva","Deloitte","Microsoft","AWS","Salesforce","Oracle","SAP","Cisco"];
+  const doubled = [...clients,...clients];
   return (
-    <div className="bg-white border-y border-slate-100 py-5">
-      <div className="max-w-6xl mx-auto px-7 flex items-center justify-center gap-10 flex-wrap">
-        {names.map((n) => (
-          <span
-            key={n}
-            className="text-xs font-bold tracking-widest uppercase text-slate-300 hover:text-slate-500 transition-colors cursor-default"
-          >
+    <div style={{ background:"#fff", borderBottom:"1px solid #f1f5f9", padding:"18px 0", overflow:"hidden" }}>
+      <div className="ml-track">
+        {doubled.map((n,i)=>(
+          <span key={i} style={{ padding:"0 36px", fontSize:12, fontWeight:700, letterSpacing:"0.1em", textTransform:"uppercase", color:"#cbd5e1", whiteSpace:"nowrap", transition:"color .2s", cursor:"default" }}
+            onMouseEnter={e=>(e.currentTarget.style.color="#94a3b8")}
+            onMouseLeave={e=>(e.currentTarget.style.color="#cbd5e1")}>
             {n}
           </span>
         ))}
@@ -234,186 +358,95 @@ function PressBar() {
   );
 }
 
-/* ════════════════════════════════════════════
-   WHY CHOOSE US — STATS
-════════════════════════════════════════════ */
-function WhySection() {
-  const stats = [
-    {
-      val: <><Counter to={180} suffix="+" /></>,
-      label: "Personalised Solutions",
-      sub: "Learning paths powered by intelligent algorithms",
-      bg: "bg-blue-700",
-      textColor: "text-white",
-      labelColor: "text-blue-200",
-      subColor: "text-blue-300/70",
-      dotColor: "bg-white/40",
-    },
-    {
-      val: <><Counter to={2400000} />+</>,
-      label: "Businesses Empowered",
-      sub: "Enterprises across Australia & globally",
-      bg: "bg-white border border-slate-100",
-      textColor: "text-slate-900",
-      labelColor: "text-slate-500",
-      subColor: "text-slate-400",
-      dotColor: "bg-blue-500",
-    },
-    {
-      val: <><Counter to={92} suffix="%" /></>,
-      label: "Faster Skill Mastery",
-      sub: "Accelerate your growth curve with smarter delivery",
-      bg: "bg-slate-900",
-      textColor: "text-white",
-      labelColor: "text-slate-400",
-      subColor: "text-slate-600",
-      dotColor: "bg-blue-500",
-    },
-    {
-      val: <><Counter to={1} suffix="M+" /></>,
-      label: "Questions Answered",
-      sub: "Answered with clarity, speed and precision",
-      bg: "bg-blue-50 border border-blue-100",
-      textColor: "text-slate-900",
-      labelColor: "text-slate-500",
-      subColor: "text-slate-400",
-      dotColor: "bg-blue-500",
-    },
+/* ══════════════════════════════════════
+   SECTION 2 — STATS MOSAIC
+══════════════════════════════════════ */
+function StatsSection() {
+  const statData = [
+    { val:180, suf:"+", label:"AI Solutions Delivered", sub:"Personalised to each enterprise", bg:"#1d4ed8", tc:"#fff", lc:"rgba(255,255,255,0.65)", sc:"rgba(255,255,255,0.4)", dc:"rgba(255,255,255,0.4)" },
+    { val:2400000, suf:"", label:"Businesses Empowered", sub:"Across Australia & GCC", bg:"#fff", tc:"#0f172a", lc:"#64748b", sc:"#94a3b8", dc:"#2563eb" },
+    { val:92, suf:"%", label:"Faster Delivery Rate", sub:"Vs. traditional dev lifecycle", bg:"#0f172a", tc:"#fff", lc:"#94a3b8", sc:"#475569", dc:"#3b82f6" },
+    { val:98, suf:"%", label:"Client Satisfaction", sub:"Measured across all engagements", bg:"#eff6ff", tc:"#0f172a", lc:"#475569", sc:"#94a3b8", dc:"#2563eb" },
   ];
 
   return (
-    <section className="bg-slate-50 py-24">
-      <div className="max-w-6xl mx-auto px-7">
-        <SectionHead
-          tag="Why Choose Us"
-          title={<>Redefining Enterprise Technology<br /><span className="text-slate-400">Through Hyper-Personalised AI</span></>}
-        />
-
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-          {stats.map((s, i) => (
-            <R key={i} d={i * 80}>
-              <div className={`${s.bg} rounded-2xl p-8 flex flex-col justify-between min-h-[180px] relative overflow-hidden hover:-translate-y-1 hover:shadow-xl transition-all duration-300`}>
+    <section style={{ background:"#f8fafc", padding:"96px 0" }}>
+      <W>
+        <SHead tag="Why Choose Us" h={<>Redefining Enterprise Technology<br/><span style={{ color:"#94a3b8" }}>Through Hyper-Personalised AI</span></>}/>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:12 }}>
+          {statData.map((s,i)=>(
+            <R key={i} d={i*75}>
+              <div style={{ background:s.bg, borderRadius:20, padding:"2rem 1.75rem", minHeight:190, display:"flex", flexDirection:"column", justifyContent:"space-between", border:"1px solid rgba(0,0,0,0.06)", transition:"all .3s", cursor:"default" }}
+                onMouseEnter={e=>{const el=e.currentTarget;el.style.transform="translateY(-5px)";el.style.boxShadow="0 24px 60px rgba(0,0,0,0.1)";}}
+                onMouseLeave={e=>{const el=e.currentTarget;el.style.transform="translateY(0)";el.style.boxShadow="none";}}>
                 <div>
-                  <span className={`inline-block w-2 h-2 rounded-full ${s.dotColor} mb-3`} />
-                  <div className={`text-4xl font-bold tracking-tight ${s.textColor}`}>{s.val}</div>
-                  <div className={`text-xs font-semibold uppercase tracking-wider mt-1 ${s.labelColor}`}>{s.label}</div>
+                  <span style={{ width:8, height:8, borderRadius:"50%", background:s.dc, display:"inline-block", marginBottom:10 }}/>
+                  <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"2.8rem", fontWeight:800, color:s.tc, letterSpacing:"-0.04em", lineHeight:1 }}>
+                    <Counter to={s.val} suffix={s.suf}/>
+                  </div>
+                  <div style={{ fontSize:11, fontWeight:700, textTransform:"uppercase", letterSpacing:"0.07em", color:s.lc, marginTop:6 }}>{s.label}</div>
                 </div>
-                <p className={`text-xs leading-relaxed mt-3 ${s.subColor}`}>{s.sub}</p>
+                <p style={{ fontSize:12, color:s.sc, lineHeight:1.55, marginTop:8 }}>{s.sub}</p>
               </div>
             </R>
           ))}
         </div>
-      </div>
+      </W>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════
-   SERVICES (NEW SECTION)
-════════════════════════════════════════════ */
-const SERVICES = [
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-        <path d="M9.663 17h4.673M12 3v1m6.364 1.636-.707.707M21 12h-1M4 12H3m3.343-5.657-.707-.707m2.828 9.9a5 5 0 1 1 7.072 0l-.548.547A3.374 3.374 0 0 0 14 18.469V19a2 2 0 1 1-4 0v-.531c0-.895-.356-1.754-.988-2.386l-.548-.547z" />
-      </svg>
-    ),
-    title: "AI Strategy & Consulting",
-    desc: "We partner with your leadership to design a bespoke AI roadmap — from opportunity identification to ROI projections and phased delivery plans.",
-    accent: "from-blue-600 to-indigo-600",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-        <path d="M9 19v-6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v6a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2zm0 0V9a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v10m-6 0a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2m0 0V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-2a2 2 0 0 1-2-2z" />
-      </svg>
-    ),
-    title: "Data Engineering & Analytics",
-    desc: "End-to-end data pipelines, lakehouses, and real-time analytics that turn raw data into competitive intelligence — at enterprise scale.",
-    accent: "from-sky-500 to-blue-600",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-        <path d="M3 15a4 4 0 0 0 4 4h9a5 5 0 1 0-.1-9.999 5.002 5.002 0 0 0-9.78 2.096A4.001 4.001 0 0 0 3 15z" />
-      </svg>
-    ),
-    title: "Cloud Modernisation",
-    desc: "Migrate legacy systems to AWS, Azure, or GCP with zero downtime. We architect resilient, cost-optimised cloud infrastructure built to scale.",
-    accent: "from-blue-500 to-cyan-500",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-        <path d="M10 20l4-16m4 4l4 4-4 4M6 16l-4-4 4-4" />
-      </svg>
-    ),
-    title: "Custom AI Development",
-    desc: "From LLM-powered applications to computer vision systems — we build, fine-tune, and deploy bespoke AI models tailored to your domain.",
-    accent: "from-indigo-600 to-blue-700",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-        <rect x="4" y="4" width="16" height="16" rx="2" /><rect x="9" y="9" width="6" height="6" /><path d="M9 1v3M15 1v3M9 20v3M15 20v3M20 9h3M20 15h3M1 9h3M1 15h3" />
-      </svg>
-    ),
-    title: "Machine Learning & MLOps",
-    desc: "Production-grade ML pipelines with automated retraining, drift detection, and full observability — so your models stay accurate over time.",
-    accent: "from-blue-700 to-violet-600",
-  },
-  {
-    icon: (
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.7" strokeLinecap="round" strokeLinejoin="round" className="w-6 h-6">
-        <path d="M4 4v5h.582m15.356 2A8.001 8.001 0 0 0 4.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 0 1-15.357-2m15.357 2H15" />
-      </svg>
-    ),
-    title: "Process Automation",
-    desc: "Intelligent RPA and workflow automation that eliminates repetitive tasks, reduces errors, and frees your team for high-value strategic work.",
-    accent: "from-sky-600 to-blue-500",
-  },
+
+
+/* ══════════════════════════════════════
+   SECTION 5 — INDUSTRIES (Marquee rows)
+══════════════════════════════════════ */
+const INDUSTRIES = [
+  { name:"Government & Public Sector", icon:"🏛️" },
+  { name:"Banking & Financial Services", icon:"🏦" },
+  { name:"Healthcare", icon:"🏥" },
+  { name:"Retail & E-Commerce", icon:"🛒" },
+  { name:"Logistics & Supply Chain", icon:"🚚" },
+  { name:"Education", icon:"🎓" },
+  { name:"Real Estate", icon:"🏢" },
+  { name:"Telecommunications", icon:"📡" },
+  { name:"Manufacturing", icon:"🏭" },
+  { name:"Enterprise Technology", icon:"💻" },
 ];
 
-function ServicesSection() {
+function IndustriesSection() {
+  const row1 = [...INDUSTRIES,...INDUSTRIES];
+  const row2 = [...[...INDUSTRIES].reverse(),...[...INDUSTRIES].reverse()];
+  const paralRef = useParallax(-0.1);
   return (
-    <section className="bg-slate-950 py-28 border-t border-slate-800">
-      <div className="max-w-6xl mx-auto px-7">
-        <SectionHead
-          tag="Our Services"
-          title={<>Enterprise AI Solution Techs<br /><span className="text-slate-500">Built for Real Results</span></>}
-          sub="From strategy to deployment — every service is designed to deliver measurable impact, fast."
-          dark
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
-          {SERVICES.map((s, i) => (
-            <R key={s.title} d={i * 80} from={i % 2 === 0 ? "left" : "right"}>
-              <div className="svc-card group relative bg-slate-900 border border-slate-800 rounded-2xl p-7 hover:border-blue-600/40 hover:-translate-y-1 hover:shadow-[0_20px_50px_rgba(37,99,235,0.12)] transition-all duration-300 overflow-hidden">
-                {/* Glow on hover */}
-                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none rounded-2xl"
-                  style={{ background: "radial-gradient(ellipse at top left, rgba(59,130,246,0.08) 0%, transparent 70%)" }}
-                />
-
-                {/* Icon */}
-                <div className={`svc-icon w-12 h-12 rounded-xl bg-gradient-to-br ${s.accent} flex items-center justify-center text-white mb-5 shadow-lg`}>
-                  {s.icon}
-                </div>
-
-                <h3 className="text-base font-semibold text-white mb-2 group-hover:text-blue-300 transition-colors">
-                  {s.title}
-                </h3>
-                <p className="text-sm leading-relaxed text-slate-500 group-hover:text-slate-400 transition-colors">
-                  {s.desc}
-                </p>
-
-                <div className="mt-5 flex items-center gap-1 text-xs text-blue-500 font-semibold opacity-0 group-hover:opacity-100 transition-all -translate-x-2 group-hover:translate-x-0 duration-300">
-                  Learn more
-                  <svg width="12" height="12" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </div>
-              </div>
-            </R>
+    <section style={{ background:"#fff", padding:"100px 0", overflow:"hidden", position:"relative" }}>
+      <div ref={paralRef} style={{ position:"absolute", inset:0, background:"radial-gradient(ellipse at 30% 50%,rgba(37,99,235,0.04) 0%,transparent 60%)", pointerEvents:"none" }}/>
+      <W style={{ marginBottom:"3.5rem" }}>
+        <SHead tag="Industries We Serve" h={<>Built Across<br/><span style={{ color:"#94a3b8" }}>Every Major Sector</span></>}/>
+      </W>
+      {/* Marquee row 1 */}
+      <div className="ml-wrap" style={{ marginBottom:14 }}>
+        <div className="ml-track">
+          {row1.map((ind,i)=>(
+            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"14px 28px", margin:"0 6px", background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:999, whiteSpace:"nowrap", flexShrink:0, transition:"all .2s", cursor:"default" }}
+              onMouseEnter={e=>{e.currentTarget.style.background="#eff6ff";e.currentTarget.style.borderColor="#bfdbfe";}}
+              onMouseLeave={e=>{e.currentTarget.style.background="#f8fafc";e.currentTarget.style.borderColor="#e2e8f0";}}>
+              <span style={{ fontSize:18 }}>{ind.icon}</span>
+              <span style={{ fontSize:13, fontWeight:600, color:"#334155" }}>{ind.name}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+      {/* Marquee row 2 */}
+      <div className="ml-wrap">
+        <div className="mr-track">
+          {row2.map((ind,i)=>(
+            <div key={i} style={{ display:"flex", alignItems:"center", gap:10, padding:"14px 28px", margin:"0 6px", background:"#fff", border:"1px solid #f1f5f9", borderRadius:999, whiteSpace:"nowrap", flexShrink:0, transition:"all .2s", cursor:"default" }}
+              onMouseEnter={e=>{e.currentTarget.style.background="#eff6ff";e.currentTarget.style.borderColor="#bfdbfe";}}
+              onMouseLeave={e=>{e.currentTarget.style.background="#fff";e.currentTarget.style.borderColor="#f1f5f9";}}>
+              <span style={{ fontSize:18 }}>{ind.icon}</span>
+              <span style={{ fontSize:13, fontWeight:600, color:"#475569" }}>{ind.name}</span>
+            </div>
           ))}
         </div>
       </div>
@@ -421,297 +454,349 @@ function ServicesSection() {
   );
 }
 
-/* ════════════════════════════════════════════
-   FEATURES — CORE INTELLIGENCE
-════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   SECTION 7 — FEATURES (2×2 enhanced)
+══════════════════════════════════════ */
 function FeaturesSection() {
   return (
-    <section className="bg-white py-24 border-t border-slate-100">
-      <div className="max-w-6xl mx-auto px-7">
-        <SectionHead
-          tag="Core Intelligence"
-          title={<>Features Tailored To Your<br /><span className="text-slate-400">Unique Business Style</span></>}
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {/* Feature 1 – Progress Analytics */}
+    <section style={{ background:"#fff", padding:"100px 0", borderTop:"1px solid #f1f5f9" }}>
+      <W>
+        <SHead tag="Core Intelligence" h={<>Features Tailored<br/><span style={{ color:"#94a3b8" }}>To Your Business</span></>}/>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:12 }}>
+          {/* Analytics */}
           <R d={0} from="left">
-            <div className="group bg-slate-50 border border-slate-100 rounded-2xl p-7 hover:border-blue-200 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
-              <div className="h-44 rounded-xl mb-6 flex items-end justify-center gap-1.5 px-4 pb-3 overflow-hidden" style={{ background: "linear-gradient(135deg,#eff6ff,#dbeafe)" }}>
-                {[55, 70, 45, 90, 60, 110, 80, 95, 65, 100].map((h, i) => (
-                  <div
-                    key={i}
-                    className="rounded-t flex-1 max-w-[22px] transition-all duration-500"
-                    style={{
-                      height: h,
-                      background: i === 6 ? "#2563eb" : `rgba(37,99,235,${0.15 + i * 0.05})`,
-                    }}
-                  />
+            <div style={{ background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:20, padding:"1.75rem", cursor:"default", transition:"all .3s" }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor="#bfdbfe";e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 16px 40px rgba(37,99,235,0.08)";}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor="#e2e8f0";e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none";}}>
+              <div style={{ height:160, borderRadius:14, background:"linear-gradient(135deg,#eff6ff,#dbeafe)", marginBottom:"1.5rem", display:"flex", alignItems:"flex-end", justifyContent:"center", gap:5, padding:"0 20px 16px", position:"relative", overflow:"hidden" }}>
+                {[55,70,45,90,60,110,80,95,65,100].map((h,i)=>(
+                  <div key={i} style={{ flex:1, maxWidth:20, height:h, borderRadius:"4px 4px 0 0", background: i===6?"#2563eb":`rgba(37,99,235,${0.12+i*0.05})` }}/>
                 ))}
-                <div className="absolute top-3 right-3 bg-white rounded-lg px-2.5 py-1 text-xs font-semibold text-blue-600 shadow-sm">
-                  −7 Days
-                </div>
+                <div style={{ position:"absolute", top:12, right:12, background:"#fff", borderRadius:8, padding:"4px 10px", fontSize:11, fontWeight:700, color:"#2563eb", boxShadow:"0 2px 8px rgba(0,0,0,0.08)" }}>−7 Days</div>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Progress Analytics</h3>
-              <p className="text-sm leading-relaxed text-slate-500">
-                Predictive insights reveal when you'll master each concept. Track streaks, identify weak areas, and celebrate breakthroughs.
-              </p>
+              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.15rem", fontWeight:700, color:"#0f172a", marginBottom:8 }}>Progress Analytics</div>
+              <p style={{ fontSize:13, color:"#64748b", lineHeight:1.65 }}>Predictive insights reveal performance patterns. Track streaks, identify weak areas, and celebrate breakthroughs across your organisation.</p>
             </div>
           </R>
-
-          {/* Feature 2 – Personalised Learning Path */}
+          {/* Learning path */}
           <R d={100} from="right">
-            <div className="group bg-slate-50 border border-slate-100 rounded-2xl p-7 hover:border-blue-200 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
-              <div className="h-44 rounded-xl mb-6 flex flex-col justify-center gap-3 px-5" style={{ background: "linear-gradient(135deg,#eff6ff,#e0e7ff)" }}>
-                {["Assessment", "Core Concepts", "Build Projects"].map((p, i) => (
-                  <div
-                    key={p}
-                    className="bg-white rounded-xl px-4 py-2.5 text-xs font-medium text-slate-800 shadow-sm flex items-center gap-2"
-                    style={{ marginLeft: i * 16 }}
-                  >
-                    <span className="w-2 h-2 rounded-full bg-blue-600 flex-shrink-0" />
+            <div style={{ background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:20, padding:"1.75rem", cursor:"default", transition:"all .3s" }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor="#bfdbfe";e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 16px 40px rgba(37,99,235,0.08)";}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor="#e2e8f0";e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none";}}>
+              <div style={{ height:160, borderRadius:14, background:"linear-gradient(135deg,#eff6ff,#e0e7ff)", marginBottom:"1.5rem", display:"flex", flexDirection:"column", justifyContent:"center", gap:10, padding:"0 24px" }}>
+                {["Discovery & Assessment","Core Architecture","Build & Deploy"].map((p,i)=>(
+                  <div key={p} style={{ background:"#fff", borderRadius:10, padding:"10px 14px", fontSize:12, fontWeight:500, color:"#0f172a", boxShadow:"0 2px 8px rgba(0,0,0,0.06)", display:"flex", alignItems:"center", gap:8, marginLeft:i*12, transition:"transform .2s" }}>
+                    <span style={{ width:8, height:8, borderRadius:"50%", background:"#2563eb", flexShrink:0 }}/>
                     {p}
-                    <span className="ml-auto text-blue-500 text-[10px]">→</span>
+                    <span style={{ marginLeft:"auto", color:"#2563eb", fontSize:11 }}>→</span>
                   </div>
                 ))}
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Personalised Learning Path</h3>
-              <p className="text-sm leading-relaxed text-slate-500">
-                AI designs a solution journey tailored to your goals, adapting in real time to business needs and market shifts.
-              </p>
+              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.15rem", fontWeight:700, color:"#0f172a", marginBottom:8 }}>Personalised Solution Path</div>
+              <p style={{ fontSize:13, color:"#64748b", lineHeight:1.65 }}>AI designs a transformation journey tailored to your goals, adapting in real time to business needs and market conditions.</p>
             </div>
           </R>
-
-          {/* Feature 3 – AI Tutor Chat */}
+          {/* AI Chat */}
           <R d={150} from="left">
-            <div className="group bg-slate-50 border border-slate-100 rounded-2xl p-7 hover:border-blue-200 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
-              <div className="h-44 rounded-xl mb-6 flex flex-col justify-center gap-3 px-5" style={{ background: "linear-gradient(135deg,#f8fafc,#f0f4ff)" }}>
-                {[
-                  { id: "photo-1531123897727-8f129e1bf98a", name: "Sarah Chen", role: "Data Engineer" },
-                  { id: "photo-1507003211169-0a1dd7228f2d", name: "James Porter", role: "AI Lead" },
-                  { id: "photo-1519085360753-af0119f7cbe7", name: "Michael Ross", role: "Cloud Architect" },
-                ].map((u, i) => (
-                  <div key={u.name} className="flex items-center gap-3" style={{ opacity: 1 - i * 0.2 }}>
-                    <img
-                      src={`https://images.unsplash.com/${u.id}?auto=format&fit=crop&w=80&q=80`}
-                      alt={u.name}
-                      className="w-8 h-8 rounded-full object-cover flex-shrink-0"
-                    />
-                    <span className="text-xs font-semibold text-slate-800">{u.name}</span>
-                    <span className="text-[10px] text-blue-600 font-medium">{u.role}</span>
+            <div style={{ background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:20, padding:"1.75rem", cursor:"default", transition:"all .3s" }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor="#bfdbfe";e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 16px 40px rgba(37,99,235,0.08)";}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor="#e2e8f0";e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none";}}>
+              <div style={{ height:160, borderRadius:14, background:"linear-gradient(135deg,#f8fafc,#f0f4ff)", marginBottom:"1.5rem", display:"flex", flexDirection:"column", justifyContent:"center", gap:12, padding:"0 20px" }}>
+                {[{id:"photo-1531123897727-8f129e1bf98a",name:"Sarah Chen",role:"Data Engineer"},{id:"photo-1507003211169-0a1dd7228f2d",name:"James Porter",role:"AI Lead"},{id:"photo-1519085360753-af0119f7cbe7",name:"Michael Ross",role:"Cloud Architect"}].map((u,i)=>(
+                  <div key={u.name} style={{ display:"flex", alignItems:"center", gap:10, opacity:1-i*0.2 }}>
+                    <img src={`https://images.unsplash.com/${u.id}?auto=format&fit=crop&w=80&q=80`} alt={u.name} style={{ width:30, height:30, borderRadius:"50%", objectFit:"cover" }}/>
+                    <span style={{ fontSize:12, fontWeight:600, color:"#0f172a" }}>{u.name}</span>
+                    <span style={{ fontSize:11, color:"#2563eb", fontWeight:500 }}>{u.role}</span>
                   </div>
                 ))}
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">AI Tutor Chat</h3>
-              <p className="text-sm leading-relaxed text-slate-500">
-                Get instant, personalised explanations tailored to your team. Ask anything and understand with clarity and depth.
-              </p>
+              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.15rem", fontWeight:700, color:"#0f172a", marginBottom:8 }}>AI Expert Network</div>
+              <p style={{ fontSize:13, color:"#64748b", lineHeight:1.65 }}>Connect with domain experts and AI advisors instantly. Get personalised guidance tailored to your stack, industry, and goals.</p>
             </div>
           </R>
-
-          {/* Feature 4 – Smart Content Generator */}
+          {/* Smart generator */}
           <R d={200} from="right">
-            <div className="group bg-slate-50 border border-slate-100 rounded-2xl p-7 hover:border-blue-200 hover:-translate-y-0.5 hover:shadow-lg transition-all duration-300">
-              <div className="h-44 rounded-xl mb-6 flex items-center justify-center px-5" style={{ background: "linear-gradient(135deg,#eff6ff,#dbeafe)" }}>
-                <div className="w-full max-w-xs bg-white rounded-xl p-4 shadow-md">
-                  <p className="text-xs text-slate-400 mb-3">Type your prompt here...</p>
-                  <div className="h-8 rounded-lg mb-3" style={{ background: "linear-gradient(90deg,rgba(37,99,235,0.12),rgba(99,102,241,0.12))" }} />
-                  <div className="flex items-center justify-between">
-                    <div className="flex gap-1.5">
-                      {["AI Docs", "Reports", "Analytics"].map((t) => (
-                        <span key={t} className="text-[10px] text-slate-500 bg-slate-100 px-2 py-0.5 rounded-md">{t}</span>
+            <div style={{ background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:20, padding:"1.75rem", cursor:"default", transition:"all .3s" }}
+              onMouseEnter={e=>{e.currentTarget.style.borderColor="#bfdbfe";e.currentTarget.style.transform="translateY(-3px)";e.currentTarget.style.boxShadow="0 16px 40px rgba(37,99,235,0.08)";}}
+              onMouseLeave={e=>{e.currentTarget.style.borderColor="#e2e8f0";e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none";}}>
+              <div style={{ height:160, borderRadius:14, background:"linear-gradient(135deg,#eff6ff,#dbeafe)", marginBottom:"1.5rem", display:"flex", alignItems:"center", justifyContent:"center", padding:"0 20px" }}>
+                <div style={{ width:"100%", maxWidth:300, background:"#fff", borderRadius:14, padding:"1rem", boxShadow:"0 4px 16px rgba(0,0,0,0.06)" }}>
+                  <div style={{ fontSize:12, color:"#94a3b8", marginBottom:10 }}>Type your prompt here...</div>
+                  <div style={{ height:32, borderRadius:8, marginBottom:10, background:"linear-gradient(90deg,rgba(37,99,235,0.1),rgba(129,140,248,0.1))" }}/>
+                  <div style={{ display:"flex", alignItems:"center", justifyContent:"space-between" }}>
+                    <div style={{ display:"flex", gap:6 }}>
+                      {["Reports","Analytics","Docs"].map(t=>(
+                        <span key={t} style={{ fontSize:10, color:"#64748b", background:"#f1f5f9", padding:"2px 8px", borderRadius:6 }}>{t}</span>
                       ))}
                     </div>
-                    <div className="w-6 h-6 rounded-full bg-blue-600 flex items-center justify-center text-white text-xs">↑</div>
+                    <div style={{ width:24, height:24, borderRadius:"50%", background:"#2563eb", display:"flex", alignItems:"center", justifyContent:"center", color:"#fff", fontSize:12 }}>↑</div>
                   </div>
                 </div>
               </div>
-              <h3 className="text-lg font-semibold text-slate-900 mb-2">Smart Content Generator</h3>
-              <p className="text-sm leading-relaxed text-slate-500">
-                Create AI-powered reports, documentation, and data insights instantly from any topic — your personal content engine.
-              </p>
+              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.15rem", fontWeight:700, color:"#0f172a", marginBottom:8 }}>Smart Content Generator</div>
+              <p style={{ fontSize:13, color:"#64748b", lineHeight:1.65 }}>Generate AI-powered reports, documentation, and operational insights instantly from any topic or dataset.</p>
             </div>
           </R>
+        </div>
+      </W>
+    </section>
+  );
+}
+
+/* ══════════════════════════════════════
+   SECTION 8 — TECH STACK (Marquee)
+══════════════════════════════════════ */
+const TECH = [
+  { name:"React.js", cat:"Frontend" }, { name:"Next.js", cat:"Frontend" }, { name:"TypeScript", cat:"Language" },
+  { name:"Node.js", cat:"Backend" }, { name:"Python", cat:"Backend" }, { name:"Azure", cat:"Cloud" },
+  { name:"AWS", cat:"Cloud" }, { name:"Docker", cat:"DevOps" }, { name:"Kubernetes", cat:"DevOps" },
+  { name:"Power BI", cat:"Analytics" }, { name:"PostgreSQL", cat:"Database" }, { name:"MongoDB", cat:"Database" },
+  { name:"TensorFlow", cat:"AI/ML" }, { name:"PyTorch", cat:"AI/ML" }, { name:"LangChain", cat:"AI/ML" },
+  { name:"Spark", cat:"Data" }, { name:"dbt", cat:"Data" }, { name:"Airflow", cat:"Data" },
+];
+const CATCOL: Record<string,string> = {
+  Frontend:"#3b82f6", Backend:"#10b981", Cloud:"#8b5cf6", DevOps:"#f59e0b",
+  Analytics:"#ef4444", Database:"#0ea5e9", "AI/ML":"#ec4899", Language:"#6366f1", Data:"#14b8a6",
+};
+
+function TechSection() {
+  const row1 = [...TECH.slice(0,9),...TECH.slice(0,9)];
+  const row2 = [...TECH.slice(9),...TECH.slice(9)];
+  return (
+    <section style={{ background:"#020817", padding:"100px 0", overflow:"hidden" }}>
+      <W style={{ marginBottom:"3.5rem" }}>
+        <SHead dark tag="Technology Stack" h={<>Powered by Modern<br/><span className="grad-text">Enterprise Tech</span></>}
+          sub="Our full-stack engineering capability spans frontend, backend, cloud, and AI infrastructure."/>
+      </W>
+      <div style={{ marginBottom:12 }}>
+        <div className="ml-wrap">
+          <div className="ml-track">
+            {row1.map((t,i)=>(
+              <div key={i} style={{ display:"flex", alignItems:"center", gap:8, padding:"12px 22px", margin:"0 6px", background:"rgba(255,255,255,0.03)", border:"1px solid rgba(255,255,255,0.07)", borderRadius:12, whiteSpace:"nowrap", flexShrink:0, cursor:"default", transition:"all .2s" }}
+                onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.06)";e.currentTarget.style.borderColor="rgba(255,255,255,0.12)";}}
+                onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.03)";e.currentTarget.style.borderColor="rgba(255,255,255,0.07)";}}>
+                <span style={{ width:8, height:8, borderRadius:"50%", background:CATCOL[t.cat]||"#2563eb", flexShrink:0 }}/>
+                <span style={{ fontSize:13, fontWeight:600, color:"rgba(255,255,255,0.8)" }}>{t.name}</span>
+                <span style={{ fontSize:10, color:"rgba(255,255,255,0.25)", borderLeft:"1px solid rgba(255,255,255,0.1)", paddingLeft:8 }}>{t.cat}</span>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
+      <div>
+        <div className="ml-wrap">
+          <div className="mr-track">
+            {row2.map((t,i)=>(
+              <div key={i} style={{ display:"flex", alignItems:"center", gap:8, padding:"12px 22px", margin:"0 6px", background:"rgba(255,255,255,0.02)", border:"1px solid rgba(255,255,255,0.05)", borderRadius:12, whiteSpace:"nowrap", flexShrink:0, cursor:"default", transition:"all .2s" }}
+                onMouseEnter={e=>{e.currentTarget.style.background="rgba(255,255,255,0.05)";e.currentTarget.style.borderColor="rgba(255,255,255,0.1)";}}
+                onMouseLeave={e=>{e.currentTarget.style.background="rgba(255,255,255,0.02)";e.currentTarget.style.borderColor="rgba(255,255,255,0.05)";}}>
+                <span style={{ width:8, height:8, borderRadius:"50%", background:CATCOL[t.cat]||"#2563eb", flexShrink:0 }}/>
+                <span style={{ fontSize:13, fontWeight:600, color:"rgba(255,255,255,0.7)" }}>{t.name}</span>
+                <span style={{ fontSize:10, color:"rgba(255,255,255,0.2)", borderLeft:"1px solid rgba(255,255,255,0.08)", paddingLeft:8 }}>{t.cat}</span>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════
-   BENEFITS
-════════════════════════════════════════════ */
+/* ══════════════════════════════════════
+   SECTION 9 — BENEFITS (Parallax images)
+══════════════════════════════════════ */
 function BenefitsSection() {
+  const p1 = useParallax(0.15);
+  const p2 = useParallax(-0.12);
   return (
-    <section className="bg-slate-50 py-24 border-t border-slate-100">
-      <div className="max-w-6xl mx-auto px-7">
-        <SectionHead
-          tag="Benefits"
-          title={<>Empowering Every Business<br /><span className="text-slate-400">And Team With AI</span></>}
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+    <section style={{ background:"#f8fafc", padding:"100px 0", borderTop:"1px solid #f1f5f9", overflow:"hidden" }}>
+      <W>
+        <SHead tag="Benefits" h={<>Empowering Every Business<br/><span style={{ color:"#94a3b8" }}>And Team With AI</span></>}/>
+        <div style={{ display:"grid", gridTemplateColumns:"1fr 1fr", gap:14 }}>
           <R from="left">
-            <div className="relative rounded-2xl overflow-hidden group">
-              <img
-                src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80"
-                alt="Smart AI Adoption"
-                className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h4 className="text-white font-semibold text-lg leading-snug">Smart AI Adoption For Modern Enterprises</h4>
-                <p className="text-slate-300 text-xs mt-1">Technology that empowers your people, not replaces them.</p>
+            <div style={{ borderRadius:20, overflow:"hidden", position:"relative", height:300 }}>
+              <div ref={p1} style={{ position:"absolute", inset:"-15% 0", height:"130%" }}>
+                <img src="https://images.unsplash.com/photo-1552664730-d307ca884978?auto=format&fit=crop&w=800&q=80" alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+              </div>
+              <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top,rgba(2,8,23,0.75) 0%,transparent 60%)" }}/>
+              <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"1.5rem" }}>
+                <h4 style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.15rem", fontWeight:700, color:"#fff", marginBottom:4 }}>Smart AI Adoption For Modern Enterprises</h4>
+                <p style={{ fontSize:12, color:"rgba(255,255,255,0.6)" }}>Technology that empowers your people, not replaces them.</p>
               </div>
             </div>
           </R>
           <R from="right" d={100}>
-            <div className="relative rounded-2xl overflow-hidden group">
-              <img
-                src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=800&q=80"
-                alt="Transform Operations"
-                className="w-full h-72 object-cover group-hover:scale-105 transition-transform duration-500"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-transparent to-transparent" />
-              <div className="absolute bottom-0 left-0 right-0 p-6">
-                <h4 className="text-white font-semibold text-lg leading-snug">Transform Operations By Saving Time, Inspiring Growth</h4>
-                <p className="text-slate-300 text-xs mt-1">Automation that frees your team for high-value work.</p>
+            <div style={{ borderRadius:20, overflow:"hidden", position:"relative", height:300 }}>
+              <div ref={p2} style={{ position:"absolute", inset:"-15% 0", height:"130%" }}>
+                <img src="https://images.unsplash.com/photo-1531973576160-7125cd663d86?auto=format&fit=crop&w=800&q=80" alt="" style={{ width:"100%", height:"100%", objectFit:"cover" }}/>
+              </div>
+              <div style={{ position:"absolute", inset:0, background:"linear-gradient(to top,rgba(2,8,23,0.75) 0%,transparent 60%)" }}/>
+              <div style={{ position:"absolute", bottom:0, left:0, right:0, padding:"1.5rem" }}>
+                <h4 style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.15rem", fontWeight:700, color:"#fff", marginBottom:4 }}>Transform Operations By Saving Time</h4>
+                <p style={{ fontSize:12, color:"rgba(255,255,255,0.6)" }}>Automation that frees your team for high-value strategic work.</p>
               </div>
             </div>
           </R>
         </div>
-      </div>
+      </W>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════
-   TESTIMONIALS
-════════════════════════════════════════════ */
-const TESTIMONIALS = [
-  {
-    q: "AIST transformed our entire data infrastructure in under 6 months. The impact on decision-making speed has been extraordinary.",
-    name: "Sarah Allen", role: "CTO, FinCore Australia",
-    img: "photo-1531123897727-8f129e1bf98a",
-  },
-  {
-    q: "They built our SaaS platform from scratch in 8 weeks. The code quality and AI features were beyond what we expected.",
-    name: "David Matthews", role: "VP Engineering, Telstra",
-    img: "photo-1506794778202-cad84cf45f1d",
-  },
-  {
-    q: "Working with AI Solution Tech Technologies transformed how we handle onboarding. What took 3 days is now fully automated.",
-    name: "Tariq Hussain", role: "COO, FinEdge Capital",
-    img: "photo-1472099645785-5658abf4ff4e",
-  },
+/* ══════════════════════════════════════
+   SECTION 10 — TESTIMONIALS (Staggered)
+══════════════════════════════════════ */
+const TESTI = [
+  { q:"AIST transformed our entire data infrastructure in under 6 months. The impact on decision-making speed has been extraordinary.", name:"Sarah Allen", role:"CTO, FinCore Australia", img:"photo-1531123897727-8f129e1bf98a", h:240 },
+  { q:"They built our SaaS platform from scratch in 8 weeks. The code quality and AI features were beyond what we expected.", name:"David Matthews", role:"VP Engineering, Telstra", img:"photo-1506794778202-cad84cf45f1d", h:210 },
+  { q:"Working with AIST transformed how we handle onboarding. What took 3 days is now fully automated — incredible execution.", name:"Tariq Hussain", role:"COO, FinEdge Capital", img:"photo-1472099645785-5658abf4ff4e", h:240 },
 ];
 
 function TestimonialsSection() {
   return (
-    <section className="bg-white py-24 border-t border-slate-100">
-      <div className="max-w-6xl mx-auto px-7">
-        <SectionHead
-          tag="Testimonials"
-          title={<>Real Stories From Clients<br /><span className="text-slate-400">Achieving Success</span></>}
-        />
-
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-          {TESTIMONIALS.map((t, i) => (
-            <R key={t.name} d={i * 100}>
-              <div className="bg-slate-50 border border-slate-100 rounded-2xl p-7 hover:-translate-y-1 hover:shadow-lg transition-all duration-300">
-                <div className="text-blue-500 text-sm tracking-wider mb-4">★★★★★</div>
-                <p className="text-sm leading-relaxed text-slate-500 italic mb-6">"{t.q}"</p>
-                <div className="flex items-center gap-3">
-                  <img
-                    src={`https://images.unsplash.com/${t.img}?auto=format&fit=crop&w=80&q=80`}
-                    alt={t.name}
-                    className="w-10 h-10 rounded-full object-cover"
-                  />
+    <section style={{ background:"#fff", padding:"100px 0", borderTop:"1px solid #f1f5f9" }}>
+      <W>
+        <SHead tag="Testimonials" h={<>Real Stories From Clients<br/><span style={{ color:"#94a3b8" }}>Achieving Success</span></>}/>
+        <div style={{ display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:14, alignItems:"start" }}>
+          {TESTI.map((t,i)=>(
+            <R key={t.name} d={i*90}>
+              <div style={{ background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:20, padding:"1.75rem", marginTop: i===1?"2.5rem":0, cursor:"default", transition:"all .3s", position:"relative", overflow:"hidden" }}
+                onMouseEnter={e=>{e.currentTarget.style.transform="translateY(-4px)";e.currentTarget.style.boxShadow="0 20px 50px rgba(37,99,235,0.1)";e.currentTarget.style.borderColor="#bfdbfe";}}
+                onMouseLeave={e=>{e.currentTarget.style.transform="translateY(0)";e.currentTarget.style.boxShadow="none";e.currentTarget.style.borderColor="#e2e8f0";}}>
+                {/* Quote mark decoration */}
+                <div style={{ position:"absolute", top:-10, right:16, fontFamily:"Georgia,serif", fontSize:120, color:"rgba(37,99,235,0.04)", lineHeight:1, pointerEvents:"none", userSelect:"none" }}>"</div>
+                <div style={{ color:"#2563eb", fontSize:14, letterSpacing:2, marginBottom:"1rem" }}>★★★★★</div>
+                <p style={{ fontSize:14, color:"#475569", lineHeight:1.75, fontStyle:"italic", marginBottom:"1.5rem" }}>"{t.q}"</p>
+                <div style={{ display:"flex", alignItems:"center", gap:10 }}>
+                  <img src={`https://images.unsplash.com/${t.img}?auto=format&fit=crop&w=80&q=80`} alt={t.name}
+                    style={{ width:40, height:40, borderRadius:"50%", objectFit:"cover", border:"2px solid #e2e8f0" }}/>
                   <div>
-                    <div className="text-sm font-semibold text-slate-900">{t.name}</div>
-                    <div className="text-xs text-slate-400">{t.role}</div>
+                    <div style={{ fontSize:13, fontWeight:600, color:"#0f172a" }}>{t.name}</div>
+                    <div style={{ fontSize:11, color:"#94a3b8" }}>{t.role}</div>
                   </div>
                 </div>
               </div>
             </R>
           ))}
         </div>
-      </div>
+
+        {/* Rating strip */}
+        <R d={200}>
+          <div style={{ marginTop:24, padding:"1.5rem 2rem", background:"#f8fafc", border:"1px solid #e2e8f0", borderRadius:16, display:"flex", alignItems:"center", gap:"2rem", flexWrap:"wrap" }}>
+            <div>
+              <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"3rem", fontWeight:800, color:"#0f172a", letterSpacing:"-0.04em", lineHeight:1 }}>4.9</div>
+              <div style={{ color:"#2563eb", fontSize:14, letterSpacing:2 }}>★★★★★</div>
+            </div>
+            <div style={{ flex:1 }}>
+              <div style={{ fontSize:15, fontWeight:600, color:"#0f172a", marginBottom:4 }}>Average Clutch rating across 80+ verified reviews</div>
+              <div style={{ fontSize:13, color:"#64748b" }}>All chances are — you'll be impressed too.</div>
+            </div>
+            {[{k:"Clutch",v:"4.9 / 5.0"},{k:"Upwork",v:"100% JSS"},{k:"GoodFirms",v:"5 Stars"},{k:"ISO",v:"27001 Cert."}].map(a=>(
+              <div key={a.k} style={{ textAlign:"center", flexShrink:0 }}>
+                <div style={{ fontFamily:"'Syne',sans-serif", fontSize:"1.1rem", fontWeight:800, color:"#0f172a" }}>{a.v}</div>
+                <div style={{ fontSize:11, color:"#94a3b8", marginTop:2 }}>{a.k}</div>
+              </div>
+            ))}
+          </div>
+        </R>
+      </W>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════
-   CTA
-════════════════════════════════════════════ */
+
+/* ══════════════════════════════════════
+   SECTION 12 — CTA
+══════════════════════════════════════ */
 function CTASection() {
-  const creds = [
-    { name: "Clutch",      sub: "4.9 avg score\n80+ reviews" },
-    { name: "Upwork",      sub: "Top Rated\n100% job success" },
-    { name: "ISO 27001",   sub: "Security\nCertified" },
-    { name: "AWS Partner", sub: "Advanced\nConsulting" },
-  ];
-
   return (
-    <section className="bg-slate-50 py-20 border-t border-slate-100">
-      <div className="max-w-6xl mx-auto px-7">
+    <section style={{ background:"#f8fafc", padding:"80px 0 100px" }}>
+      <W>
         <R>
-          <div
-            className="cta-bg relative rounded-3xl p-16 text-center overflow-hidden shadow-[0_30px_80px_rgba(37,99,235,0.22)]"
-            style={{ background: "linear-gradient(135deg,#1d4ed8,#2563eb,#3b82f6)" }}
-          >
-            <div className="relative z-10">
-              <Tag>Ready to Start?</Tag>
-
-              <h2 className="mt-6 mb-4 text-4xl md:text-5xl font-bold text-white leading-tight tracking-tight">
-                Ready to Discuss<br />Your Project With Us?
+          <div className="cta-noise" style={{ position:"relative", background:"linear-gradient(135deg,#1e40af,#2563eb,#3b82f6)", borderRadius:28, padding:"5rem 3rem", textAlign:"center", overflow:"hidden", boxShadow:"0 40px 100px rgba(37,99,235,0.28)" }}>
+            {/* Animated glow blobs */}
+            <div style={{ position:"absolute", width:400, height:400, borderRadius:"50%", background:"rgba(255,255,255,0.06)", top:-100, right:-80, pointerEvents:"none" }}/>
+            <div style={{ position:"absolute", width:300, height:300, borderRadius:"50%", background:"rgba(255,255,255,0.04)", bottom:-80, left:-60, pointerEvents:"none" }}/>
+            <div style={{ position:"relative", zIndex:1 }}>
+              <div style={{ marginBottom:"1.5rem" }}><Tag label="Let's Build Together"/></div>
+              <h2 style={{ fontFamily:"'Syne',sans-serif", fontSize:"clamp(2rem,4vw,3.2rem)", fontWeight:800, color:"#fff", letterSpacing:"-0.03em", lineHeight:1.1, marginBottom:"1rem" }}>
+                Ready to Discuss<br/>Your Project With Us?
               </h2>
-              <p className="text-blue-100 text-base leading-relaxed max-w-md mx-auto mb-10">
-                Let's map out a technology strategy that solves today's challenges and positions you to lead tomorrow's landscape.
+              <p style={{ fontSize:16, color:"rgba(255,255,255,0.7)", maxWidth:440, margin:"0 auto 2.5rem", lineHeight:1.7 }}>
+                Let's map out a technology strategy that solves today's challenges and positions you to lead tomorrow's digital landscape.
               </p>
-
-              <div className="flex justify-center gap-3 flex-wrap">
-                <button className="bg-white text-blue-700 rounded-full px-8 py-3.5 text-sm font-bold flex items-center gap-2 transition-all hover:-translate-y-0.5 hover:shadow-xl">
+              <div style={{ display:"flex", justifyContent:"center", gap:12, flexWrap:"wrap" }}>
+                <button style={{ background:"#fff", color:"#1d4ed8", border:"none", borderRadius:999, padding:"15px 32px", fontSize:15, fontWeight:700, cursor:"pointer", display:"flex", alignItems:"center", gap:8, fontFamily:"inherit", transition:"all .25s" }}
+                  onMouseEnter={e=>{(e.currentTarget as HTMLButtonElement).style.transform="translateY(-2px)";(e.currentTarget as HTMLButtonElement).style.boxShadow="0 12px 30px rgba(0,0,0,0.2)";}}
+                  onMouseLeave={e=>{(e.currentTarget as HTMLButtonElement).style.transform="translateY(0)";(e.currentTarget as HTMLButtonElement).style.boxShadow="none";}}>
                   Book a Free Consultation
-                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none">
-                    <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round"/></svg>
                 </button>
-                <button className="bg-transparent text-white border-2 border-white/30 hover:border-white/70 rounded-full px-8 py-3.5 text-sm font-medium transition-all">
+                <button style={{ background:"transparent", color:"rgba(255,255,255,0.8)", border:"2px solid rgba(255,255,255,0.3)", borderRadius:999, padding:"15px 32px", fontSize:15, fontWeight:500, cursor:"pointer", fontFamily:"inherit", transition:"all .2s" }}
+                  onMouseEnter={e=>{(e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.7)";(e.currentTarget as HTMLButtonElement).style.color="#fff";}}
+                  onMouseLeave={e=>{(e.currentTarget as HTMLButtonElement).style.borderColor="rgba(255,255,255,0.3)";(e.currentTarget as HTMLButtonElement).style.color="rgba(255,255,255,0.8)";}}>
                   Talk to Sales
                 </button>
               </div>
 
-              <div className="mt-10 pt-8 border-t border-white/15 grid grid-cols-2 md:grid-cols-4 gap-6">
-                {creds.map((c) => (
-                  <div key={c.name}>
-                    <div className="text-sm font-bold text-white">{c.name}</div>
-                    <div className="text-xs text-blue-200/70 mt-1 leading-relaxed whitespace-pre-line">{c.sub}</div>
+              {/* Awards strip */}
+              <div style={{ marginTop:"3rem", paddingTop:"2.5rem", borderTop:"1px solid rgba(255,255,255,0.12)", display:"grid", gridTemplateColumns:"repeat(4,1fr)", gap:"1rem" }}>
+                {[{n:"Clutch",s:"4.9 avg · 80+ reviews"},{n:"Upwork",s:"Top Rated · 100% JSS"},{n:"ISO 27001",s:"Security Certified"},{n:"AWS Partner",s:"Advanced Consulting"}].map(a=>(
+                  <div key={a.n}>
+                    <div style={{ fontSize:13, fontWeight:700, color:"#fff" }}>{a.n}</div>
+                    <div style={{ fontSize:11, color:"rgba(255,255,255,0.5)", marginTop:3, lineHeight:1.4 }}>{a.s}</div>
                   </div>
                 ))}
               </div>
             </div>
           </div>
         </R>
-      </div>
+
+        {/* Contact row */}
+        <R d={100}>
+          <div style={{ marginTop:20, display:"grid", gridTemplateColumns:"repeat(3,1fr)", gap:12 }}>
+            {[
+              { icon:"📞", label:"Phone", val:"+61 466 558 862" },
+              { icon:"✉️", label:"Email", val:"info@aisolutiontechnologies.com" },
+              { icon:"📍", label:"Address", val:"33 East Street, Granville NSW 2142, Sydney" },
+            ].map(c=>(
+              <div key={c.label} style={{ background:"#fff", border:"1px solid #e2e8f0", borderRadius:16, padding:"1.25rem 1.5rem", display:"flex", alignItems:"center", gap:12 }}>
+                <span style={{ fontSize:20 }}>{c.icon}</span>
+                <div>
+                  <div style={{ fontSize:11, color:"#94a3b8", textTransform:"uppercase", letterSpacing:"0.06em", fontWeight:600 }}>{c.label}</div>
+                  <div style={{ fontSize:13, color:"#0f172a", fontWeight:500, marginTop:2 }}>{c.val}</div>
+                </div>
+              </div>
+            ))}
+          </div>
+        </R>
+      </W>
     </section>
   );
 }
 
-/* ════════════════════════════════════════════
+/* ══════════════════════════════════════
    PAGE ROOT
-════════════════════════════════════════════ */
+══════════════════════════════════════ */
 export default function AISolutionTechPage() {
   return (
-    <main className={`${poppins.className} bg-slate-50 text-slate-900 overflow-x-hidden antialiased`}>
-      <style>{KEYFRAMES}</style>
+    <main className={`${poppins.className} overflow-x-hidden antialiased`}>
+      <style>{STYLES}</style>
       <Hero />
       <PressBar />
-      <WhySection />
+      <StatsSection />
+
+      <CortexMarqueeSection/>
       <ServicesSection />
+
+      <IndustriesSection />
+      <ProcessSection />
       <FeaturesSection />
+      <TechSection />
       <BenefitsSection />
       <TestimonialsSection />
+      <GlobalSection />
       <CTASection />
     </main>
   );
