@@ -217,7 +217,7 @@ function Hero() {
 
         <p className="ha3 font-light text-white/50 max-w-[480px] mx-auto mb-10 leading-[1.8]"
           style={{ fontSize: "clamp(14px,1.8vw,17px)" }}>
-          AIST delivers enterprise-grade AI, cloud modernisation, and data engineering —
+          Ai Soluion technologies delivers enterprise-grade AI, cloud modernisation, and data engineering —
           from strategy to production, in weeks not months.
         </p>
 
@@ -393,7 +393,7 @@ const STATS_DATA = [
     sub: "Hyper-personalised architecture deployed across legacy enterprise cores." 
   },
   { 
-    val: 2400000, 
+    val: 88, 
     suf: "", 
     label: "Businesses Empowered", 
     sub: "High-throughput automation networks operating across Australia & GCC." 
@@ -853,11 +853,11 @@ export function CaseStudiesSection() {
    TESTIMONIALS
 ════════════════════════════════════ */
 const TESTI = [
-  { q:"AIST transformed our entire data infrastructure in under 6 months. The impact on decision-making speed has been extraordinary.",
+  { q:"Ai Soluion technologies transformed our entire data infrastructure in under 6 months. The impact on decision-making speed has been extraordinary.",
     name:"Sarah Allen", role:"CTO, FinCore Australia", img:"photo-1531123897727-8f129e1bf98a", offset:false },
   { q:"They built our SaaS platform from scratch in 8 weeks. The code quality and AI features were beyond what we expected.",
     name:"David Matthews", role:"VP Engineering, Telstra", img:"photo-1506794778202-cad84cf45f1d", offset:true },
-  { q:"Working with AIST transformed how we handle onboarding. What took 3 days is now fully automated — incredible execution.",
+  { q:"Working with Ai Soluion technologies transformed how we handle onboarding. What took 3 days is now fully automated — incredible execution.",
     name:"Tariq Hussain", role:"COO, FinEdge Capital", img:"photo-1472099645785-5658abf4ff4e", offset:false },
 ];
 

@@ -229,7 +229,7 @@ export default function Footer() {
             {/* Ambient Watermark Branding */}
             <div className="select-none pointer-events-none">
               <span className="text-[clamp(1.2rem,4vw,2.5rem)] font-black text-white/40 tracking-[-0.04em] leading-none uppercase">
-                AI SOLUTION INFRASTRUCTURE
+                AI SOLUTION TECHNOLOGIES
               </span>
             </div>
 
