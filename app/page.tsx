@@ -217,7 +217,7 @@ function Hero() {
 
         <p className="ha3 font-light text-white/50 max-w-[480px] mx-auto mb-10 leading-[1.8]"
           style={{ fontSize: "clamp(14px,1.8vw,17px)" }}>
-          Ai Soluion technologies delivers enterprise-grade AI, cloud modernisation, and data engineering —
+          Ai Solutiontechnologies delivers enterprise-grade AI, cloud modernisation, and data engineering —
           from strategy to production, in weeks not months.
         </p>
 
@@ -420,7 +420,7 @@ export function StatsSection() {
         {/* Modernist Section Header */}
         <div className="border-l-2 border-blue-600 pl-6 mb-20 md:mb-28 max-w-4xl">
           <span className="block text-blue-600 text-xs font-mono font-bold uppercase tracking-[0.2em] mb-4">
-            Operational Metrics // 2026
+            Operational Metrics of 2026
           </span>
           <h2 className="text-3xl md:text-6xl font-black tracking-tight text-slate-900 leading-[1.05]">
             Redefining Enterprise Technology <br />
@@ -440,7 +440,7 @@ export function StatsSection() {
                 {/* Micro Structural Metadata */}
                 <div className="flex justify-between items-center mb-8">
                   <span className="text-[10px] font-mono text-slate-400 tracking-widest">
-                    SYS_METRIC_0{index + 1}
+                    0{index + 1}
                   </span>
                   <div className="w-1.5 h-1.5 bg-slate-300 group-hover:bg-blue-600 transition-colors duration-300" />
                 </div>
@@ -853,11 +853,11 @@ export function CaseStudiesSection() {
    TESTIMONIALS
 ════════════════════════════════════ */
 const TESTI = [
-  { q:"Ai Soluion technologies transformed our entire data infrastructure in under 6 months. The impact on decision-making speed has been extraordinary.",
+  { q:"Ai Solutiontechnologies transformed our entire data infrastructure in under 6 months. The impact on decision-making speed has been extraordinary.",
     name:"Sarah Allen", role:"CTO, FinCore Australia", img:"photo-1531123897727-8f129e1bf98a", offset:false },
   { q:"They built our SaaS platform from scratch in 8 weeks. The code quality and AI features were beyond what we expected.",
     name:"David Matthews", role:"VP Engineering, Telstra", img:"photo-1506794778202-cad84cf45f1d", offset:true },
-  { q:"Working with Ai Soluion technologies transformed how we handle onboarding. What took 3 days is now fully automated — incredible execution.",
+  { q:"Working with Ai Solutiontechnologies transformed how we handle onboarding. What took 3 days is now fully automated — incredible execution.",
     name:"Tariq Hussain", role:"COO, FinEdge Capital", img:"photo-1472099645785-5658abf4ff4e", offset:false },
 ];
 

@@ -4,7 +4,7 @@ import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const Ai Soluion technologies_PROCESS_STEPS = [
+const Ai Solutiontechnologies_PROCESS_STEPS = [
   {
     phase: "01",
     name: "Enterprise Discovery",
@@ -35,7 +35,7 @@ const Ai Soluion technologies_PROCESS_STEPS = [
   },
 ];
 
-export default function Ai Soluion technologiesOrbitalProcess() {
+export default function Ai SolutiontechnologiesOrbitalProcess() {
   const scrollSectionRef = useRef<HTMLDivElement>(null);
   const orbitalTrackRef = useRef<HTMLDivElement>(null);
   const [hoveredIndex, setHoveredIndex] = useState<number | null>(null);
@@ -220,7 +220,7 @@ export default function Ai Soluion technologiesOrbitalProcess() {
               </div>
               
               <h3 style={{ fontSize: "1.75rem", fontWeight: 600, color: "#ffffff", letterSpacing: "-0.02em", margin: "0 0 0.75rem 0", lineHeight: 1.25 }}>
-                The Ai Soluion technologies <br />
+                The Ai Solutiontechnologies <br />
                 <span style={{ color: "#3b82f6" }}>Delivery Core</span>
               </h3>
               
@@ -230,7 +230,7 @@ export default function Ai Soluion technologiesOrbitalProcess() {
             </div>
 
             {/* ─── Geometric Process Circles ─── */}
-            {Ai Soluion technologies_PROCESS_STEPS.map((step, i) => {
+            {Ai Solutiontechnologies_PROCESS_STEPS.map((step, i) => {
               const isHovered = hoveredIndex === i;
 
               // ─── DIAGONAL ALIGNMENT MATH ───
