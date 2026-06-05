@@ -154,8 +154,7 @@ export default function Footer() {
                   </span>
                 </Link>
                 <p className="text-white/40 text-[0.85rem] font-light leading-relaxed max-w-[310px]">
-                  Global technology partner deployed across specialized sectors to deliver cognitive infrastructure, data intelligence, and absolute automated performance.
-                </p>
+AI Solution Technologies is a Microsoft-aligned data, analytics and AI consultancy. We help enterprises in Australia, UAE and Saudi Arabia modernise reporting, build governed data foundations, and deploy AI on data they can audit.                </p>
               </div>
 
               {/* Social Indexing System */}
