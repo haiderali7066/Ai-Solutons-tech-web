@@ -1,4 +1,6 @@
 "use client";
+import Link from "next/link";
+
 
 import React, { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
@@ -9,45 +11,73 @@ const COL_COUNT = 7;
 const SERVICES = [
   {
     num: "01",
-    title: "AI & Intelligent Automation",
-    desc: "AI-powered decision systems, predictive intelligence, workflow automation, OCR, and autonomous AI agents.",
-    tags: ["Agentic AI", "Machine Learning", "OCR Automation"],
-    href: "/services/ai-intelligence",
+    title: "Power BI Implementation",
+    desc: "Replace spreadsheets with executive-ready dashboards, KPI reporting, and real-time business intelligence.",
+    tags: ["Power BI", "Dashboards", "Reporting"],
+    href: "/services/power-bi-implementation",
   },
   {
     num: "02",
-    title: "Data Platforms & Engineering",
-    desc: "Modern lakehouse architecture, enterprise data foundations, Data Vault 2.0, MDM, and scalable data engineering pipelines.",
-    tags: ["Data Lakehouse", "Azure Data", "Data Vault 2.0"],
-    href: "/services/data-engineering",
+    title: "CFO Dashboards",
+    desc: "Unified financial dashboards for cash flow, budgeting, forecasting, and executive decision-making.",
+    tags: ["Finance", "Forecasting", "Cash Flow"],
+    href: "/services/cfo-dashboards",
   },
   {
     num: "03",
-    title: "Cloud & Enterprise Modernisation",
-    desc: "Azure migration, API-first integration, infrastructure transformation, and modern enterprise architecture.",
-    tags: ["Cloud Strategy", "Azure Migration", "API-First"],
-    href: "/services/cloud-modernisation",
+    title: "Microsoft Fabric",
+    desc: "A unified platform for data engineering, warehousing, analytics, business intelligence, and AI.",
+    tags: ["Microsoft Fabric", "Data Platform", "Analytics"],
+    href: "/services/microsoft-fabric",
   },
   {
     num: "04",
-    title: "Analytics & Executive Intelligence",
-    desc: "Power BI dashboards, real-time analytics, executive reporting, forecasting, and operational visibility platforms.",
-    tags: ["Power BI", "Data Visualisation", "Real-Time BI"],
-    href: "/services/analytics-reporting",
+    title: "Enterprise AI Assistant",
+    desc: "Private AI assistants powered by Azure OpenAI and trained on your company knowledge and documents.",
+    tags: ["Azure OpenAI", "Enterprise AI", "Knowledge Base"],
+    href: "/services/enterprise-ai-assistant",
   },
   {
     num: "05",
-    title: "AI Agents & Workforce Automation",
-    desc: "Intelligent AI workers and autonomous operational agents designed to automate repetitive business processes at scale.",
-    tags: ["Intelligent Agents", "Workflow RPA", "Process Optimisation"],
-    href: "/services/ai-agents-automation",
+    title: "Construction Analytics",
+    desc: "Track project costs, BOQs, contractor performance, progress claims, and operational efficiency.",
+    tags: ["Construction", "BOQ", "Project Analytics"],
+    href: "/services/construction-analytics",
   },
   {
     num: "06",
-    title: "Governance, Security & Compliance",
-    desc: "Enterprise governance frameworks, lineage management, access controls, auditability, and regulatory compliance solutions.",
-    tags: ["Governance", "Lineage Management", "Compliance"],
-    href: "/services/governance-compliance",
+    title: "AI on ERP & Finance",
+    desc: "Deploy AI directly on governed ERP, finance, and operational data for intelligent business decisions.",
+    tags: ["ERP AI", "Finance AI", "Automation"],
+    href: "/services/ai-on-erp",
+  },
+  {
+    num: "07",
+    title: "Azure Data Factory",
+    desc: "Automated ETL and ELT pipelines connecting ERP, CRM, finance, operations, and cloud systems.",
+    tags: ["ETL", "ELT", "Data Integration"],
+    href: "/services/azure-data-factory",
+  },
+  {
+    num: "08",
+    title: "Cloud Migration",
+    desc: "Migrate legacy databases, ERP systems, and reporting environments to Microsoft Cloud.",
+    tags: ["Azure", "Migration", "Modernisation"],
+    href: "/services/cloud-migration",
+  },
+  {
+    num: "09",
+    title: "Microsoft Purview",
+    desc: "Enterprise data governance, cataloguing, lineage tracking, classification, and compliance automation.",
+    tags: ["Governance", "Lineage", "Compliance"],
+    href: "/services/microsoft-purview",
+  },
+  {
+    num: "10",
+    title: "Managed Services",
+    desc: "Ongoing management, monitoring, optimization, and support for your Microsoft data and AI platforms.",
+    tags: ["Support", "Monitoring", "Managed Services"],
+    href: "/services/managed-services",
   },
 ];
 
@@ -229,9 +259,21 @@ export default function ServicesSection() {
       gsap.set(line2Ref.current, { opacity: 0, y: 35 });
       gsap.set(line3Ref.current, { opacity: 0, y: 50 });
 
-      tl.to(servicesWordRef.current, { scale: 1, opacity: 1, ease: "power3.out", duration: 0.5 }, 0)
-        .to(line2Ref.current, { opacity: 1, y: 0, ease: "power2.out", duration: 0.38 }, 0.25)
-        .to(line3Ref.current, { opacity: 1, y: 0, ease: "power2.out", duration: 0.38 }, 0.42);
+      tl.to(
+        servicesWordRef.current,
+        { scale: 1, opacity: 1, ease: "power3.out", duration: 0.5 },
+        0,
+      )
+        .to(
+          line2Ref.current,
+          { opacity: 1, y: 0, ease: "power2.out", duration: 0.38 },
+          0.25,
+        )
+        .to(
+          line3Ref.current,
+          { opacity: 1, y: 0, ease: "power2.out", duration: 0.38 },
+          0.42,
+        );
 
       rowRefs.current.forEach((row) => {
         if (!row) return;
@@ -248,7 +290,7 @@ export default function ServicesSection() {
               start: "top 95%",
               toggleActions: "play none none none",
             },
-          }
+          },
         );
       });
     }, containerRef);
@@ -286,7 +328,8 @@ export default function ServicesSection() {
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
-            background: "radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%)",
+            background:
+              "radial-gradient(circle, rgba(37, 99, 235, 0.08) 0%, transparent 70%)",
             pointerEvents: "none",
             zIndex: 0,
           }}
@@ -420,25 +463,30 @@ export default function ServicesSection() {
             const isHovered = hoveredIndex === i;
 
             return (
-              <div
-                key={svc.num}
-                ref={(el) => { rowRefs.current[i] = el; }}
-                className="services-row"
-                onMouseEnter={() => !isMobile && setHoveredIndex(i)}
-                onMouseLeave={() => !isMobile && setHoveredIndex(null)}
-                /* Touch tap highlight on mobile */
-                onTouchStart={() => setHoveredIndex(i)}
-                onTouchEnd={() => setTimeout(() => setHoveredIndex(null), 250)}
-                style={{
-                  background: isHovered ? "rgba(255, 255, 255, 0.02)" : "transparent",
-                  transform: isHovered && !isMobile ? "translateX(10px)" : "translateX(0px)",
-                }}
-                onClick={() => {
-                  if (typeof window !== "undefined") {
-                    window.location.href = svc.href;
-                  }
-                }}
-              >
+              <Link
+  key={svc.num}
+  href={svc.href}
+  className="block"
+>
+  <div
+    ref={(el) => {
+      rowRefs.current[i] = el;
+    }}
+    className="services-row"
+    onMouseEnter={() => !isMobile && setHoveredIndex(i)}
+    onMouseLeave={() => !isMobile && setHoveredIndex(null)}
+    onTouchStart={() => setHoveredIndex(i)}
+    onTouchEnd={() => setTimeout(() => setHoveredIndex(null), 250)}
+    style={{
+      background: isHovered
+        ? "rgba(255, 255, 255, 0.02)"
+        : "transparent",
+      transform:
+        isHovered && !isMobile
+          ? "translateX(10px)"
+          : "translateX(0px)",
+    }}
+  >
                 {/* Number */}
                 <span
                   className="services-row-num"
@@ -484,7 +532,13 @@ export default function ServicesSection() {
                 </span>
 
                 {/* Description + tags */}
-                <div style={{ display: "flex", flexDirection: "column", gap: "1rem" }}>
+                <div
+                  style={{
+                    display: "flex",
+                    flexDirection: "column",
+                    gap: "1rem",
+                  }}
+                >
                   <p
                     style={{
                       margin: 0,
@@ -500,7 +554,9 @@ export default function ServicesSection() {
                     {svc.desc}
                   </p>
 
-                  <div style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}>
+                  <div
+                    style={{ display: "flex", gap: "0.5rem", flexWrap: "wrap" }}
+                  >
                     {svc.tags.map((tag) => (
                       <span
                         key={tag}
@@ -508,8 +564,12 @@ export default function ServicesSection() {
                           fontSize: "0.62rem",
                           letterSpacing: "0.08em",
                           textTransform: "uppercase",
-                          color: isHovered ? "#ffffff" : "rgba(255, 255, 255, 0.4)",
-                          background: isHovered ? "rgba(59, 130, 246, 0.18)" : "transparent",
+                          color: isHovered
+                            ? "#ffffff"
+                            : "rgba(255, 255, 255, 0.4)",
+                          background: isHovered
+                            ? "rgba(59, 130, 246, 0.18)"
+                            : "transparent",
                           border: isHovered
                             ? "1px solid #3b82f6"
                             : "1px solid rgba(255, 255, 255, 0.12)",
@@ -530,7 +590,9 @@ export default function ServicesSection() {
                   className="services-row-arrow services-arrow"
                   style={{
                     opacity: isHovered ? 1 : 0.15,
-                    transform: isHovered ? "translateX(0)" : "translateX(-10px)",
+                    transform: isHovered
+                      ? "translateX(0)"
+                      : "translateX(-10px)",
                   }}
                 >
                   <svg
@@ -548,6 +610,7 @@ export default function ServicesSection() {
                   </svg>
                 </div>
               </div>
+              </Link>
             );
           })}
         </div>

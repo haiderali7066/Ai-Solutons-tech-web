@@ -4,6 +4,7 @@ import { Poppins } from "next/font/google";
 import ServicesSection from "@/components/Home/services";
 import ProcessSection from "@/components/Home/processZigzag";
 import GlobalSection from "@/components/Home/globalsection";
+import ProblemSection from "@/components/Home//problem";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -715,48 +716,138 @@ function TechSection() {
   );
 }
 
-/* ════════════════════════════════════
-   BENEFITS
-════════════════════════════════════ */
-function BenefitsSection() {
-  const p1 = useParallax(0.14);
-  const p2 = useParallax(-0.11);
+
+/* ==========================================================================
+   ENTERPRISE CASE STUDIES (SERVER COMPONENT)
+   ========================================================================== */
+const CASE_STUDIES = [
+  {
+    tag: "CONSTRUCTION // POWER BI",
+    client: "Tier 2 Builder",
+    highlight: "Cut Reporting Time By 75%",
+    description: "Identified AUD $2.4M of in-flight project overruns that previously went unseen for weeks. Secured subsequent major tender victory driven directly by documented reporting maturity.",
+    link: "/case-studies/tier-2-builder",
+    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" // Modern structural architecture
+  },
+  {
+    tag: "FINANCIAL SERVICES // CFO DASHBOARDS",
+    client: "Professional Services",
+    highlight: "Month-End Closed in 2 Days",
+    description: "Automated board pack compilation to 30 minutes versus 2 days of manual aggregation. Implemented a 12-month rolling cash forecast to phase out static quarterly spreadsheets.",
+    link: "/case-studies/professional-services-cfo",
+    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" // Abstract data/dashboard
+  },
+  {
+    tag: "GOVERNMENT // AZURE OPENAI",
+    client: "KSA Government Agency",
+    highlight: "-95% Public AI Exposure",
+    description: "Engineered and deployed Azure OpenAI structures aligned to PDPL compliance. Deployed 6 production-ready internal assistants, causing unvetted external tool utilization to drop 95%.",
+    link: "/case-studies/ksa-government-ai",
+    image: "https://images.unsplash.com/photo-1620825937374-87fc7d62828e?q=80&w=800&auto=format&fit=crop" // Futuristic AI abstract
+  }
+];
+
+export function CaseStudiesSection() {
   return (
-    <section className="bg-slate-50 py-24 md:py-28 border-t border-slate-100 overflow-hidden">
-      <W>
-        <SHead tag="Benefits"
-          h={<>Empowering Every Business <span className="text-slate-400">With AI</span></>} />
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-          {[
-            { pRef:p1, from:"left" as const, d:0,
-              src:"photo-1552664730-d307ca884978",
-              title:"Smart AI Adoption For Modern Enterprises",
-              desc:"Technology that empowers your people, not replaces them." },
-            { pRef:p2, from:"right" as const, d:100,
-              src:"photo-1531973576160-7125cd663d86",
-              title:"Transform Operations By Saving Time",
-              desc:"Automation that frees your team for high-value strategic work." },
-          ].map((b) => (
-            <R key={b.title} from={b.from} d={b.d}>
-              <div className="rounded-2xl overflow-hidden relative h-72 md:h-80">
-                <div ref={b.pRef} className="absolute inset-x-0" style={{ top:"-15%", height:"130%" }}>
-                  <img
-                    src={`https://images.unsplash.com/${b.src}?auto=format&fit=crop&w=800&q=80`}
-                    alt="" className="w-full h-full object-cover" />
-                </div>
-                <div className="absolute inset-0 bg-gradient-to-t from-slate-950/80 via-slate-950/20 to-transparent" />
-                <div className="absolute bottom-0 left-0 right-0 p-6">
-                  <h4 className="font-bold text-white text-[1.05rem] mb-1">{b.title}</h4>
-                  <p className="text-[12px] text-white/60">{b.desc}</p>
+    <section className="bg-slate-50 py-12 md:py-16 border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* ─── TIGHT HEADER BLOCK ─── */}
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-10 text-left">
+          <div className="max-w-2xl">
+            <span className="text-[10px] font-mono font-bold uppercase tracking-[0.2em] text-blue-600 block mb-3">
+              Validated Proof Framework
+            </span>
+            <h2 className="text-[28px] md:text-[36px] font-black tracking-tight text-slate-900 leading-tight">
+              Real results, <span className="text-slate-400 font-normal">deployed at scale.</span>
+            </h2>
+            <p className="text-[15px] md:text-[16px] text-slate-600 leading-relaxed mt-3">
+              From 8-day month-ends to 2-day month-ends. From AUD $2.4M of hidden overruns identified, to a 95% reduction in public-AI use.
+            </p>
+          </div>
+          
+          {/* Top-aligned CTA for desktop (minimizes vertical footprint) */}
+          <div className="hidden md:block shrink-0">
+            <a 
+              href="/case-studies"
+              className="inline-flex items-center gap-2 border border-slate-300 bg-white text-slate-900 text-xs font-mono font-bold uppercase tracking-widest px-6 py-3 rounded-lg transition-colors hover:border-slate-900 hover:bg-slate-900 hover:text-white"
+            >
+              See all cases →
+            </a>
+          </div>
+        </div>
+
+        {/* ─── IMAGE + CONTENT CARD GRID ─── */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+          {CASE_STUDIES.map((item, index) => (
+            <a 
+              key={index}
+              href={item.link}
+              className="group flex flex-col bg-white border border-slate-200 rounded-lg overflow-hidden shadow-sm hover:shadow-md transition-all duration-300"
+            >
+              {/* Image Container with subtle zoom effect */}
+              <div className="relative h-48 md:h-56 overflow-hidden bg-slate-900">
+                <img 
+                  src={item.image} 
+                  alt={item.client}
+                  className="w-full h-full object-cover opacity-90 group-hover:opacity-100 group-hover:scale-105 transition-all duration-500 ease-out"
+                />
+                {/* Dark gradient overlay for contrast */}
+                <div className="absolute inset-0 bg-gradient-to-t from-slate-900/40 to-transparent" />
+                
+                {/* Overlay Badge */}
+                <div className="absolute top-4 left-4 bg-white/90 backdrop-blur-sm px-2.5 py-1 rounded-md">
+                  <span className="text-[9px] font-mono font-bold text-slate-900 tracking-wider uppercase">
+                    {item.client}
+                  </span>
                 </div>
               </div>
-            </R>
+
+              {/* Text Content */}
+              <div className="p-6 md:p-8 flex flex-col flex-grow">
+                <span className="text-[10px] font-mono text-slate-400 tracking-widest block mb-3">
+                  {item.tag}
+                </span>
+                
+                <h3 className="text-[20px] font-bold text-slate-900 tracking-tight leading-snug mb-3 group-hover:text-blue-600 transition-colors">
+                  {item.highlight}
+                </h3>
+                
+                <p className="text-[14px] text-slate-600 leading-relaxed mb-6 flex-grow">
+                  {item.description}
+                </p>
+
+                {/* Animated Arrow Link */}
+                <div className="mt-auto flex items-center text-[11px] font-mono font-bold tracking-widest text-slate-900 uppercase">
+                  Read Case Study
+                  <svg 
+                    width="14" height="14" viewBox="0 0 24 24" fill="none" 
+                    className="ml-2 transform group-hover:translate-x-1 transition-transform"
+                  >
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                </div>
+              </div>
+            </a>
           ))}
         </div>
-      </W>
+
+        {/* Mobile-only CTA */}
+        <div className="mt-8 md:hidden flex justify-center">
+          <a 
+            href="/case-studies"
+            className="w-full text-center border border-slate-300 bg-white text-slate-900 text-xs font-mono font-bold uppercase tracking-widest px-6 py-4 rounded-lg transition-colors active:bg-slate-100"
+          >
+            See all cases →
+          </a>
+        </div>
+
+      </div>
     </section>
   );
 }
+
+
 
 /* ════════════════════════════════════
    TESTIMONIALS
@@ -902,7 +993,7 @@ function CTASection() {
         </R>
 
         {/* Contact cards */}
-        <R d={100}>
+        {/* <R d={100}>
           <div className="mt-4 grid grid-cols-1 sm:grid-cols-3 gap-3">
             {[
               { icon:"📞", label:"Phone",   val:"+61 466 558 862" },
@@ -923,7 +1014,7 @@ function CTASection() {
               </div>
             ))}
           </div>
-        </R>
+        </R> */}
       </W>
     </section>
   );
@@ -939,15 +1030,16 @@ export default function AISolutionTechPage() {
       <Hero />
       <ProofBar />
       <StatsSection />
+      <ProblemSection/>
       <ServicesSection />
       <IndustriesSection />
       <ProcessSection />
       <FeaturesSection />
       <TechSection />
-      <BenefitsSection />
+      <CaseStudiesSection />
       <TestimonialsSection />
-      <GlobalSection />
       <CTASection />
+      <GlobalSection />
     </main>
   );
 }
