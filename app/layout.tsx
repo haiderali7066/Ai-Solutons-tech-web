@@ -48,7 +48,7 @@ export default function RootLayout({
     <html
       lang="en"
       className="dark"
-      suppressHydrationWarning
+      suppressHydrationWarning data-scroll-behavior="smooth"
     >
       <body className="bg-background text-white font-sans antialiased overflow-x-hidden w-full min-h-screen flex flex-col">
         

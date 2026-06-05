@@ -267,71 +267,210 @@ function Hero() {
   );
 }
 
-/* ─── Press Marquee ─── */
-function PressBar() {
-  const clients = ["Westpac","Telstra","ANZ Bank","Atlassian","Canva","Deloitte","Microsoft","AWS","Salesforce","Oracle","SAP","Cisco"];
-  const doubled = [...clients,...clients];
-  return (
-    <div className="bg-white border-b border-slate-100 py-5 overflow-hidden">
-      <div className="ml-track">
-        {doubled.map((n,i) => (
-          <span key={i}
-            className="px-9 text-[11px] font-bold tracking-[0.1em] uppercase text-slate-300
-                       whitespace-nowrap cursor-default transition-colors duration-200 hover:text-slate-400">
-            {n}
-          </span>
-        ))}
-      </div>
-    </div>
-  );
+/* ==========================================================================
+   CSS ANIMATION INJECTION (Self-Contained Marquee)
+   ========================================================================== */
+const MARQUEE_STYLE = `
+  @keyframes swissMarquee {
+    0% { transform: translate3d(0, 0, 0); }
+    100% { transform: translate3d(-50%, 0, 0); }
+  }
+  .animate-swiss-marquee {
+    display: flex;
+    width: max-content;
+    animation: swissMarquee 40s linear infinite;
+  }
+  .animate-swiss-marquee:hover {
+    animation-play-state: paused;
+  }
+  .no-scrollbar::-webkit-scrollbar {
+    display: none;
+  }
+  .no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+`;
+
+/* ==========================================================================
+   INTERSECTION COUNTER COMPONENT
+   ========================================================================== */
+function AnimatedCounter({ to, duration = 2000 }: { to: number; duration?: number }) {
+  const [count, setCount] = useState(0);
+  const elementRef = useRef<HTMLSpanElement>(null);
+  const hasAnimated = useRef(false);
+
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting && !hasAnimated.current) {
+          hasAnimated.current = true;
+          let startTime: number | null = null;
+
+          const animate = (timestamp: number) => {
+            if (!startTime) startTime = timestamp;
+            const progress = Math.min((timestamp - startTime) / duration, 1);
+            
+            // Cubic ease-out calculation for smooth decelerating momentum
+            const easeOutCubic = 1 - Math.pow(1 - progress, 3);
+            
+            setCount(Math.floor(easeOutCubic * to));
+
+            if (progress < 1) {
+              window.requestAnimationFrame(animate);
+            }
+          };
+
+          window.requestAnimationFrame(animate);
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (elementRef.current) {
+      observer.observe(elementRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, [to, duration]);
+
+  return <span ref={elementRef}>{count.toLocaleString()}</span>;
 }
 
-/* ════════════════════════════════════
-   STATS
-════════════════════════════════════ */
-const STATS = [
-  { val:180, suf:"+", label:"AI Solutions Delivered", sub:"Personalised to each enterprise",
-    bg:"bg-blue-700", num:"text-white", lbl:"text-blue-200", sub_:"text-blue-300/70", dot:"bg-white/40" },
-  { val:2400000, suf:"", label:"Businesses Empowered", sub:"Across Australia & GCC",
-    bg:"bg-white", num:"text-slate-900", lbl:"text-slate-500", sub_:"text-slate-400", dot:"bg-blue-600" },
-  { val:92, suf:"%", label:"Faster Delivery Rate", sub:"Vs. traditional dev lifecycle",
-    bg:"bg-slate-900", num:"text-white", lbl:"text-slate-400", sub_:"text-slate-500", dot:"bg-blue-400" },
-  { val:98, suf:"%", label:"Client Satisfaction", sub:"Measured across all engagements",
-    bg:"bg-blue-50", num:"text-slate-900", lbl:"text-slate-500", sub_:"text-slate-400", dot:"bg-blue-600" },
-];
+/* ==========================================================================
+   PROOF BAR COMPONENT
+   ========================================================================== */
+export function ProofBar() {
+  const clients = [
+    "Westpac", "Telstra", "ANZ Bank", "Atlassian", "Canva", 
+    "Deloitte", "Microsoft", "AWS", "Salesforce", "Oracle", "SAP", "Cisco"
+  ];
+  
+  // Duplicate array multiple times to guarantee a seamless, gapless track fill across ultra-wide monitors
+  const marqueeItems = [...clients, ...clients, ...clients, ...clients];
 
-function StatsSection() {
   return (
-    <section className="bg-slate-50 py-24 md:py-28"
-      style={{ background: "radial-gradient(ellipse at 8% 50%,rgba(37,99,235,0.06) 0%,transparent 60%),radial-gradient(ellipse at 92% 20%,rgba(129,140,248,0.05) 0%,transparent 55%),#f8fafc" }}>
-      <W>
-        <SHead tag="Why Choose Us"
-          h={<>Redefining Enterprise Technology<br />
-            <span className="text-slate-400">Through Hyper-Personalised AI</span></>} />
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
-          {STATS.map((s,i) => (
-            <R key={i} d={i * 80}>
-              <div className={`${s.bg} rounded-2xl p-8 min-h-[200px] flex flex-col justify-between
-                              border border-black/[0.06] cursor-default transition-all duration-300
-                              hover:-translate-y-1.5 hover:shadow-2xl`}>
-                <div>
-                  <span className={`${s.dot} w-2 h-2 rounded-full inline-block mb-3`} />
-                  <div className={`${s.num} text-[2.8rem] font-extrabold leading-none tracking-tight`}>
-                    <Counter to={s.val} suffix={s.suf} />
-                  </div>
-                  <div className={`${s.lbl} text-[11px] font-bold uppercase tracking-[0.08em] mt-2`}>
-                    {s.label}
-                  </div>
-                </div>
-                <p className={`${s.sub_} text-[12px] leading-[1.6] mt-3`}>{s.sub}</p>
-              </div>
-            </R>
+    <section className="bg-slate-950 border-b border-slate-900 py-14 overflow-hidden relative">
+      <style dangerouslySetInnerHTML={{ __html: MARQUEE_STYLE }} />
+      
+      <div className="max-w-7xl mx-auto px-6 mb-10 text-center">
+        <h3 className="text-slate-400 text-[11px] font-mono font-bold uppercase tracking-[0.25em] max-w-2xl mx-auto leading-relaxed">
+          Trusted by enterprises across Australia, UAE and Saudi Arabia
+        </h3>
+      </div>
+      
+      {/* Linear Fade Masks for edge blending */}
+      <div className="absolute left-0 top-20 bottom-0 w-24 bg-gradient-to-r from-slate-950 to-transparent z-10 pointer-events-none hidden md:block" />
+      <div className="absolute right-0 top-20 bottom-0 w-24 bg-gradient-to-l from-slate-950 to-transparent z-10 pointer-events-none hidden md:block" />
+
+      {/* Track Wrapper */}
+      <div className="w-full overflow-hidden no-scrollbar cursor-grab active:cursor-grabbing">
+        <div className="animate-swiss-marquee gap-16 items-center performance-gains">
+          {marqueeItems.map((client, index) => (
+            <span
+              key={index}
+              className="text-[14px] font-mono font-bold tracking-[0.2em] uppercase text-slate-600 
+                         transition-colors duration-300 hover:text-blue-500 select-none pr-4"
+            >
+              {client}
+            </span>
           ))}
         </div>
-      </W>
+      </div>
     </section>
   );
 }
+
+/* ==========================================================================
+   STATS SECTION COMPONENT
+   ========================================================================== */
+const STATS_DATA = [
+  { 
+    val: 180, 
+    suf: "+", 
+    label: "AI Solutions Delivered", 
+    sub: "Hyper-personalised architecture deployed across legacy enterprise cores." 
+  },
+  { 
+    val: 2400000, 
+    suf: "", 
+    label: "Businesses Empowered", 
+    sub: "High-throughput automation networks operating across Australia & GCC." 
+  },
+  { 
+    val: 92, 
+    suf: "%", 
+    label: "Faster Delivery Rate", 
+    sub: "Accelerating modern deployment pipelines relative to traditional lifecycles." 
+  },
+  { 
+    val: 98, 
+    suf: "%", 
+    label: "Client Satisfaction", 
+    sub: "Independently audited performance parameters across major contracts." 
+  },
+];
+
+export function StatsSection() {
+  return (
+    <section className="bg-white text-slate-900 py-14 md:py-26 border-b border-slate-200">
+      <div className="max-w-7xl mx-auto px-6">
+        
+        {/* Modernist Section Header */}
+        <div className="border-l-2 border-blue-600 pl-6 mb-20 md:mb-28 max-w-4xl">
+          <span className="block text-blue-600 text-xs font-mono font-bold uppercase tracking-[0.2em] mb-4">
+            Operational Metrics // 2026
+          </span>
+          <h2 className="text-3xl md:text-6xl font-black tracking-tight text-slate-900 leading-[1.05]">
+            Redefining Enterprise Technology <br />
+            <span className="text-slate-400 font-normal font-sans">Through Intelligent Automation.</span>
+          </h2>
+        </div>
+
+        {/* Swiss Grid Matrix System */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 border-t border-l border-slate-200">
+          {STATS_DATA.map((item, index) => (
+            <div 
+              key={index} 
+              className="p-8 md:p-10 border-r border-b border-slate-200 bg-white transition-all duration-300 
+                         hover:bg-slate-50 flex flex-col justify-between min-h-[290px] group rounded-sm"
+            >
+              <div>
+                {/* Micro Structural Metadata */}
+                <div className="flex justify-between items-center mb-8">
+                  <span className="text-[10px] font-mono text-slate-400 tracking-widest">
+                    SYS_METRIC_0{index + 1}
+                  </span>
+                  <div className="w-1.5 h-1.5 bg-slate-300 group-hover:bg-blue-600 transition-colors duration-300" />
+                </div>
+                
+                {/* Rendered Metric Counter */}
+                <div className="text-4xl md:text-5xl font-mono font-bold tracking-tighter text-slate-900 flex items-baseline">
+                  <AnimatedCounter to={item.val} />
+                  <span className="text-blue-600 font-sans font-semibold ml-0.5 transform translate-y-[-0.1em]">
+                    {item.suf}
+                  </span>
+                </div>
+
+                {/* Identity Tag */}
+                <div className="text-xs font-bold uppercase tracking-wider text-slate-900 mt-4">
+                  {item.label}
+                </div>
+              </div>
+
+              {/* Functional Context Description */}
+              <p className="text-xs text-slate-500 leading-relaxed font-normal mt-8 pt-5 border-t border-slate-100">
+                {item.sub}
+              </p>
+            </div>
+          ))}
+        </div>
+
+      </div>
+    </section>
+  );
+}
+
 
 /* ════════════════════════════════════
    INDUSTRIES
@@ -798,7 +937,7 @@ export default function AISolutionTechPage() {
     <main className={`${poppins.className} overflow-x-hidden antialiased`}>
       <style>{STYLES}</style>
       <Hero />
-      <PressBar />
+      <ProofBar />
       <StatsSection />
       <ServicesSection />
       <IndustriesSection />
