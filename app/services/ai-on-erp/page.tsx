@@ -4,56 +4,56 @@ import {
   ArrowRight,
   CheckCircle2,
   XCircle,
-  Cloud,
-  Server,
+  BrainCircuit,
+  Building2,
   Users,
   Clock,
   DollarSign,
-  Compass,
-  Building,
-  Target,
   ShieldCheck,
-  CloudCog
+  Database,
+  Sparkles,
+  Search,
+  Factory
 } from 'lucide-react';
 
 /* ══════════════════════════════════════
    METADATA (Server-Side SEO)
 ══════════════════════════════════════ */
 export const metadata = {
-  title: 'Cloud Migration & Modernisation | AI Solution Technologies',
-  description: 'Risk-managed migration from legacy SQL, SSIS, ERP and on-prem to Microsoft Cloud. Assessment, prioritisation, sequencing, and cost modelling.',
+  title: 'Enterprise AI on Governed Data | AI Solution Technologies',
+  description: 'Deploy AI directly on your governed enterprise data—ERP, finance, operational systems—with full audit trails and citations.',
 };
 
 /* ══════════════════════════════════════
    DATA STRUCTURES & EXPANDED CONTENT
 ══════════════════════════════════════ */
 const problems = [
-  'Cloud migration project keeps getting delayed',
-  'Don\'t know which systems to migrate first',
-  'Cost projections are guesses',
-  'Risk assessment hasn\'t happened',
-  'Hybrid vs full cloud strategy unclear',
-  'Stakeholders disagree on approach',
+  'ERP reports require an analyst to interpret',
+  'Finance asks the same trend questions every quarter',
+  'Anomalies are discovered weeks after the fact',
+  'Forecasts are based on gut, not data',
+  'Reconciliations take days of manual work',
+  'AI initiatives are stalled because the data isn\'t trusted',
 ];
 
 const deliverables = [
-  'Cloud readiness assessment',
-  'Application portfolio analysis (7 Rs framework)',
-  'Migration roadmap and sequencing',
-  'Cost modelling (TCO + landing zone)',
-  'Risk register',
-  'Hybrid cloud strategy',
-  'Governance and security plan',
-  'Executive business case',
+  'Source system data assessment',
+  'Governed data foundation (if not already in place)',
+  'AI model selection (forecasting, anomaly, classification)',
+  'Conversational AI layer (natural language to query)',
+  'Executive AI insights dashboard',
+  'Audit trail on every AI decision',
+  'Continuous model monitoring',
+  'Stakeholder training',
 ];
 
-const industries = ['All — especially mid-market+ with on-prem legacy'];
-const roles = ['CIO', 'Head of Infrastructure', 'CTO', 'CFO (cost angle)'];
+const industries = ['Manufacturing', 'Construction', 'Financial Services', 'Healthcare', 'Mining', 'Distribution'];
+const roles = ['CFO', 'COO', 'CDO', 'Chief AI Officer', 'CEO'];
 
 /* ══════════════════════════════════════
    MAIN PAGE COMPONENT (100% Server Side)
 ══════════════════════════════════════ */
-export default function CloudMigrationServicePage() {
+export default function AIEnterpriseServicePage() {
   return (
     <main className="overflow-hidden bg-[#fafbfe] text-[#0f172a] font-sans selection:bg-blue-500/30">
       
@@ -77,10 +77,10 @@ export default function CloudMigrationServicePage() {
         
         {/* Background Image & Overlays */}
         <div className="absolute inset-0 z-0 bg-[#020817]">
-          {/* High-quality cloud architecture / tech abstract image */}
+          {/* High-quality enterprise/data abstract image */}
           <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
-            alt="Cloud Architecture Network" 
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000" 
+            alt="Enterprise Data" 
             className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"
           />
           {/* Gradient Overlay to ensure text readability */}
@@ -100,27 +100,20 @@ export default function CloudMigrationServicePage() {
         {/* Floating Abstract Dashboard Elements (CSS Animated) */}
         <div className="absolute right-[5%] top-[20%] w-64 h-40 bg-white/[0.02] border border-white/10 rounded-xl backdrop-blur-md p-4 anim-float hidden lg:block shadow-2xl">
           <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
-             <Server className="w-5 h-5 text-slate-400" />
-             <ArrowRight className="w-4 h-4 text-blue-400" />
-             <Cloud className="w-5 h-5 text-blue-400" />
+             <BrainCircuit className="w-5 h-5 text-blue-400" />
+             <div className="w-1/2 h-2 bg-blue-500/20 rounded-full"></div>
           </div>
-          <div className="space-y-3">
-            <div className="w-full h-2 bg-slate-600/30 rounded-full overflow-hidden">
-              <div className="w-3/4 h-full bg-blue-500/80 rounded-full"></div>
-            </div>
-            <div className="w-full h-2 bg-slate-600/30 rounded-full overflow-hidden">
-              <div className="w-1/2 h-full bg-blue-400/80 rounded-full"></div>
-            </div>
-            <div className="w-full h-2 bg-slate-600/30 rounded-full overflow-hidden">
-              <div className="w-5/6 h-full bg-indigo-500/80 rounded-full"></div>
-            </div>
+          <div className="space-y-2">
+            <div className="w-full h-3 bg-blue-500/10 rounded-sm"></div>
+            <div className="w-4/5 h-3 bg-blue-400/20 rounded-sm"></div>
+            <div className="w-full h-3 bg-indigo-500/30 rounded-sm"></div>
           </div>
         </div>
 
         <div className="absolute left-[5%] bottom-[15%] w-48 h-48 bg-white/[0.02] border border-white/10 rounded-full backdrop-blur-md p-4 anim-float-delayed hidden lg:flex items-center justify-center shadow-2xl">
           <div className="w-32 h-32 rounded-full border-4 border-blue-500/20 border-t-blue-400"></div>
-          <div className="absolute w-20 h-20 rounded-full border-4 border-slate-500/20 border-b-slate-400"></div>
-          <CloudCog className="absolute w-8 h-8 text-white/50" />
+          <div className="absolute w-20 h-20 rounded-full border-4 border-emerald-500/20 border-b-emerald-400"></div>
+          <ShieldCheck className="absolute w-8 h-8 text-white/50" />
         </div>
 
         {/* Ambient Center Glow */}
@@ -128,19 +121,19 @@ export default function CloudMigrationServicePage() {
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
           <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-300 backdrop-blur-xl mb-8">
-            <Compass className="w-4 h-4" />
-            Strategy & Migration
+            <Sparkles className="w-4 h-4" />
+            Signature Service
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight text-white font-syne">
-            Risk-managed migration from legacy SQL, SSIS, ERP and on-prem 
+            Our signature service: AI deployed on your governed enterprise data 
             <span className="block mt-3 bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent pb-2">
-              to Microsoft Cloud.
+              — not random PDFs.
             </span>
           </h1>
 
           <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed text-slate-300 font-light">
-            Assessment, prioritisation, sequencing, cost modelling, governance — so you know exactly what to migrate, when, and why, before spending a dollar on execution.
+            AI on the data your business already trusts: ERP, finance, operational systems. Auditable. Secure. Executive-grade. Built on Microsoft Fabric and Azure OpenAI.
           </p>
 
           <div className="mt-12 flex justify-center">
@@ -163,15 +156,15 @@ export default function CloudMigrationServicePage() {
         <div className="flex gap-16 items-center anim-marquee px-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           {[1, 2, 3].map((set) => (
             <React.Fragment key={set}>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Microsoft Azure</span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Microsoft Fabric</span>
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">SQL Server</span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Azure OpenAI</span>
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">SSIS</span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Dynamics 365</span>
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">On-Premises</span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">SAP</span>
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Legacy ERP</span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Snowflake</span>
               <span className="w-2 h-2 rounded-full bg-blue-500"></span>
             </React.Fragment>
           ))}
@@ -186,10 +179,10 @@ export default function CloudMigrationServicePage() {
             {/* Animated Hover Gradient Background */}
             <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             
-            <Compass className="absolute -right-10 -top-10 w-48 h-48 text-slate-50 -rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none" />
+            <Database className="absolute -right-10 -top-10 w-48 h-48 text-slate-50 -rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none" />
             
             <p className="relative z-10 text-xl md:text-2xl leading-relaxed text-[#020817] font-light font-syne">
-              "Most failed cloud migrations fail in planning, not execution. We start with a 6-week assessment, build a phased roadmap, model the costs accurately, and <strong className="font-black text-blue-600 relative inline-block">only then start moving workloads.<span className="absolute bottom-0 left-0 w-full h-1 bg-blue-200 -z-10 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></span></strong> The result: cloud migration that delivers within budget and timeline."
+              "Most AI vendors will tell you to upload random documents and 'see what happens'. We do the opposite: <strong className="font-black text-blue-600 relative inline-block">deploy AI directly on your governed enterprise data<span className="absolute bottom-0 left-0 w-full h-1 bg-blue-200 -z-10 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></span></strong> — ERP, finance, operational systems — with full audit trails and citations. The CFO can trust the answer because the AI cited where it came from."
             </p>
           </div>
         </div>
@@ -269,8 +262,8 @@ export default function CloudMigrationServicePage() {
             {/* Image Side */}
             <div className="lg:w-2/5 relative min-h-[300px] lg:min-h-full bg-slate-900 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" 
-                alt="Government Building Corporate" 
+                src="https://images.unsplash.com/photo-1586528116311-ad8c73875084?auto=format&fit=crop&q=80&w=1000" 
+                alt="Distribution Logistics" 
                 className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-luminosity transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#020817]" />
@@ -283,28 +276,28 @@ export default function CloudMigrationServicePage() {
 
             {/* Content Side */}
             <div className="lg:w-3/5 p-10 md:p-16 relative z-10">
-              <Building className="w-16 h-16 text-blue-500/10 absolute right-10 top-10 transform group-hover:rotate-12 transition-transform duration-500" />
+              <Factory className="w-16 h-16 text-blue-500/10 absolute right-10 top-10 transform group-hover:rotate-12 transition-transform duration-500" />
               <h3 className="text-3xl md:text-4xl font-black text-white font-syne mb-6">
-                Local Council Migration Strategy
+                Distribution Group Deployment
               </h3>
               <p className="text-lg text-slate-300 leading-relaxed font-light mb-10">
-                An Australian local council (700 staff) had been delaying their cloud migration for 18 months across two failed planning attempts. A 6-week strategy engagement produced a 5-year roadmap with 12 quick-win workloads identified. Year-1 cost projection ended up accurate within 4%. Migration is now on track.
+                A distribution group (3 ERPs, AUD $300M revenue) deployed AI on their Dynamics 365 + finance data. The CFO can now ask "why did margins drop in QLD region last week" in natural language and get cited answers in seconds.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-white/10">
                 <div className="group/stat">
                   <div className="text-4xl font-black text-white mb-2 flex items-center gap-2">
-                    4% <Target className="w-5 h-5 text-emerald-400 transform group-hover/stat:scale-110 transition-transform" />
+                    $640K <Search className="w-5 h-5 text-emerald-400 transform group-hover/stat:scale-110 transition-transform" />
                   </div>
-                  <div className="text-xs font-bold text-blue-400 uppercase tracking-widest">Variance</div>
-                  <div className="text-slate-500 text-sm mt-1">Year-1 cost projection accuracy</div>
+                  <div className="text-xs font-bold text-blue-400 uppercase tracking-widest">Duplicate invoicing caught</div>
+                  <div className="text-slate-500 text-sm mt-1">in the first quarter alone</div>
                 </div>
                 <div className="group/stat">
                   <div className="text-4xl font-black text-white mb-2 flex items-center gap-2">
-                    12 <ShieldCheck className="w-5 h-5 text-emerald-400 group-hover/stat:scale-110 transition-transform" />
+                    Seconds <CheckCircle2 className="w-5 h-5 text-emerald-400 group-hover/stat:scale-110 transition-transform" />
                   </div>
-                  <div className="text-xs font-bold text-blue-400 uppercase tracking-widest">Quick Wins</div>
-                  <div className="text-slate-500 text-sm mt-1">Workloads identified for immediate ROI</div>
+                  <div className="text-xs font-bold text-blue-400 uppercase tracking-widest">To get cited answers</div>
+                  <div className="text-slate-500 text-sm mt-1">direct from governed data</div>
                 </div>
               </div>
             </div>
@@ -353,9 +346,9 @@ export default function CloudMigrationServicePage() {
                 <div className="absolute right-0 bottom-0 opacity-10 group-hover:scale-125 transition-transform duration-700">
                   <DollarSign className="w-40 h-40 -mb-10 -mr-10" />
                 </div>
-                <h4 className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-3">Investment</h4>
-                <div className="text-3xl md:text-4xl font-black text-white font-syne mb-2">AUD $25K – $100K</div>
-                <p className="text-slate-400 text-sm font-light">For the strategy phase; larger for execution</p>
+                <h4 className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-3">Pricing</h4>
+                <div className="text-3xl md:text-4xl font-black text-white font-syne mb-2">AUD $50K – $250K</div>
+                <p className="text-slate-400 text-sm font-light">Custom quoted based on data complexity</p>
               </div>
 
               <div className="rounded-2xl bg-white border border-slate-200 p-8 flex flex-col justify-center relative overflow-hidden group shadow-sm">
@@ -363,8 +356,8 @@ export default function CloudMigrationServicePage() {
                   <Clock className="w-40 h-40 -mb-10 -mr-10 text-blue-900" />
                 </div>
                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">Delivery Timeline</h4>
-                <div className="text-3xl md:text-4xl font-black text-[#020817] font-syne mb-2">4–10 weeks</div>
-                <p className="text-slate-500 text-sm font-light">For planning; per-workload after</p>
+                <div className="text-3xl md:text-4xl font-black text-[#020817] font-syne mb-2">10–20 weeks</div>
+                <p className="text-slate-500 text-sm font-light">From initial kickoff to complete go-live</p>
               </div>
             </div>
 
@@ -381,7 +374,7 @@ export default function CloudMigrationServicePage() {
 
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight font-syne capitalize">
-              Ready to discuss cloud migration & modernisation?
+              Ready to discuss AI on ERP & Finance Systems (Signature)?
             </h2>
 
             <p className="mt-6 text-lg md:text-xl leading-relaxed text-slate-300 font-light mb-10">

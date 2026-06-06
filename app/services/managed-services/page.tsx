@@ -4,58 +4,58 @@ import {
   ArrowRight,
   CheckCircle2,
   XCircle,
-  Cloud,
-  Server,
   Users,
   Clock,
   DollarSign,
-  Compass,
-  Building,
-  Target,
-  ShieldCheck,
-  CloudCog
+  Activity,
+  ServerCog,
+  TrendingDown,
+  TimerReset,
+  BarChart3,
+  ShieldAlert,
+  Zap
 } from 'lucide-react';
 
 /* ══════════════════════════════════════
    METADATA (Server-Side SEO)
 ══════════════════════════════════════ */
 export const metadata = {
-  title: 'Cloud Migration & Modernisation | AI Solution Technologies',
-  description: 'Risk-managed migration from legacy SQL, SSIS, ERP and on-prem to Microsoft Cloud. Assessment, prioritisation, sequencing, and cost modelling.',
+  title: 'Managed Power BI & Azure Services | AI Solution Technologies',
+  description: 'We run your Microsoft data and AI platforms — so your team doesn\'t have to. Predictable monthly cost, 24/7 monitoring, and SLA-backed response.',
 };
 
 /* ══════════════════════════════════════
    DATA STRUCTURES & EXPANDED CONTENT
 ══════════════════════════════════════ */
 const problems = [
-  'Cloud migration project keeps getting delayed',
-  'Don\'t know which systems to migrate first',
-  'Cost projections are guesses',
-  'Risk assessment hasn\'t happened',
-  'Hybrid vs full cloud strategy unclear',
-  'Stakeholders disagree on approach',
+  'Power BI estate has grown faster than the internal team',
+  'Azure bills rising without clear cause',
+  'Pipelines failing overnight with nobody watching',
+  'Performance degrading and nobody investigating',
+  'Capacity planning happening ad-hoc',
+  'Internal team firefighting, not improving',
 ];
 
 const deliverables = [
-  'Cloud readiness assessment',
-  'Application portfolio analysis (7 Rs framework)',
-  'Migration roadmap and sequencing',
-  'Cost modelling (TCO + landing zone)',
-  'Risk register',
-  'Hybrid cloud strategy',
-  'Governance and security plan',
-  'Executive business case',
+  '24/7 monitoring + alerting',
+  'Continuous cost optimisation',
+  'Pipeline failure response (SLA-backed)',
+  'Performance tuning',
+  'Security and patching',
+  'Quarterly architecture review',
+  'Capacity planning',
+  'Executive reporting',
 ];
 
-const industries = ['All — especially mid-market+ with on-prem legacy'];
-const roles = ['CIO', 'Head of Infrastructure', 'CTO', 'CFO (cost angle)'];
+const industries = ['All — wherever there\'s a Microsoft data platform in production'];
+const roles = ['CIO', 'Head of Cloud', 'Head of Data Engineering', 'CFO'];
 
 /* ══════════════════════════════════════
    MAIN PAGE COMPONENT (100% Server Side)
 ══════════════════════════════════════ */
-export default function CloudMigrationServicePage() {
+export default function ManagedServicesPage() {
   return (
-    <main className="overflow-hidden bg-[#fafbfe] text-[#0f172a] font-sans selection:bg-blue-500/30">
+    <main className="overflow-hidden bg-[#fafbfe] text-[#0f172a] font-sans selection:bg-teal-500/30">
       
       {/* PURE CSS ANIMATIONS INJECTED SERVER-SIDE */}
       <style dangerouslySetInnerHTML={{__html: `
@@ -77,14 +77,14 @@ export default function CloudMigrationServicePage() {
         
         {/* Background Image & Overlays */}
         <div className="absolute inset-0 z-0 bg-[#020817]">
-          {/* High-quality cloud architecture / tech abstract image */}
+          {/* High-quality abstract NOC / operations image */}
           <img 
-            src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&q=80&w=2000" 
-            alt="Cloud Architecture Network" 
-            className="absolute inset-0 w-full h-full object-cover opacity-30 mix-blend-luminosity"
+            src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=2000" 
+            alt="Data Operations and Monitoring" 
+            className="absolute inset-0 w-full h-full object-cover opacity-20 mix-blend-luminosity"
           />
           {/* Gradient Overlay to ensure text readability */}
-          <div className="absolute inset-0 bg-gradient-to-b from-[#020817]/90 via-[#0a1128]/80 to-[#020817]" />
+          <div className="absolute inset-0 bg-gradient-to-b from-[#020817]/95 via-[#06102b]/90 to-[#020817]" />
           
           {/* Grid Pattern */}
           <div className="absolute inset-0 opacity-[0.03]">
@@ -98,55 +98,48 @@ export default function CloudMigrationServicePage() {
         </div>
 
         {/* Floating Abstract Dashboard Elements (CSS Animated) */}
-        <div className="absolute right-[5%] top-[20%] w-64 h-40 bg-white/[0.02] border border-white/10 rounded-xl backdrop-blur-md p-4 anim-float hidden lg:block shadow-2xl">
-          <div className="flex items-center gap-3 mb-4 border-b border-white/10 pb-3">
-             <Server className="w-5 h-5 text-slate-400" />
-             <ArrowRight className="w-4 h-4 text-blue-400" />
-             <Cloud className="w-5 h-5 text-blue-400" />
+        <div className="absolute right-[5%] top-[20%] w-64 h-40 bg-white/[0.02] border border-white/10 rounded-xl backdrop-blur-md p-5 anim-float hidden lg:block shadow-2xl">
+          <div className="flex items-center justify-between mb-4 border-b border-white/10 pb-3">
+             <Activity className="w-5 h-5 text-teal-400" />
+             <div className="text-[10px] font-bold text-teal-400 tracking-widest uppercase">System Health: 99.99%</div>
           </div>
-          <div className="space-y-3">
-            <div className="w-full h-2 bg-slate-600/30 rounded-full overflow-hidden">
-              <div className="w-3/4 h-full bg-blue-500/80 rounded-full"></div>
-            </div>
-            <div className="w-full h-2 bg-slate-600/30 rounded-full overflow-hidden">
-              <div className="w-1/2 h-full bg-blue-400/80 rounded-full"></div>
-            </div>
-            <div className="w-full h-2 bg-slate-600/30 rounded-full overflow-hidden">
-              <div className="w-5/6 h-full bg-indigo-500/80 rounded-full"></div>
-            </div>
+          <div className="flex items-end gap-2 h-16 pt-2">
+            {[40, 70, 45, 90, 65, 85, 60].map((h, i) => (
+              <div key={i} className="w-full bg-teal-500/50 rounded-t-sm" style={{ height: `${h}%` }}></div>
+            ))}
           </div>
         </div>
 
         <div className="absolute left-[5%] bottom-[15%] w-48 h-48 bg-white/[0.02] border border-white/10 rounded-full backdrop-blur-md p-4 anim-float-delayed hidden lg:flex items-center justify-center shadow-2xl">
-          <div className="w-32 h-32 rounded-full border-4 border-blue-500/20 border-t-blue-400"></div>
-          <div className="absolute w-20 h-20 rounded-full border-4 border-slate-500/20 border-b-slate-400"></div>
-          <CloudCog className="absolute w-8 h-8 text-white/50" />
+          <div className="w-32 h-32 rounded-full border-4 border-cyan-500/20 border-l-cyan-400"></div>
+          <div className="absolute w-20 h-20 rounded-full border-4 border-slate-500/20 border-r-slate-400"></div>
+          <ServerCog className="absolute w-8 h-8 text-white/50" />
         </div>
 
         {/* Ambient Center Glow */}
-        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-blue-600/20 blur-[120px] rounded-full pointer-events-none anim-pulse" />
+        <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[500px] bg-teal-600/20 blur-[120px] rounded-full pointer-events-none anim-pulse" />
 
         <div className="relative z-10 max-w-5xl mx-auto px-6 text-center">
-          <div className="inline-flex items-center gap-2 rounded-full border border-blue-500/30 bg-blue-500/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-blue-300 backdrop-blur-xl mb-8">
-            <Compass className="w-4 h-4" />
-            Strategy & Migration
+          <div className="inline-flex items-center gap-2 rounded-full border border-teal-500/30 bg-teal-500/10 px-5 py-2 text-xs font-bold uppercase tracking-[0.2em] text-teal-300 backdrop-blur-xl mb-8">
+            <Zap className="w-4 h-4" />
+            Managed Operations
           </div>
 
           <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black leading-[1.05] tracking-tight text-white font-syne">
-            Risk-managed migration from legacy SQL, SSIS, ERP and on-prem 
-            <span className="block mt-3 bg-gradient-to-r from-blue-400 via-sky-300 to-indigo-400 bg-clip-text text-transparent pb-2">
-              to Microsoft Cloud.
+            We run your Microsoft data and AI platforms — 
+            <span className="block mt-3 bg-gradient-to-r from-teal-400 via-cyan-300 to-blue-400 bg-clip-text text-transparent pb-2">
+              so your team doesn't have to.
             </span>
           </h1>
 
           <p className="mt-8 max-w-3xl mx-auto text-lg md:text-xl leading-relaxed text-slate-300 font-light">
-            Assessment, prioritisation, sequencing, cost modelling, governance — so you know exactly what to migrate, when, and why, before spending a dollar on execution.
+            Predictable monthly cost. 24/7 monitoring. SLAs on response. Continuous optimisation. Quarterly business review. No surprise project fees.
           </p>
 
           <div className="mt-12 flex justify-center">
             <Link
               href="/contact"
-              className="group inline-flex items-center gap-3 rounded-full bg-blue-600 px-8 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-blue-500 hover:shadow-[0_15px_40px_rgba(37,99,235,0.4)]"
+              className="group inline-flex items-center gap-3 rounded-full bg-teal-600 px-8 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-teal-500 hover:shadow-[0_15px_40px_rgba(20,184,166,0.4)]"
             >
               Book a 30-minute conversation
               <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -163,16 +156,18 @@ export default function CloudMigrationServicePage() {
         <div className="flex gap-16 items-center anim-marquee px-8 opacity-50 grayscale hover:grayscale-0 transition-all duration-500">
           {[1, 2, 3].map((set) => (
             <React.Fragment key={set}>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Microsoft Azure</span>
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">SQL Server</span>
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">SSIS</span>
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">On-Premises</span>
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
-              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Legacy ERP</span>
-              <span className="w-2 h-2 rounded-full bg-blue-500"></span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Power BI</span>
+              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Microsoft Fabric</span>
+              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Azure Data Factory</span>
+              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">Azure Synapse</span>
+              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">ADLS</span>
+              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
+              <span className="text-sm font-bold tracking-widest text-slate-600 uppercase">AI Operations</span>
+              <span className="w-2 h-2 rounded-full bg-teal-500"></span>
             </React.Fragment>
           ))}
         </div>
@@ -181,15 +176,15 @@ export default function CloudMigrationServicePage() {
       {/* ════════ THE PITCH ════════ */}
       <section className="relative py-24 bg-[#fafbfe]">
         <div className="max-w-4xl mx-auto px-6">
-          <div className="group rounded-2xl bg-white border border-slate-200 p-10 md:p-14 text-center shadow-[0_10px_40px_rgba(15,23,42,0.03)] relative overflow-hidden transition-all duration-500 hover:border-blue-200 hover:shadow-[0_20px_50px_rgba(37,99,235,0.08)]">
+          <div className="group rounded-2xl bg-white border border-slate-200 p-10 md:p-14 text-center shadow-[0_10px_40px_rgba(15,23,42,0.03)] relative overflow-hidden transition-all duration-500 hover:border-teal-200 hover:shadow-[0_20px_50px_rgba(20,184,166,0.08)]">
             
             {/* Animated Hover Gradient Background */}
-            <div className="absolute inset-0 bg-gradient-to-b from-blue-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
+            <div className="absolute inset-0 bg-gradient-to-b from-teal-50/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700" />
             
-            <Compass className="absolute -right-10 -top-10 w-48 h-48 text-slate-50 -rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none" />
+            <ServerCog className="absolute -right-10 -top-10 w-48 h-48 text-slate-50 -rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none" />
             
             <p className="relative z-10 text-xl md:text-2xl leading-relaxed text-[#020817] font-light font-syne">
-              "Most failed cloud migrations fail in planning, not execution. We start with a 6-week assessment, build a phased roadmap, model the costs accurately, and <strong className="font-black text-blue-600 relative inline-block">only then start moving workloads.<span className="absolute bottom-0 left-0 w-full h-1 bg-blue-200 -z-10 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></span></strong> The result: cloud migration that delivers within budget and timeline."
+              "After implementation, the platform needs ongoing operation — and most internal teams don't have the bandwidth. Our managed service covers Power BI, Azure data platforms (Fabric, ADF, Synapse, ADLS) and AI operations. <strong className="font-black text-teal-600 relative inline-block">Fixed monthly fee. SLA-backed. Continuous optimisation included.<span className="absolute bottom-0 left-0 w-full h-1 bg-teal-200 -z-10 transform origin-left scale-x-0 group-hover:scale-x-100 transition-transform duration-500"></span></strong>"
             </p>
           </div>
         </div>
@@ -204,7 +199,7 @@ export default function CloudMigrationServicePage() {
             <div className="rounded-2xl bg-[#fafbfe] border border-slate-200 p-8 md:p-12 shadow-sm transition-transform duration-500 hover:-translate-y-2">
               <div className="flex items-center gap-4 mb-8">
                 <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-red-500 border border-red-100">
-                  <XCircle className="w-6 h-6" />
+                  <ShieldAlert className="w-6 h-6" />
                 </div>
                 <h2 className="text-2xl md:text-3xl font-black text-[#020817] font-syne">
                   Sound familiar?
@@ -227,7 +222,7 @@ export default function CloudMigrationServicePage() {
 
             {/* Included Column */}
             <div className="rounded-2xl bg-[#020817] border border-slate-800 p-8 md:p-12 shadow-xl relative overflow-hidden transition-transform duration-500 hover:-translate-y-2">
-              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-blue-600/10 blur-[100px] rounded-full pointer-events-none anim-pulse" />
+              <div className="absolute top-0 right-0 w-[400px] h-[400px] bg-teal-600/10 blur-[100px] rounded-full pointer-events-none anim-pulse" />
               
               <div className="relative z-10">
                 <div className="flex items-center gap-4 mb-8">
@@ -264,18 +259,18 @@ export default function CloudMigrationServicePage() {
           <div className="rounded-3xl overflow-hidden bg-[#020817] flex flex-col lg:flex-row border border-slate-800 shadow-2xl relative group">
             
             {/* Animated Gradient Line */}
-            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-blue-600 via-sky-400 to-indigo-600 z-20"></div>
+            <div className="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-teal-600 via-cyan-400 to-blue-600 z-20"></div>
 
             {/* Image Side */}
             <div className="lg:w-2/5 relative min-h-[300px] lg:min-h-full bg-slate-900 overflow-hidden">
               <img 
-                src="https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?auto=format&fit=crop&q=80&w=1000" 
-                alt="Government Building Corporate" 
+                src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&q=80&w=1000" 
+                alt="Energy Industry Infrastructure" 
                 className="absolute inset-0 w-full h-full object-cover opacity-50 mix-blend-luminosity transition-transform duration-1000 group-hover:scale-110"
               />
               <div className="absolute inset-0 bg-gradient-to-r from-transparent to-[#020817]" />
               <div className="absolute top-8 left-8 z-10">
-                <span className="bg-blue-600 text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-md shadow-lg">
+                <span className="bg-teal-600 text-white text-[10px] font-bold tracking-widest uppercase px-3 py-1.5 rounded-md shadow-lg">
                   Case Study
                 </span>
               </div>
@@ -283,28 +278,28 @@ export default function CloudMigrationServicePage() {
 
             {/* Content Side */}
             <div className="lg:w-3/5 p-10 md:p-16 relative z-10">
-              <Building className="w-16 h-16 text-blue-500/10 absolute right-10 top-10 transform group-hover:rotate-12 transition-transform duration-500" />
+              <BarChart3 className="w-16 h-16 text-teal-500/10 absolute right-10 top-10 transform group-hover:-translate-y-2 transition-transform duration-500" />
               <h3 className="text-3xl md:text-4xl font-black text-white font-syne mb-6">
-                Local Council Migration Strategy
+                Energy Retailer Stabilisation
               </h3>
               <p className="text-lg text-slate-300 leading-relaxed font-light mb-10">
-                An Australian local council (700 staff) had been delaying their cloud migration for 18 months across two failed planning attempts. A 6-week strategy engagement produced a 5-year roadmap with 12 quick-win workloads identified. Year-1 cost projection ended up accurate within 4%. Migration is now on track.
+                An Australian energy retailer with 1,400 ADF pipelines and 5 Fabric workspaces moved to our managed service. Within 6 months, Azure spend was drastically reduced through right-sizing, and stability was restored to their critical pipelines.
               </p>
               
               <div className="grid sm:grid-cols-2 gap-8 pt-8 border-t border-white/10">
                 <div className="group/stat">
                   <div className="text-4xl font-black text-white mb-2 flex items-center gap-2">
-                    4% <Target className="w-5 h-5 text-emerald-400 transform group-hover/stat:scale-110 transition-transform" />
+                    32% <TrendingDown className="w-5 h-5 text-emerald-400 transform group-hover/stat:translate-y-1 transition-transform" />
                   </div>
-                  <div className="text-xs font-bold text-blue-400 uppercase tracking-widest">Variance</div>
-                  <div className="text-slate-500 text-sm mt-1">Year-1 cost projection accuracy</div>
+                  <div className="text-xs font-bold text-teal-400 uppercase tracking-widest">Cost Reduction</div>
+                  <div className="text-slate-500 text-sm mt-1">Azure spend down via right-sizing</div>
                 </div>
                 <div className="group/stat">
                   <div className="text-4xl font-black text-white mb-2 flex items-center gap-2">
-                    12 <ShieldCheck className="w-5 h-5 text-emerald-400 group-hover/stat:scale-110 transition-transform" />
+                    25 Min <TimerReset className="w-5 h-5 text-emerald-400 transform group-hover/stat:-rotate-45 transition-transform" />
                   </div>
-                  <div className="text-xs font-bold text-blue-400 uppercase tracking-widest">Quick Wins</div>
-                  <div className="text-slate-500 text-sm mt-1">Workloads identified for immediate ROI</div>
+                  <div className="text-xs font-bold text-teal-400 uppercase tracking-widest">Resolution MTTR</div>
+                  <div className="text-slate-500 text-sm mt-1">Dropped from 4 hours average</div>
                 </div>
               </div>
             </div>
@@ -321,14 +316,14 @@ export default function CloudMigrationServicePage() {
             {/* Target Audience */}
             <div className="lg:col-span-7 rounded-2xl bg-[#fafbfe] border border-slate-200 p-8 md:p-12 shadow-sm transition-shadow hover:shadow-md">
               <h3 className="text-xl font-bold text-[#020817] mb-10 uppercase tracking-wide flex items-center gap-3">
-                <Users className="w-5 h-5 text-blue-600" /> Who this is for
+                <Users className="w-5 h-5 text-teal-600" /> Who this is for
               </h3>
               
               <div className="mb-10">
                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Core Industries</h4>
                 <div className="flex flex-wrap gap-2.5">
                   {industries.map(ind => (
-                    <span key={ind} className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:border-blue-300 hover:text-blue-700 transition-colors cursor-default">
+                    <span key={ind} className="px-4 py-2 bg-white border border-slate-200 rounded-lg text-sm font-medium text-slate-600 hover:border-teal-300 hover:text-teal-700 transition-colors cursor-default">
                       {ind}
                     </span>
                   ))}
@@ -339,7 +334,7 @@ export default function CloudMigrationServicePage() {
                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-4">Target Buyers</h4>
                 <div className="flex flex-wrap gap-2.5">
                   {roles.map(role => (
-                    <span key={role} className="px-4 py-2 bg-blue-50 border border-blue-100 text-blue-700 rounded-lg text-sm font-bold hover:bg-blue-100 transition-colors cursor-default">
+                    <span key={role} className="px-4 py-2 bg-teal-50 border border-teal-100 text-teal-700 rounded-lg text-sm font-bold hover:bg-teal-100 transition-colors cursor-default">
                       {role}
                     </span>
                   ))}
@@ -353,18 +348,18 @@ export default function CloudMigrationServicePage() {
                 <div className="absolute right-0 bottom-0 opacity-10 group-hover:scale-125 transition-transform duration-700">
                   <DollarSign className="w-40 h-40 -mb-10 -mr-10" />
                 </div>
-                <h4 className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-3">Investment</h4>
-                <div className="text-3xl md:text-4xl font-black text-white font-syne mb-2">AUD $25K – $100K</div>
-                <p className="text-slate-400 text-sm font-light">For the strategy phase; larger for execution</p>
+                <h4 className="text-xs font-bold text-teal-400 uppercase tracking-[0.2em] mb-3">Monthly Investment</h4>
+                <div className="text-3xl md:text-4xl font-black text-white font-syne mb-2">AUD $2K – $60K</div>
+                <p className="text-slate-400 text-sm font-light">Sized strictly to the scale of your environment</p>
               </div>
 
               <div className="rounded-2xl bg-white border border-slate-200 p-8 flex flex-col justify-center relative overflow-hidden group shadow-sm">
                 <div className="absolute right-0 bottom-0 opacity-[0.03] group-hover:scale-125 transition-transform duration-700">
-                  <Clock className="w-40 h-40 -mb-10 -mr-10 text-blue-900" />
+                  <Clock className="w-40 h-40 -mb-10 -mr-10 text-teal-900" />
                 </div>
                 <h4 className="text-xs font-bold text-slate-400 uppercase tracking-[0.2em] mb-3">Delivery Timeline</h4>
-                <div className="text-3xl md:text-4xl font-black text-[#020817] font-syne mb-2">4–10 weeks</div>
-                <p className="text-slate-500 text-sm font-light">For planning; per-workload after</p>
+                <div className="text-3xl md:text-4xl font-black text-[#020817] font-syne mb-2">Ongoing Service</div>
+                <p className="text-slate-500 text-sm font-light">Initial onboarding takes 2–4 weeks</p>
               </div>
             </div>
 
@@ -374,14 +369,14 @@ export default function CloudMigrationServicePage() {
 
       {/* ════════ FINAL CTA ════════ */}
       <section className="bg-[#020817] px-6 py-24 border-t border-slate-800">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] border border-slate-700 p-12 md:p-24 text-center shadow-2xl max-w-5xl mx-auto group">
+        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f172a] via-[#134e4a] to-[#0f172a] border border-slate-700 p-12 md:p-24 text-center shadow-2xl max-w-5xl mx-auto group">
           
           {/* Animated Background Rays */}
           <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent group-hover:opacity-[0.05] transition-opacity duration-1000"></div>
 
           <div className="relative z-10 max-w-3xl mx-auto">
             <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight font-syne capitalize">
-              Ready to discuss cloud migration & modernisation?
+              Ready to discuss managed Power BI & Azure services?
             </h2>
 
             <p className="mt-6 text-lg md:text-xl leading-relaxed text-slate-300 font-light mb-10">

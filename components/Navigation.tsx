@@ -9,47 +9,77 @@ import { NAV_LINKS } from '@/lib/constants';
 const SERVICES = [
   {
     num: "01",
-    title: "AI & Intelligent Automation",
-    desc: "AI-powered decision systems, predictive intelligence, workflow automation, OCR, and autonomous AI agents.",
-    tags: ["Agentic AI", "Machine Learning", "OCR Automation"],
-    href: "/services/ai-intelligence",
+    title: "Power BI Implementation",
+    desc: "Executive-ready dashboards and reporting that replace spreadsheets with real-time business insights.",
+    tags: ["Power BI", "Dashboards", "Reporting"],
+    href: "/services/power-bi-implementation",
   },
   {
     num: "02",
-    title: "Data Platforms & Engineering",
-    desc: "Modern lakehouse architecture, enterprise data foundations, Data Vault 2.0, MDM, and scalable data engineering pipelines.",
-    tags: ["Data Lakehouse", "Azure Data", "Data Vault 2.0"],
-    href: "/services/data-engineering",
+    title: "CFO Dashboards",
+    desc: "Cash flow, budgeting, forecasting, profitability, and financial performance in one executive view.",
+    tags: ["Finance", "Forecasting", "Cash Flow"],
+    href: "/services/cfo-dashboards",
   },
   {
     num: "03",
-    title: "Cloud & Enterprise Modernisation",
-    desc: "Azure migration, API-first integration, infrastructure transformation, and modern enterprise architecture.",
-    tags: ["Cloud Strategy", "Azure Migration", "API-First"],
-    href: "/services/cloud-modernisation",
+    title: "Microsoft Fabric",
+    desc: "Unified platform for data engineering, warehousing, business intelligence, and enterprise AI.",
+    tags: ["Microsoft Fabric", "Data Platform", "Analytics"],
+    href: "/services/microsoft-fabric",
   },
   {
     num: "04",
-    title: "Analytics & Executive Intelligence",
-    desc: "Power BI dashboards, real-time analytics, executive reporting, forecasting, and operational visibility platforms.",
-    tags: ["Power BI", "Data Visualisation", "Real-Time BI"],
-    href: "/services/analytics-reporting",
+    title: "Enterprise AI Assistant",
+    desc: "Private AI assistants powered by Azure OpenAI and trained on your business knowledge.",
+    tags: ["Azure OpenAI", "Enterprise AI", "Knowledge Base"],
+    href: "/services/enterprise-ai-assistant",
   },
   {
     num: "05",
-    title: "AI Agents & Workforce Automation",
-    desc: "Intelligent AI workers and autonomous operational agents designed to automate repetitive business processes at scale.",
-    tags: ["Intelligent Agents", "Workflow RPA", "Process Optimisation"],
-    href: "/services/ai-agents-automation",
+    title: "Construction Analytics",
+    desc: "Real-time visibility into BOQs, project costs, burn rates, contractor performance, and claims.",
+    tags: ["Construction", "BOQ", "Project Analytics"],
+    href: "/services/construction-analytics",
   },
   {
     num: "06",
-    title: "Governance, Security & Compliance",
-    desc: "Enterprise governance frameworks, lineage management, access controls, auditability, and regulatory compliance solutions.",
-    tags: ["Governance", "Lineage Management", "Compliance"],
-    href: "/services/governance-compliance",
+    title: "AI on ERP & Finance",
+    desc: "Deploy AI directly on governed ERP and finance data to automate decisions and insights.",
+    tags: ["ERP AI", "Finance AI", "Automation"],
+    href: "/services/ai-on-erp",
+  },
+  {
+    num: "07",
+    title: "Azure Data Factory",
+    desc: "Automated ETL and ELT pipelines connecting ERP, CRM, finance, operations, and cloud systems.",
+    tags: ["ETL", "ELT", "Integration"],
+    href: "/services/azure-data-factory",
+  },
+  {
+    num: "08",
+    title: "Cloud Migration",
+    desc: "Risk-managed migration from legacy systems, SQL environments, and ERP platforms to Azure.",
+    tags: ["Azure", "Migration", "Modernisation"],
+    href: "/services/cloud-migration",
+  },
+  {
+    num: "09",
+    title: "Microsoft Purview",
+    desc: "Data cataloguing, lineage, governance, classification, and compliance automation at scale.",
+    tags: ["Governance", "Lineage", "Compliance"],
+    href: "/services/microsoft-purview",
+  },
+  {
+    num: "10",
+    title: "Managed Services",
+    desc: "Ongoing support, monitoring, optimization, and management of your Microsoft data ecosystem.",
+    tags: ["Support", "Monitoring", "Managed Services"],
+    href: "/services/managed-services",
   },
 ];
+
+
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -205,12 +235,7 @@ export default function Navbar() {
       </nav>
 
       {/* ══════════════════ DESKTOP MEGA DROPDOWN ══════════════════ */}
-      {/* 
-        Key decisions:
-        - No inline style opacity/transform on cards (was blocking pointer-events)
-        - Links have NO onClick — route change useEffect handles closing
-        - pointer-events-none only on the wrapper when closed, never on children
-      */}
+
       <div
         onMouseEnter={openServices}
         onMouseLeave={closeServices}

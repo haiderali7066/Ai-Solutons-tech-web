@@ -5,6 +5,7 @@ import ServicesSection from "@/components/Home/services";
 import ProcessSection from "@/components/Home/processZigzag";
 import GlobalSection from "@/components/Home/globalsection";
 import ProblemSection from "@/components/Home//problem";
+import Link from "next/link";
 
 const poppins = Poppins({
   subsets: ["latin"],
@@ -222,6 +223,7 @@ function Hero() {
         </p>
 
         <div className="ha4 flex justify-center gap-3 flex-wrap">
+          <Link href="/contact">
           <button
             className="bg-blue-600 text-white rounded-full px-8 py-[15px] text-[15px] font-bold
                        flex items-center gap-2 border-0 cursor-pointer transition-all duration-200
@@ -232,12 +234,16 @@ function Hero() {
               <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
           </button>
+          </Link>
+
+          <Link href="/services">
           <button className="bg-transparent text-white/65 border-2 border-white/15 rounded-full
                              px-8 py-[15px] text-[15px] font-medium flex items-center gap-2
                              cursor-pointer transition-all duration-200
                              hover:border-white/50 hover:text-white">
-            ▶ Watch Demo
+            ▶ our services
           </button>
+          </Link>
         </div>
 
         {/* Social proof */}

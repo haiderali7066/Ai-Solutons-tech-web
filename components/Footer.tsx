@@ -5,36 +5,36 @@ import Image from 'next/image';
 
 export default function Footer() {
   const cols = [
-    {
-      title: "Company",
-      links: [
-        { label: "About Us", href: "#about" },
-        { label: "Our Culture", href: "#culture" },
-        { label: "Careers", href: "#careers" },
-        { label: "Insights & Blog", href: "#blog" },
-        { label: "Contact Architecture", href: "#contact" },
-      ],
-    },
-    {
-      title: "Solutions",
-      links: [
-        { label: "Cognitive AI Systems", href: "#services" },
-        { label: "Enterprise Web Apps", href: "#services" },
-        { label: "Next-Gen Mobile Systems", href: "#services" },
-        { label: "SaaS Ecosystems", href: "#services" },
-        { label: "Cloud Infrastructure", href: "#services" },
-      ],
-    },
-    {
-      title: "Case Studies",
-      links: [
-        { label: "Client Portfolio", href: "#portfolio" },
-        { label: "Deep-Dive Analytics", href: "#portfolio" },
-        { label: "Executive Testimonials", href: "#testimonials" },
-        { label: "Our Process Framework", href: "#process" },
-      ],
-    },
-  ];
+  {
+    title: "Company",
+    links: [
+      { label: "About Us", href: "/about" },
+      { label: "Services", href: "/services" },
+      { label: "Portfolio", href: "/case-studies" },
+      { label: "Blog", href: "/blog" },
+      { label: "Contact Us", href: "/contact" },
+    ],
+  },
+  {
+    title: "Solutions",
+    links: [
+  { label: "Power BI Implementation", href: "/services/power-bi-implementation" },
+  { label: "CFO Dashboards", href: "/services/cfo-dashboards" },
+  { label: "Microsoft Fabric", href: "/services/microsoft-fabric" },
+  { label: "Enterprise AI Assistant", href: "/services/enterprise-ai-assistant" },
+  { label: "AI on ERP & Finance", href: "/services/ai-on-erp" },
+],
+  },
+  {
+    title: "Resources",
+    links: [
+      { label: "Case Studies", href: "/portfolio" },
+      { label: "Our Process", href: "/about" },
+      { label: "Insights", href: "/insights" },
+      { label: "Get a Quote", href: "/contact" },
+    ],
+  },
+];
 
   const socials = [
     {
