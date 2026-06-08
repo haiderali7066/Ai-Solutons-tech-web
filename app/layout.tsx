@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   title: 'AI Solution Technologies - Enterprise AI Services',
   description:
     'Leading provider of AI solutions for enterprise transformation. Intelligent systems, consulting, and custom AI implementations.',
-  generator: 'v0.app',
+  generator: 'Devntom Solutions',
   icons: {
     icon: [
       {

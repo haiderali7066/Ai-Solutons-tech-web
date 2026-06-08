@@ -44,7 +44,7 @@ const companyTimeline = [
 ];
 
 const teamMembers = [
-  { name: 'Rania Jamil Choudhury', role: 'Founder & CEO', img: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=600&q=80' },
+  { name: 'Rania Jamil Choudhury', role: 'Founder & CEO', img: '/rania.jpeg' },
   { name: 'Nanda Das', role: 'Chief Technology Officer', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80' },
   { name: 'Alex Johnson', role: 'Chief Financial Officer', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' },
   { name: 'Ahmed Nadeem Khan', role: 'Business Development Management', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80' },
@@ -91,13 +91,13 @@ export default function AboutPage() {
             About Us
           </span>
           <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.05] mb-6 font-syne">
-            Ai Solutiontechnologies Technologies
+            Ai Solution Technologies
           </h1>
           <p className="text-xl md:text-2xl text-blue-400 font-medium tracking-wide mb-8">
             We Provide You Flexible AI Solutions
           </p>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed font-light">
-            Ai Solutiontechnologies Technologies is a pioneering IT solutions company specialising in advanced artificial intelligence technologies. We are dedicated to transforming businesses through innovative AI solutions that enhance operational efficiency and drive intelligent decision-making.
+            Ai Solution Technologies is a pioneering IT solutions company specialising in advanced artificial intelligence technologies. We are dedicated to transforming businesses through innovative AI solutions that enhance operational efficiency and drive intelligent decision-making.
           </p>
         </div>
       </section>
@@ -269,10 +269,10 @@ export default function AboutPage() {
             <div>
               <h2 className="text-3xl font-black text-[#0f172a] font-syne mb-6">Meet Our CEO</h2>
               <p className="text-slate-600 leading-relaxed font-light mb-6 text-lg">
-                Rania Jamil Choudhury leads Ai Solutiontechnologies Technologies' strategic direction, growth, and international expansion. With deep expertise across AI, data, enterprise technology, and digital transformation, she has positioned Ai Solutiontechnologies Technologies as a trusted partner for government and enterprise clients seeking secure, scalable, and intelligent solutions.
+                Rania Jamil Choudhury leads Ai Solution Technologies' strategic direction, growth, and international expansion. With deep expertise across AI, data, enterprise technology, and digital transformation, she has positioned Ai Solution Technologies as a trusted partner for government and enterprise clients seeking secure, scalable, and intelligent solutions.
               </p>
               <p className="text-slate-600 leading-relaxed font-light text-lg">
-                Her vision is to build more than a technology company. She is creating a platform-led business that helps organisations move from fragmented systems to integrated, AI-powered operations. Through Cortex Intell, Ai Solutiontechnologies Technologies is developing intelligent platforms that connect data, decisions, and automation to support the future of high-performing and autonomous enterprises.
+                Her vision is to build more than a technology company. She is creating a platform-led business that helps organisations move from fragmented systems to integrated, AI-powered operations. Through Cortex Intell, Ai Solution Technologies is developing intelligent platforms that connect data, decisions, and automation to support the future of high-performing and autonomous enterprises.
               </p>
             </div>
 
@@ -405,7 +405,7 @@ export default function AboutPage() {
               Ready to engineer your future?
             </h2>
             <p className="text-white/80 text-lg max-w-2xl mx-auto mb-10 font-light">
-              Join the 56,000+ companies utilizing Ai Solutiontechnologies Technologies to streamline operations and dominate their sectors globally.
+              Join the 56,000+ companies utilizing Ai Solution Technologies to streamline operations and dominate their sectors globally.
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
               <a href="/contact" className="px-8 py-4 bg-white text-blue-700 font-bold rounded-full hover:-translate-y-1 hover:shadow-xl transition-all duration-300 w-full sm:w-auto flex items-center justify-center gap-2">

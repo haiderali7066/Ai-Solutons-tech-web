@@ -20,7 +20,7 @@ const faqs = [
   },
   {
     q: 'Can your AI solutions integrate with our legacy tech stack?',
-    a: 'Absolutely. A core strength of Ai Solutiontechnologies is seamlessly integrating modern trained AI architectures into existing cloud infrastructure or on-premise servers utilizing secure, robust API endpoints.',
+    a: 'Absolutely. A core strength of Ai Solution technologies is seamlessly integrating modern trained AI architectures into existing cloud infrastructure or on-premise servers utilizing secure, robust API endpoints.',
   },
 ];
 

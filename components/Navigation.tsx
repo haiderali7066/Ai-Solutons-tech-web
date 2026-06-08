@@ -164,7 +164,7 @@ export default function Navbar() {
           </div>
           <span className="font-semibold text-[0.95rem] sm:text-[1.05rem] text-white
             tracking-[-0.01em] whitespace-nowrap">
-            AI Solution Tech
+            AI Solution Technologies
             <span className="text-[#00D2FF] inline-block transition-transform
               duration-300 group-hover:translate-x-0.5">.</span>
           </span>

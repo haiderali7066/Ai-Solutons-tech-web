@@ -150,7 +150,7 @@ export default function Footer() {
                     />
                   </div>
                   <span className="font-semibold text-xl text-white tracking-[-0.02em]">
-                    AI Solution Tech<span className="text-[#00D2FF]">.</span>
+                    AI Solution Technologies<span className="text-[#00D2FF]">.</span>
                   </span>
                 </Link>
                 <p className="text-white/40 text-[0.85rem] font-light leading-relaxed max-w-[310px]">
@@ -247,7 +247,7 @@ AI Solution Technologies is a Microsoft-aligned data, analytics and AI consultan
               </div>
               
               <span className="text-[0.72rem] font-light text-white/30 text-center sm:text-right tracking-wide">
-                &copy; 2026 AI Solution Tech. All protocol designs reserved. <br /> Developed by Devntom Solutions
+                &copy; 2026 AI Solution Technologies. All protocol designs reserved. <br /> Developed by Devntom Solutions
               </span>
             </div>
 
