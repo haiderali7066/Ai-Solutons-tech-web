@@ -1,6 +1,5 @@
-'use client';
-
-import React, { useState } from 'react';
+import React from 'react';
+import { Phone, Mail, MapPin, ArrowRight, ChevronDown } from 'lucide-react';
 
 /* ══════════════════════════════════════
    DATA STRUCTURES
@@ -20,7 +19,7 @@ const faqs = [
   },
   {
     q: 'Can your AI solutions integrate with our legacy tech stack?',
-    a: 'Absolutely. A core strength of Ai Solution technologies is seamlessly integrating modern trained AI architectures into existing cloud infrastructure or on-premise servers utilizing secure, robust API endpoints.',
+    a: 'Absolutely. A core strength of AI Solution Technologies is seamlessly integrating modern trained AI architectures into existing cloud infrastructure or on-premise servers utilizing secure, robust API endpoints.',
   },
 ];
 
@@ -30,7 +29,7 @@ const offices = [
     role: 'Global Headquarters',
     address: '33 East Street, Granville',
     city: 'Sydney, NSW 2142',
-    flag: '🇦🇺',
+    flagUrl: 'https://flagcdn.com/au.svg',
     color: 'bg-blue-600'
   },
   {
@@ -38,7 +37,7 @@ const offices = [
     role: 'MENA Enterprise Hub',
     address: 'Dubai Technology Center',
     city: 'Dubai, UAE',
-    flag: '🇦🇪',
+    flagUrl: 'https://flagcdn.com/ae.svg',
     color: 'bg-sky-500'
   },
   {
@@ -46,33 +45,15 @@ const offices = [
     role: 'Digital Transformation',
     address: 'Riyadh Digital City',
     city: 'Riyadh, KSA',
-    flag: '🇸🇦',
+    flagUrl: 'https://flagcdn.com/sa.svg',
     color: 'bg-indigo-600'
   }
 ];
 
 /* ══════════════════════════════════════
-   MAIN PAGE COMPONENT
+   MAIN SERVER-SIDE PAGE COMPONENT
 ══════════════════════════════════════ */
 export default function ContactPage() {
-  const [formData, setFormData] = useState({ name: '', email: '', company: '', message: '' });
-  const [submitted, setSubmitted] = useState(false);
-  const [activeFaq, setActiveFaq] = useState<number | null>(0);
-
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target;
-    setFormData(prev => ({ ...prev, [name]: value }));
-  };
-
-  const handleSubmit = (e: React.FormEvent) => {
-    e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => {
-      setSubmitted(false);
-      setFormData({ name: '', email: '', company: '', message: '' });
-    }, 3000);
-  };
-
   return (
     <main className="min-h-screen bg-[#fafbfe] font-sans selection:bg-blue-500/30">
 
@@ -87,16 +68,14 @@ export default function ContactPage() {
             <span className="w-1.5 h-1.5 rounded-full bg-blue-400 animate-pulse"></span>
             Initiate Contact
           </span>
-          <h1 className="text-5xl md:text-6xl lg:text-7xl font-black text-white tracking-tight leading-[1.05] mb-6 font-syne">
+          <h1 className="text-5xl md:text-6xl lg:text-7xl font-light text-white tracking-tight leading-[1.05] mb-6">
             Let's Build The <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400">Future Together.</span>
+            <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-sky-400 to-indigo-400 font-bold">Future Together.</span>
           </h1>
           <p className="text-lg md:text-xl text-slate-400 max-w-2xl mx-auto leading-relaxed font-light">
-            Connect with our engineering architects to map out a technology strategy that accelerates your enterprise workflows.
+            Connect with our engineering architects to map out a technology strategy that accelerates your enterprise workflows and operationalizes your data.
           </p>
         </div>
-        
-        {/* Smooth transition to light mode body */}
       </section>
 
       {/* ════════ CONTACT MATRIX (FORM & INFO) ════════ */}
@@ -109,10 +88,10 @@ export default function ContactPage() {
             {/* Phone Card */}
             <div className="group bg-white border border-slate-200/80 rounded-3xl p-8 hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.1)] transition-all duration-300 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-2xl bg-blue-50 text-blue-600 flex items-center justify-center text-xl mb-6 border border-blue-100 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z"></path></svg>
+                <Phone className="w-5 h-5" />
               </div>
               <h4 className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">Direct Line</h4>
-              <a href="tel:+61466558862" className="text-2xl font-syne font-bold text-[#0f172a] hover:text-blue-600 transition-colors">
+              <a href="tel:+61466558862" className="text-2xl font-bold text-[#0f172a] hover:text-blue-600 transition-colors">
                 +61 466 558 862
               </a>
             </div>
@@ -120,7 +99,7 @@ export default function ContactPage() {
             {/* Email Card */}
             <div className="group bg-white border border-slate-200/80 rounded-3xl p-8 hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.1)] transition-all duration-300 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-2xl bg-sky-50 text-sky-600 flex items-center justify-center text-xl mb-6 border border-sky-100 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"></path></svg>
+                <Mail className="w-5 h-5" />
               </div>
               <h4 className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">Email Address</h4>
               <a href="mailto:info@aisolutiontechnologies.com" className="text-lg font-bold text-[#0f172a] hover:text-blue-600 transition-colors break-words">
@@ -131,7 +110,7 @@ export default function ContactPage() {
             {/* Address Card */}
             <div className="group bg-white border border-slate-200/80 rounded-3xl p-8 hover:shadow-[0_20px_40px_-15px_rgba(37,99,235,0.1)] transition-all duration-300 hover:-translate-y-1">
               <div className="w-12 h-12 rounded-2xl bg-indigo-50 text-indigo-600 flex items-center justify-center text-xl mb-6 border border-indigo-100 group-hover:scale-110 transition-transform duration-300">
-                <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z"></path><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z"></path></svg>
+                <MapPin className="w-5 h-5" />
               </div>
               <h4 className="text-xs font-bold tracking-widest text-slate-400 uppercase mb-2">Headquarters</h4>
               <p className="text-lg font-bold text-[#0f172a] leading-tight">
@@ -142,20 +121,19 @@ export default function ContactPage() {
 
           </div>
 
-          {/* RIGHT: Dynamic Intelligent Form */}
+          {/* RIGHT: Static Native Server Form */}
           <div className="w-full lg:col-span-7">
             <div className="bg-white border border-slate-200/80 rounded-[2.5rem] p-8 sm:p-12 shadow-[0_30px_60px_-20px_rgba(148,163,184,0.15)]">
-              <h2 className="text-3xl font-black text-[#0f172a] tracking-tight font-syne mb-2">Send a Message</h2>
-              <p className="text-slate-500 text-sm mb-10">Our enterprise specialists typically respond within 4 hours during business days.</p>
+              <h2 className="text-3xl font-black text-[#0f172a] tracking-tight mb-2">Send a Message</h2>
+              <p className="text-slate-500 text-sm mb-10 font-light">Our enterprise specialists typically respond within 4 hours during business days.</p>
               
-              <form onSubmit={handleSubmit} className="space-y-6">
+              <form action="/api/contact" method="POST" className="space-y-6">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
                   {/* Name Input */}
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-xs font-bold tracking-widest text-slate-500 uppercase ml-1">Full Name</label>
                     <input
                       type="text" id="name" name="name" required
-                      value={formData.name} onChange={handleChange}
                       className="w-full px-5 py-4 bg-[#fafbfe] border border-slate-200 rounded-2xl text-[#0f172a] placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
                       placeholder="e.g. Sarah Chen"
                     />
@@ -166,7 +144,6 @@ export default function ContactPage() {
                     <label htmlFor="email" className="text-xs font-bold tracking-widest text-slate-500 uppercase ml-1">Work Email</label>
                     <input
                       type="email" id="email" name="email" required
-                      value={formData.email} onChange={handleChange}
                       className="w-full px-5 py-4 bg-[#fafbfe] border border-slate-200 rounded-2xl text-[#0f172a] placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
                       placeholder="sarah@enterprise.com"
                     />
@@ -178,7 +155,6 @@ export default function ContactPage() {
                   <label htmlFor="company" className="text-xs font-bold tracking-widest text-slate-500 uppercase ml-1">Company Name</label>
                   <input
                     type="text" id="company" name="company"
-                    value={formData.company} onChange={handleChange}
                     className="w-full px-5 py-4 bg-[#fafbfe] border border-slate-200 rounded-2xl text-[#0f172a] placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none"
                     placeholder="Your Organization"
                   />
@@ -189,33 +165,18 @@ export default function ContactPage() {
                   <label htmlFor="message" className="text-xs font-bold tracking-widest text-slate-500 uppercase ml-1">Project Details</label>
                   <textarea
                     id="message" name="message" required rows={5}
-                    value={formData.message} onChange={handleChange}
                     className="w-full px-5 py-4 bg-[#fafbfe] border border-slate-200 rounded-2xl text-[#0f172a] placeholder-slate-400 focus:border-blue-500 focus:bg-white focus:ring-4 focus:ring-blue-500/10 transition-all outline-none resize-none"
                     placeholder="Briefly describe your infrastructure challenges or goals..."
                   />
                 </div>
 
-                {/* Submit Logic */}
+                {/* Submit Button */}
                 <button
                   type="submit"
-                  disabled={submitted}
-                  className={`w-full px-8 py-5 font-bold rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 ${
-                    submitted 
-                      ? 'bg-emerald-500 text-white shadow-[0_10px_30px_-10px_rgba(16,185,129,0.5)] cursor-default' 
-                      : 'bg-[#1e40af] hover:bg-[#2563eb] text-white shadow-[0_15px_30px_-10px_rgba(37,99,235,0.4)] hover:-translate-y-1'
-                  }`}
+                  className="w-full px-8 py-5 font-bold rounded-2xl flex items-center justify-center gap-3 transition-all duration-300 bg-blue-700 hover:bg-blue-600 text-white shadow-[0_15px_30px_-10px_rgba(37,99,235,0.4)] hover:-translate-y-1 group"
                 >
-                  {submitted ? (
-                    <>
-                      <svg className="w-5 h-5 animate-bounce" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M5 13l4 4L19 7"></path></svg>
-                      Transmission Successful
-                    </>
-                  ) : (
-                    <>
-                      Initialize Deployment
-                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M14 5l7 7m0 0l-7 7m7-7H3"></path></svg>
-                    </>
-                  )}
+                  Initialize Deployment
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </button>
               </form>
             </div>
@@ -228,22 +189,29 @@ export default function ContactPage() {
       <section className="py-24 px-6 border-y border-slate-200/60 bg-white">
         <div className="max-w-7xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-3xl sm:text-4xl font-black text-[#0f172a] tracking-tight font-syne mb-4">Global Network</h2>
-            <p className="text-slate-500 max-w-2xl mx-auto">Operating physical infrastructure and architecture hubs across strategic international sectors.</p>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0f172a] tracking-tight mb-4">Global Network</h2>
+            <p className="text-slate-500 max-w-2xl mx-auto font-light">Operating physical infrastructure and architecture hubs across strategic international sectors.</p>
           </div>
           
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {offices.map((office, i) => (
               <div key={i} className="group relative p-8 rounded-3xl bg-[#fafbfe] border border-slate-200/60 hover:bg-white hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.05)] hover:-translate-y-1 hover:border-blue-200 transition-all duration-300 overflow-hidden">
                 <div className="flex items-center justify-between mb-8">
-                  <span className="text-4xl filter drop-shadow-sm group-hover:scale-110 transition-transform duration-300">{office.flag}</span>
+                  <div className="w-12 h-8 rounded overflow-hidden shadow-sm border border-slate-200 group-hover:scale-105 transition-transform duration-300">
+                    <img 
+                      src={office.flagUrl} 
+                      alt={`${office.region} flag`} 
+                      className="w-full h-full object-cover"
+                      loading="lazy"
+                    />
+                  </div>
                   <div className={`w-2.5 h-2.5 rounded-full ${office.color} shadow-[0_0_12px_currentColor] animate-pulse`} />
                 </div>
-                <h3 className="text-2xl font-black text-[#0f172a] font-syne mb-1">{office.region}</h3>
+                <h3 className="text-2xl font-black text-[#0f172a] mb-1">{office.region}</h3>
                 <p className="text-sm font-bold text-blue-600 uppercase tracking-widest mb-6">{office.role}</p>
                 <div className="space-y-1">
                   <p className="text-slate-700 font-medium">{office.address}</p>
-                  <p className="text-slate-500 text-sm">{office.city}</p>
+                  <p className="text-slate-500 text-sm font-light">{office.city}</p>
                 </div>
               </div>
             ))}
@@ -251,44 +219,32 @@ export default function ContactPage() {
         </div>
       </section>
 
-      {/* ════════ FAQ ACCORDION SECTION ════════ */}
+      {/* ════════ FAQ NATIVE ACCORDION SECTION ════════ */}
       <section className="py-24 px-6 max-w-4xl mx-auto">
         <div className="text-center mb-16">
           <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2 block">Knowledge Base</span>
-          <h2 className="text-3xl sm:text-4xl font-black text-[#0f172a] tracking-tight font-syne">Frequently Asked Questions</h2>
+          <h2 className="text-3xl sm:text-4xl font-black text-[#0f172a] tracking-tight">Frequently Asked Questions</h2>
         </div>
         
         <div className="space-y-4">
-          {faqs.map((faq, i) => {
-            const isActive = activeFaq === i;
-            return (
-              <div 
-                key={i} 
-                className={`border rounded-2xl transition-all duration-300 ${isActive ? 'bg-white border-blue-200 shadow-lg shadow-blue-500/5' : 'bg-transparent border-slate-200 hover:border-blue-300'}`}
-              >
-                <button
-                  onClick={() => setActiveFaq(isActive ? null : i)}
-                  className="w-full flex items-center justify-between p-6 text-left"
-                >
-                  <span className={`text-lg font-bold pr-8 transition-colors ${isActive ? 'text-[#0f172a]' : 'text-slate-700'}`}>
-                    {faq.q}
-                  </span>
-                  <span className={`w-8 h-8 rounded-full flex items-center justify-center shrink-0 transition-all duration-300 ${isActive ? 'bg-blue-600 text-white rotate-180' : 'bg-slate-100 text-slate-500'}`}>
-                    {isActive ? '−' : '+'}
-                  </span>
-                </button>
-                
-                {/* CSS Grid Animation for perfectly smooth height transition */}
-                <div className={`grid transition-all duration-500 ease-in-out ${isActive ? 'grid-rows-[1fr] opacity-100' : 'grid-rows-[0fr] opacity-0'}`}>
-                  <div className="overflow-hidden">
-                    <p className="px-6 pb-6 text-slate-500 leading-relaxed font-light">
-                      {faq.a}
-                    </p>
-                  </div>
-                </div>
+          {faqs.map((faq, i) => (
+            <details 
+              key={i} 
+              className="group border border-slate-200 rounded-2xl bg-white [&_summary::-webkit-details-marker]:hidden hover:border-blue-300 transition-colors duration-300"
+            >
+              <summary className="flex cursor-pointer items-center justify-between p-6 text-left outline-none">
+                <span className="text-lg font-bold pr-8 text-slate-800 group-open:text-blue-700 transition-colors">
+                  {faq.q}
+                </span>
+                <span className="w-8 h-8 rounded-full flex items-center justify-center shrink-0 bg-slate-50 text-slate-400 group-open:bg-blue-50 group-open:text-blue-600 transition-all duration-300 group-open:rotate-180">
+                  <ChevronDown className="w-5 h-5" />
+                </span>
+              </summary>
+              <div className="px-6 pb-6 pt-2 text-slate-500 leading-relaxed font-light">
+                {faq.a}
               </div>
-            );
-          })}
+            </details>
+          ))}
         </div>
       </section>
 

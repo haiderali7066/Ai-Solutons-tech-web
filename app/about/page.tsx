@@ -44,10 +44,26 @@ const companyTimeline = [
 ];
 
 const teamMembers = [
-  { name: 'Rania Jamil Choudhury', role: 'Founder & CEO', img: '/rania.jpeg' },
-  { name: 'Nanda Das', role: 'Chief Technology Officer', img: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=600&q=80' },
-  { name: 'Alex Johnson', role: 'Chief Financial Officer', img: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=600&q=80' },
-  { name: 'Ahmed Nadeem Khan', role: 'Business Development Management', img: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=600&q=80' },
+  {
+    name: "Rania Jamil Choudhury",
+    role: "Founder & CEO",
+    img: "/rania.jpeg",
+  },
+  {
+    name: "Osama Sagheer",
+    role: "Full Stack Developer",
+    img: "/osama.jpeg",
+  },
+  {
+    name: "Ahmed Nadeem Khan",
+    role: "Business Development Manager",
+    img: "/ahmed-nadeem.jpeg",
+  },
+  {
+    name: "Ahmed Khan",
+    role: "Technical Lead",
+    img: "/ahmed.jpeg",
+  },
 ];
 
 const whyUsFeatures = [
@@ -83,7 +99,6 @@ export default function AboutPage() {
           className="absolute inset-0 z-0 bg-[url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?auto=format&fit=crop&w=2000&q=80')] bg-cover bg-center opacity-25 mix-blend-screen"
           aria-hidden="true"
         />
-        <div className="absolute inset-0 z-0 bg-gradient-to-b from-[#020817]/60 via-[#020817]/90 to-[#020817]" />
         
         <div className="max-w-7xl mx-auto relative z-10 text-center">
           <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-blue-500/10 border border-blue-400/20 text-xs font-bold tracking-widest text-blue-400 uppercase mb-6 backdrop-blur-md">
@@ -97,8 +112,7 @@ export default function AboutPage() {
             We Provide You Flexible AI Solutions
           </p>
           <p className="text-lg text-slate-400 max-w-3xl mx-auto leading-relaxed font-light">
-            Ai Solution Technologies is a pioneering IT solutions company specialising in advanced artificial intelligence technologies. We are dedicated to transforming businesses through innovative AI solutions that enhance operational efficiency and drive intelligent decision-making.
-          </p>
+AI Solution Technologies is a Microsoft-aligned data, analytics and AI consultancy. We help enterprises in Australia, UAE and Saudi Arabia modernise reporting, build governed data foundations, and deploy AI on data they can audit.          </p>
         </div>
       </section>
 
@@ -247,7 +261,7 @@ export default function AboutPage() {
           <div className="lg:col-span-5 relative">
             <div className="relative rounded-[2.5rem] overflow-hidden bg-slate-900 shadow-2xl shadow-blue-900/10 border border-slate-200 aspect-[4/5] group">
               <img 
-                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=800&q=80" 
+                src="/rania.jpeg" 
                 alt="Rania Jamil Choudhury - CEO" 
                 className="w-full h-full object-cover grayscale group-hover:grayscale-0 transition-all duration-700 scale-105 group-hover:scale-100"
               />
