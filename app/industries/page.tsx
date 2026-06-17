@@ -161,7 +161,7 @@ export default function IndustriesPage() {
             <span className="text-xs font-mono tracking-widest text-sky-400 uppercase mb-4 block">// SECTOR FOCUS 02</span>
             <h3 className="text-3xl sm:text-4xl font-black text-white font-syne tracking-tight mb-6">Healthcare & Life Sciences</h3>
             <p className="text-slate-400 leading-relaxed font-light mb-8">
-              Ai solutions improve patient outcomes through computer-vision diagnostic assistance, drug discovery acceleration architectures, and heavy operational efficiency enhancements securely deployed within HIPAA-compliant hospital perimeters.
+              Ai solutions  improve patient outcomes through computer-vision diagnostic assistance, drug discovery acceleration architectures, and heavy operational efficiency enhancements securely deployed within HIPAA-compliant hospital perimeters.
             </p>
             <div className="grid grid-cols-2 gap-4">
                <div className="border-l-2 border-sky-500 pl-4">

@@ -6,465 +6,697 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { NAV_LINKS } from '@/lib/constants';
 
-const SERVICES = [
+/* ─────────────────────────────────────────────
+   THEME
+───────────────────────────────────────────── */
+const BLUE = '#2563EB';       // primary blue
+const BLUE_DARK = '#1d4ed8';  // hover blue
+
+/* ─────────────────────────────────────────────
+   DATA
+───────────────────────────────────────────── */
+const SERVICE_CATEGORIES = [
   {
-    num: "01",
-    title: "Power BI Implementation",
-    desc: "Executive-ready dashboards and reporting that replace spreadsheets with real-time business insights.",
-    tags: ["Power BI", "Dashboards", "Reporting"],
-    href: "/services/power-bi-implementation",
+    id: 'ai',
+    num: '01',
+    label: 'AI & Intelligent Systems',
+    href: '/services/ai-intelligent-systems',
+    services: [
+      { title: 'Enterprise AI Assistant', href: '/services/ai-intelligent-systems/enterprise-ai-assistant' },
+      { title: 'AI on ERP & Finance',     href: '/services/ai-intelligent-systems/ai-on-erp-finance' },
+    ],
   },
   {
-    num: "02",
-    title: "CFO Dashboards",
-    desc: "Cash flow, budgeting, forecasting, profitability, and financial performance in one executive view.",
-    tags: ["Finance", "Forecasting", "Cash Flow"],
-    href: "/services/cfo-dashboards",
+    id: 'fabric',
+    num: '02',
+    label: 'Microsoft Fabric',
+    href: '/services/microsoft-fabric',
+    services: [],
   },
   {
-    num: "03",
-    title: "Microsoft Fabric",
-    desc: "Unified platform for data engineering, warehousing, business intelligence, and enterprise AI.",
-    tags: ["Microsoft Fabric", "Data Platform", "Analytics"],
-    href: "/services/microsoft-fabric",
+    id: 'dataeng',
+    num: '03',
+    label: 'Data Engineering & Integration',
+    href: '/services/data-engineering-integration',
+    services: [
+      { title: 'Azure Data Factory', href: '/services/data-engineering-integration/azure-data-factory' },
+    ],
   },
   {
-    num: "04",
-    title: "Enterprise AI Assistant",
-    desc: "Private AI assistants powered by Azure OpenAI and trained on your business knowledge.",
-    tags: ["Azure OpenAI", "Enterprise AI", "Knowledge Base"],
-    href: "/services/enterprise-ai-assistant",
+    id: 'modelling',
+    num: '04',
+    label: 'Data Modelling & Warehousing',
+    href: '/services/data-modelling-warehousing',
+    services: [],
   },
   {
-    num: "05",
-    title: "Construction Analytics",
-    desc: "Real-time visibility into BOQs, project costs, burn rates, contractor performance, and claims.",
-    tags: ["Construction", "BOQ", "Project Analytics"],
-    href: "/services/construction-analytics",
+    id: 'bi',
+    num: '05',
+    label: 'Business Intelligence & Analytics',
+    href: '/services/business-intelligence-analytics',
+    services: [
+      { title: 'Power BI Implementation', href: '/services/business-intelligence-analytics/power-bi-implementation' },
+      { title: 'CFO Dashboards',          href: '/services/business-intelligence-analytics/cfo-dashboards' },
+      { title: 'Construction Analytics',  href: '/services/business-intelligence-analytics/construction-analytics' },
+    ],
   },
   {
-    num: "06",
-    title: "AI on ERP & Finance",
-    desc: "Deploy AI directly on governed ERP and finance data to automate decisions and insights.",
-    tags: ["ERP AI", "Finance AI", "Automation"],
-    href: "/services/ai-on-erp",
+    id: 'cloud',
+    num: '06',
+    label: 'Cloud Migration & Modernisation',
+    href: '/services/cloud-migration-modernisation',
+    services: [
+      { title: 'Cloud Migration',  href: '/services/cloud-migration-modernisation/cloud-migration' },
+      { title: 'Managed Services', href: '/services/cloud-migration-modernisation/managed-services' },
+    ],
   },
   {
-    num: "07",
-    title: "Azure Data Factory",
-    desc: "Automated ETL and ELT pipelines connecting ERP, CRM, finance, operations, and cloud systems.",
-    tags: ["ETL", "ELT", "Integration"],
-    href: "/services/azure-data-factory",
+    id: 'governance',
+    num: '07',
+    label: 'Data Governance & Compliance',
+    href: '/services/data-governance-compliance',
+    services: [
+      { title: 'Microsoft Purview', href: '/services/data-governance-compliance/microsoft-purview' },
+    ],
   },
   {
-    num: "08",
-    title: "Cloud Migration",
-    desc: "Risk-managed migration from legacy systems, SQL environments, and ERP platforms to Azure.",
-    tags: ["Azure", "Migration", "Modernisation"],
-    href: "/services/cloud-migration",
+    id: 'crm',
+    num: '08',
+    label: 'CRM & Business Applications',
+    href: '/services/crm-business-applications',
+    services: [],
   },
   {
-    num: "09",
-    title: "Microsoft Purview",
-    desc: "Data cataloguing, lineage, governance, classification, and compliance automation at scale.",
-    tags: ["Governance", "Lineage", "Compliance"],
-    href: "/services/microsoft-purview",
-  },
-  {
-    num: "10",
-    title: "Managed Services",
-    desc: "Ongoing support, monitoring, optimization, and management of your Microsoft data ecosystem.",
-    tags: ["Support", "Monitoring", "Managed Services"],
-    href: "/services/managed-services",
+    id: 'custom',
+    num: '09',
+    label: 'Custom Web & Software Development',
+    href: '/services/custom-web-software-development',
+    services: [],
   },
 ];
 
+const SECONDARY_NAV = [
+  {
+    label: 'Industries',
+    href: '/industries',
+    children: [
+      { title: 'Construction & Engineering',      href: '/industries/construction-engineering' },
+      { title: 'Finance & Professional Services', href: '/industries/finance-professional-services' },
+      { title: 'Government & Public Sector',      href: '/industries/government-public-sector' },
+    ],
+  },
+  {
+    label: 'Case Studies',
+    href: '/case-studies',
+    children: [
+      { title: 'Australian Tier-2 Builder', href: '/case-studies/australian-tier-2-builder' },
+      { title: 'Professional Services CFO', href: '/case-studies/professional-services-cfo' },
+      { title: 'KSA Government AI',         href: '/case-studies/ksa-government-ai' },
+    ],
+  },
+];
 
+const STATIC_LINKS = [
+  { label: 'Blog',  href: '/blog' },
+  { label: 'About', href: '/about' },
+];
 
+/* ─────────────────────────────────────────────
+   CHEVRON
+───────────────────────────────────────────── */
+function Chevron({ open }: { open: boolean }) {
+  return (
+    <svg
+      width="10" height="6" viewBox="0 0 10 6" fill="none"
+      className={`shrink-0 transition-transform duration-300 ${open ? 'rotate-180' : ''}`}
+    >
+      <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.6"
+        strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+/* ─────────────────────────────────────────────
+   COMPONENT
+───────────────────────────────────────────── */
 export default function Navbar() {
   const pathname = usePathname();
 
-  const [scrolled, setScrolled]                     = useState(false);
-  const [menuOpen, setMenuOpen]                     = useState(false);
-  const [servicesOpen, setServicesOpen]             = useState(false);
+  const [scrolled,           setScrolled]           = useState(false);
+  const [menuOpen,           setMenuOpen]           = useState(false);
+  const [activeDropdown,     setActiveDropdown]     = useState<string | null>(null);
   const [mobileServicesOpen, setMobileServicesOpen] = useState(false);
-  const [hovered, setHovered]                       = useState<number | null>(null);
+  const [mobileCatOpen,      setMobileCatOpen]      = useState<number | null>(null);
+  const [mobileSecOpen,      setMobileSecOpen]      = useState<string | null>(null);
 
   const closeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
-  const wrapperRef = useRef<HTMLDivElement>(null);
+  const navRef     = useRef<HTMLDivElement>(null);
 
-  /* close everything when route changes */
+  /* ── Effects ── */
   useEffect(() => {
-    setServicesOpen(false);
+    setActiveDropdown(null);
     setMenuOpen(false);
     setMobileServicesOpen(false);
+    setMobileCatOpen(null);
+    setMobileSecOpen(null);
   }, [pathname]);
 
-  /* scroll shadow */
   useEffect(() => {
-    const fn = () => setScrolled(window.scrollY > 20);
+    const fn = () => setScrolled(window.scrollY > 16);
     window.addEventListener('scroll', fn);
     return () => window.removeEventListener('scroll', fn);
   }, []);
 
-  /* close desktop dropdown on outside click */
   useEffect(() => {
     const fn = (e: MouseEvent) => {
-      if (wrapperRef.current && !wrapperRef.current.contains(e.target as Node)) {
-        setServicesOpen(false);
-      }
+      if (navRef.current && !navRef.current.contains(e.target as Node))
+        setActiveDropdown(null);
     };
     document.addEventListener('mousedown', fn);
     return () => document.removeEventListener('mousedown', fn);
   }, []);
 
-  /* Escape key */
   useEffect(() => {
-    const fn = (e: KeyboardEvent) => { if (e.key === 'Escape') setServicesOpen(false); };
+    const fn = (e: KeyboardEvent) => { if (e.key === 'Escape') setActiveDropdown(null); };
     document.addEventListener('keydown', fn);
     return () => document.removeEventListener('keydown', fn);
   }, []);
 
-  /* desktop resize */
   useEffect(() => {
-    const fn = () => {
-      if (window.innerWidth >= 768) { setMenuOpen(false); setMobileServicesOpen(false); }
-    };
+    const fn = () => { if (window.innerWidth >= 1024) setMenuOpen(false); };
     window.addEventListener('resize', fn);
     return () => window.removeEventListener('resize', fn);
   }, []);
 
-  const openServices  = () => { if (closeTimer.current) clearTimeout(closeTimer.current); setServicesOpen(true); };
-  const closeServices = () => { closeTimer.current = setTimeout(() => setServicesOpen(false), 150); };
+  /* ── Helpers ── */
+  const open  = (key: string) => { if (closeTimer.current) clearTimeout(closeTimer.current); setActiveDropdown(key); };
+  const close = () => { closeTimer.current = setTimeout(() => setActiveDropdown(null), 180); };
+  const isActive   = (href: string) => pathname === href || pathname.startsWith(href + '/');
+  const servicesOpen = activeDropdown === 'services';
+
+  /* ── Shared nav-link class for capsule (desktop) ── */
+  const capsuleLink = (active: boolean) =>
+    `flex items-center gap-1.5 px-3.5 py-1.5 rounded-full text-sm font-normal
+     tracking-wide bg-transparent border-none cursor-pointer whitespace-nowrap
+     transition-all duration-200
+     ${active
+       ? 'text-white bg-white/10'
+       : 'text-white/60 hover:text-white hover:bg-white/8'
+     }`;
 
   return (
-    <div
-      ref={wrapperRef}
-      className="fixed top-4 left-1/2 -translate-x-1/2 z-[1000]
-        w-[calc(100%-1.5rem)] sm:w-[calc(100%-2rem)] max-w-6xl
-        font-[Poppins,sans-serif]"
-    >
+    <>
+      {/* Invisible click-away backdrop */}
+      {activeDropdown && (
+        <div
+          className="fixed inset-0 z-[989]"
+          onClick={() => setActiveDropdown(null)}
+        />
+      )}
 
-      {/* ══════════════════ NAVBAR CAPSULE ══════════════════ */}
-      <nav
-        className={`relative flex items-center justify-between
-          px-4 sm:px-6 md:px-8 h-[60px] sm:h-[64px] rounded-full border
-          transition-all duration-300 ease-in-out
-          ${scrolled
-            ? 'bg-black/65 backdrop-blur-xl border-white/[0.12] shadow-[0_12px_40px_rgba(0,0,0,0.55)]'
-            : 'bg-black/35 backdrop-blur-lg  border-white/[0.08]  shadow-[0_8px_32px_rgba(0,0,0,0.22)]'
-          }`}
-      >
-        {/* Logo */}
-        <Link href="/" className="flex items-center gap-2 sm:gap-2.5 no-underline group shrink-0">
-          <div className="flex items-center justify-center transition-all duration-300
-            group-hover:scale-110 group-hover:drop-shadow-[0_0_14px_rgba(0,210,255,0.6)]">
-            <Image src="/logo.png" alt="AI Solution Logo" width={34} height={34}
-              className="object-contain rounded-full" />
-          </div>
-          <span className="font-semibold text-[0.95rem] sm:text-[1.05rem] text-white
-            tracking-[-0.01em] whitespace-nowrap">
-            AI Solution Technologies
-            <span className="text-[#00D2FF] inline-block transition-transform
-              duration-300 group-hover:translate-x-0.5">.</span>
-          </span>
-        </Link>
+      <div ref={navRef} className="fixed top-0 left-0 right-0 z-[999] font-[Inter,Poppins,sans-serif]">
 
-        {/* Desktop links */}
-        <div className="hidden md:flex items-center gap-6 lg:gap-8">
-          {NAV_LINKS.map((link) =>
-            link.label === 'Services' ? (
-              <div
-                key="services-trigger"
-                onMouseEnter={openServices}
-                onMouseLeave={closeServices}
-              >
+        {/* ═══════════════════════════════════════
+            FLOATING CAPSULE NAVBAR
+        ═══════════════════════════════════════ */}
+        <div className="flex justify-center px-4 sm:px-6 lg:px-8 pt-3.5">
+          <nav
+            className={`w-full max-w-[1120px] flex items-center justify-between
+              px-4 sm:px-6 h-14 rounded-full border
+              transition-all duration-300
+              ${scrolled
+                ? 'bg-black/75 backdrop-blur-2xl border-white/[0.14] shadow-[0_8px_30px_rgba(0,0,0,0.5)]'
+                : 'bg-black/45 backdrop-blur-xl  border-white/[0.10] shadow-[0_4px_20px_rgba(0,0,0,0.28)]'
+              }`}
+          >
+            {/* ── Logo ── */}
+            <Link href="/" className="flex items-center gap-2.5 no-underline group shrink-0">
+              <div className="transition-all duration-300
+                group-hover:drop-shadow-[0_0_10px_rgba(37,99,235,0.6)]">
+                <Image
+                  src="/logo.png" alt="AI Solution Logo"
+                  width={28} height={28}
+                  className="object-contain rounded-full"
+                />
+              </div>
+              <span className="font-semibold text-[15px] text-white tracking-tight whitespace-nowrap">
+                AI Solution Technologies
+              </span>
+            </Link>
+
+            {/* ── Desktop centre links ── */}
+            <div className="hidden lg:flex items-center gap-0.5">
+
+              {/* Services trigger */}
+              <div onMouseEnter={() => open('services')} onMouseLeave={close}>
                 <button
-                  onClick={() => setServicesOpen(v => !v)}
-                  aria-expanded={servicesOpen}
-                  className={`flex items-center gap-1.5 text-[0.83rem] font-light
-                    tracking-[0.03em] bg-transparent border-none cursor-pointer p-0
-                    transition-all duration-300
-                    ${servicesOpen
-                      ? 'text-[#00D2FF] drop-shadow-[0_0_6px_rgba(0,212,255,0.5)]'
-                      : 'text-white/70 hover:text-[#00D2FF] hover:drop-shadow-[0_0_6px_rgba(0,212,255,0.45)]'
-                    }`}
+                  onClick={() => setActiveDropdown(v => v === 'services' ? null : 'services')}
+                  className={capsuleLink(servicesOpen || isActive('/services'))}
                 >
                   Services
-                  <svg width="10" height="6" viewBox="0 0 10 6" fill="none"
-                    className={`transition-transform duration-300 ${servicesOpen ? 'rotate-180' : ''}`}>
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5"
-                      strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
+                  <Chevron open={servicesOpen} />
                 </button>
               </div>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="text-white/70 no-underline text-[0.83rem] font-light
-                  tracking-[0.03em] whitespace-nowrap transition-all duration-300
-                  hover:text-[#00D2FF] hover:drop-shadow-[0_0_6px_rgba(0,212,255,0.45)]"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
 
-          <Link
-            href="#contact"
-            className="bg-[#00D2FF] text-white px-4 lg:px-5 py-[0.42rem] rounded-full
-              text-[0.78rem] sm:text-[0.82rem] font-medium tracking-[0.02em] no-underline
-              whitespace-nowrap transition-all duration-300
-              hover:scale-[1.04] hover:shadow-[0_0_24px_rgba(0,210,255,0.6)]"
-          >
-            Start a Project ↗
-          </Link>
-        </div>
+              {/* Industries & Case Studies */}
+              {SECONDARY_NAV.map((item) => (
+                <div
+                  key={item.href}
+                  onMouseEnter={() => open(item.label)}
+                  onMouseLeave={close}
+                  className="relative"
+                >
+                  <button
+                    onClick={() => setActiveDropdown(v => v === item.label ? null : item.label)}
+                    className={capsuleLink(activeDropdown === item.label || isActive(item.href))}
+                  >
+                    {item.label}
+                    <Chevron open={activeDropdown === item.label} />
+                  </button>
 
-        {/* Mobile hamburger */}
-        <button
-          onClick={() => setMenuOpen(v => !v)}
-          className="md:hidden bg-transparent border-none text-white text-[1.25rem]
-            cursor-pointer p-2 -mr-1 transition-all duration-200
-            hover:text-[#00D2FF] focus:outline-none"
-          aria-label="Toggle menu"
-        >
-          {menuOpen ? '✕' : '☰'}
-        </button>
-      </nav>
-
-      {/* ══════════════════ DESKTOP MEGA DROPDOWN ══════════════════ */}
-
-      <div
-        onMouseEnter={openServices}
-        onMouseLeave={closeServices}
-        aria-hidden={!servicesOpen}
-        className={`hidden md:block absolute top-[calc(100%+10px)] left-0 right-0
-          bg-[#07090d]/96 backdrop-blur-2xl rounded-2xl border border-white/[0.08]
-          shadow-[0_20px_60px_rgba(0,0,0,0.6)]
-          transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top
-          ${servicesOpen
-            ? 'opacity-100 scale-y-100 translate-y-0 pointer-events-auto'
-            : 'opacity-0 scale-y-[0.96] -translate-y-2 pointer-events-none'
-          }`}
-      >
-        {/* top rule */}
-        <div className="absolute top-0 left-10 right-10 h-[1px]
-          bg-gradient-to-r from-transparent via-[#00D2FF]/35 to-transparent" />
-
-        <div className="p-5 lg:p-6">
-
-          {/* Header */}
-          <div className="flex items-center justify-between mb-4">
-            <div className="flex items-center gap-2">
-              <span className="w-[3px] h-4 rounded-full bg-[#00D2FF]" />
-              <p className="text-[#00D2FF] text-[0.65rem] font-semibold tracking-[0.24em] uppercase">
-                What We Do
-              </p>
-            </div>
-            <Link
-              href="/services"
-              className="group/all flex items-center gap-1.5 text-white/40 hover:text-[#00D2FF]
-                text-[0.72rem] tracking-[0.06em] uppercase no-underline transition-all duration-200"
-            >
-              View All Services
-              <span className="inline-block transition-transform duration-200 group-hover/all:translate-x-0.5">→</span>
-            </Link>
-          </div>
-
-          {/* 3-col (lg) / 2-col (md) grid */}
-          <div className="grid grid-cols-2 lg:grid-cols-3 gap-2 lg:gap-3">
-            {SERVICES.map((svc, i) => (
-              <Link
-                key={svc.href}
-                href={svc.href}
-                onMouseEnter={() => setHovered(i)}
-                onMouseLeave={() => setHovered(null)}
-                className={`group/card relative no-underline rounded-xl p-3.5 lg:p-4
-                  flex gap-3 items-start border
-                  transition-all duration-200
-                  ${hovered === i
-                    ? 'bg-[#00D2FF]/[0.06] border-[#00D2FF]/25 shadow-[0_0_18px_rgba(0,210,255,0.07)] -translate-y-[2px]'
-                    : hovered !== null
-                      ? 'bg-white/[0.02] border-white/[0.05] opacity-70'
-                      : 'bg-white/[0.025] border-white/[0.07]'
-                  }`}
-              >
-                {/* number */}
-                <span className={`shrink-0 text-[0.58rem] font-bold tracking-[0.15em]
-                  mt-[2px] transition-colors duration-200
-                  ${hovered === i ? 'text-[#00D2FF]' : 'text-white/20'}`}>
-                  {svc.num}
-                </span>
-
-                <div className="flex flex-col gap-1 min-w-0">
-                  {/* title */}
-                  <h3 className={`text-[0.8rem] lg:text-[0.84rem] font-semibold
-                    leading-snug tracking-[-0.01em] transition-colors duration-200
-                    ${hovered === i ? 'text-white' : 'text-white/80'}`}>
-                    {svc.title}
-                  </h3>
-                  {/* desc */}
-                  <p className="text-white/36 text-[0.69rem] leading-[1.55] font-light line-clamp-2">
-                    {svc.desc}
-                  </p>
-                  {/* tags */}
-                  <div className="flex flex-wrap gap-1 mt-1">
-                    {svc.tags.map((tag) => (
-                      <span key={tag}
-                        className={`text-[0.58rem] px-2 py-[2px] rounded-full border
-                          font-medium tracking-[0.03em] transition-all duration-200
-                          ${hovered === i
-                            ? 'border-[#00D2FF]/22 text-[#00D2FF]/65 bg-[#00D2FF]/[0.07]'
-                            : 'border-white/[0.07] text-white/28 bg-transparent'
-                          }`}
-                      >
-                        {tag}
-                      </span>
-                    ))}
+                  {/* Small dropdown */}
+                  <div
+                    onMouseEnter={() => open(item.label)}
+                    onMouseLeave={close}
+                    className={`absolute top-[calc(100%+12px)] left-1/2 -translate-x-1/2
+                      bg-white border border-gray-200 rounded-xl
+                      shadow-[0_8px_32px_rgba(0,0,0,0.12)] min-w-[210px]
+                      transition-all duration-200 origin-top z-[997]
+                      ${activeDropdown === item.label
+                        ? 'opacity-100 translate-y-0 pointer-events-auto'
+                        : 'opacity-0 -translate-y-1.5 pointer-events-none'
+                      }`}
+                  >
+                    <div className="py-1.5">
+                      {item.children.map((child) => (
+                        <Link
+                          key={child.href}
+                          href={child.href}
+                          className={`block px-4 py-2.5 text-[13.5px] font-normal no-underline
+                            transition-colors duration-150 rounded-none
+                            ${isActive(child.href)
+                              ? 'text-[#2563EB] bg-blue-50/60'
+                              : 'text-gray-600 hover:text-gray-900 hover:bg-gray-50'
+                            }`}
+                        >
+                          {child.title}
+                        </Link>
+                      ))}
+                      <div className="mx-3 mt-1 pt-1.5 border-t border-gray-100">
+                        <Link
+                          href={item.href}
+                          className="flex items-center gap-1 px-1 py-1.5
+                            text-[12.5px] font-semibold no-underline
+                            transition-colors duration-150"
+                          style={{ color: BLUE }}
+                        >
+                          All {item.label} →
+                        </Link>
+                      </div>
+                    </div>
                   </div>
                 </div>
+              ))}
 
-                {/* hover arrow */}
-                <span className={`absolute top-3.5 right-3.5 text-[#00D2FF] text-[0.65rem]
-                  transition-all duration-200
-                  ${hovered === i ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-1'}`}>
-                  →
-                </span>
-              </Link>
-            ))}
-          </div>
-
-          {/* Footer strip */}
-          <div className="mt-4 pt-4 border-t border-white/[0.06]
-            flex items-center justify-between gap-4 flex-wrap">
-            <p className="text-white/28 text-[0.69rem] font-light">
-              Not sure which service fits? We'll help you figure it out.
-            </p>
-            <Link
-              href="#contact"
-              className="shrink-0 bg-[#00D2FF] text-[#050505] px-4 py-1.5 rounded-full
-                text-[0.72rem] font-semibold tracking-[0.02em] no-underline
-                transition-all duration-300 hover:scale-[1.04]
-                hover:shadow-[0_0_18px_rgba(0,210,255,0.45)]"
-            >
-              Talk to an Expert ↗
-            </Link>
-          </div>
-        </div>
-      </div>
-
-      {/* ══════════════════ MOBILE MENU ══════════════════ */}
-      <div
-        className={`absolute top-[calc(100%+8px)] left-0 right-0 md:hidden
-          bg-[#07090d]/92 backdrop-blur-xl border border-white/[0.09] rounded-2xl
-          flex flex-col px-4 sm:px-5 py-4 overflow-hidden
-          transition-all duration-300 ease-in-out
-          ${menuOpen
-            ? 'opacity-100 translate-y-0 pointer-events-auto shadow-[0_20px_50px_rgba(0,0,0,0.6)]'
-            : 'opacity-0 -translate-y-3 pointer-events-none'
-          }`}
-      >
-        <div className="flex flex-col">
-          {NAV_LINKS.map((link) =>
-            link.label === 'Services' ? (
-              <div key="services-mob" className="flex flex-col">
-
-                {/* toggle row */}
-                <button
-                  onClick={() => setMobileServicesOpen(v => !v)}
-                  className="flex items-center justify-between py-3 px-3 rounded-xl w-full
-                    text-white/80 text-[0.92rem] font-medium tracking-[0.01em]
-                    transition-all duration-150 hover:text-[#00D2FF] hover:bg-white/[0.03]
-                    bg-transparent border-none cursor-pointer"
+              {/* Static links */}
+              {STATIC_LINKS.map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={capsuleLink(isActive(link.href))}
                 >
-                  Services
-                  <svg width="11" height="6" viewBox="0 0 10 6" fill="none"
-                    className={`transition-transform duration-300
-                      ${mobileServicesOpen ? 'rotate-180 text-[#00D2FF]' : ''}`}>
-                    <path d="M1 1L5 5L9 1" stroke="currentColor" strokeWidth="1.5"
-                      strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
+                  {link.label}
+                </Link>
+              ))}
+            </div>
 
-                {/* accordion — Links have NO onClick, route change closes menu */}
-                <div className={`overflow-hidden transition-all duration-300 ease-in-out
-                  ${mobileServicesOpen ? 'max-h-[560px] opacity-100 mb-1' : 'max-h-0 opacity-0'}`}>
-                  <div className="ml-3 pl-3 border-l border-[#00D2FF]/20 flex flex-col pb-1">
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-0.5 py-1">
-                      {SERVICES.map((svc) => (
+            {/* ── Desktop right CTAs ── */}
+            <div className="hidden lg:flex items-center gap-2 shrink-0">
+              <Link
+                href="/contact"
+                className={capsuleLink(isActive('/contact'))}
+              >
+                Contact
+              </Link>
+              <Link
+                href="/contact"
+                className="px-4 py-1.5 rounded-full text-[13.5px] font-semibold
+                  text-white no-underline whitespace-nowrap
+                  transition-all duration-200 hover:opacity-90
+                  hover:shadow-[0_4px_16px_rgba(37,99,235,0.45)]"
+                style={{ backgroundColor: BLUE }}
+              >
+                Start a Project ↗
+              </Link>
+            </div>
+
+            {/* ── Mobile hamburger ── */}
+            <button
+              onClick={() => setMenuOpen(v => !v)}
+              className="lg:hidden p-2 -mr-1 text-white/60 hover:text-white
+                bg-transparent border-none cursor-pointer transition-colors duration-150"
+              aria-label="Toggle menu"
+            >
+              {menuOpen
+                ? <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 2l12 12M14 2L2 14" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round"/></svg>
+                : <svg width="20" height="14" viewBox="0 0 20 14" fill="none"><path d="M0 1h20M0 7h20M0 13h13" stroke="currentColor" strokeWidth="1.6" strokeLinecap="round"/></svg>
+              }
+            </button>
+          </nav>
+        </div>
+
+        {/* ═══════════════════════════════════════
+            DESKTOP MEGA MENU — white, full width
+        ═══════════════════════════════════════ */}
+        <div
+          onMouseEnter={() => open('services')}
+          onMouseLeave={close}
+          aria-hidden={!servicesOpen}
+          className={`hidden lg:block fixed left-0 right-0
+            bg-white border-b border-gray-200
+            shadow-[0_12px_40px_rgba(0,0,0,0.10)]
+            transition-all duration-300 ease-[cubic-bezier(0.16,1,0.3,1)] origin-top
+            z-[996]
+            ${servicesOpen
+              ? 'opacity-100 translate-y-0 pointer-events-auto'
+              : 'opacity-0 -translate-y-2 pointer-events-none'
+            }`}
+          style={{ top: '74px' }}
+        >
+          {/* Inner container — symmetric, max-width centred */}
+          <div className="max-w-[1280px] mx-auto px-10 xl:px-16 py-10">
+
+            {/* ── Service grid ── */}
+            <div className="grid grid-cols-3 xl:grid-cols-4 2xl:grid-cols-5 gap-x-10 gap-y-8">
+              {SERVICE_CATEGORIES.map((cat) => (
+                <div key={cat.id} className="flex flex-col">
+
+                  {/* Category heading */}
+                  <div className="pb-2 mb-3" style={{ borderBottom: `2px solid ${BLUE}` }}>
+                    <Link
+                      href={cat.href}
+                      className="block text-[11px] font-bold tracking-[0.14em] uppercase
+                        no-underline transition-colors duration-150"
+                      style={{ color: isActive(cat.href) ? BLUE : '#111827' }}
+                      onMouseEnter={e => (e.currentTarget.style.color = BLUE)}
+                      onMouseLeave={e => (e.currentTarget.style.color = isActive(cat.href) ? BLUE : '#111827')}
+                    >
+                      {cat.label}
+                    </Link>
+                  </div>
+
+                  {/* Sub-services or direct link */}
+                  <div className="flex flex-col gap-0">
+                    {cat.services.length > 0 ? (
+                      cat.services.map((svc) => (
                         <Link
                           key={svc.href}
                           href={svc.href}
-                          className="no-underline group/mob"
+                          className="block text-[13.5px] font-normal py-[7px] no-underline
+                            transition-colors duration-150 leading-snug"
+                          style={{ color: isActive(svc.href) ? BLUE : '#6B7280' }}
+                          onMouseEnter={e => (e.currentTarget.style.color = '#111827')}
+                          onMouseLeave={e => (e.currentTarget.style.color = isActive(svc.href) ? BLUE : '#6B7280')}
                         >
-                          <div className="flex items-start gap-2.5 py-2 px-2 rounded-lg
-                            transition-all duration-150 hover:bg-white/[0.04]">
-                            <span className="text-[#00D2FF]/45 text-[0.56rem] font-bold
-                              tracking-widest mt-[3px] shrink-0">
-                              {svc.num}
-                            </span>
-                            <div>
-                              <p className="text-white/80 text-[0.82rem] font-medium leading-snug
-                                group-hover/mob:text-[#00D2FF] transition-colors duration-150">
-                                {svc.title}
-                              </p>
-                              <p className="text-white/30 text-[0.66rem] leading-snug mt-0.5
-                                font-light line-clamp-1">
-                                {svc.desc}
-                              </p>
-                            </div>
-                          </div>
+                          {svc.title}
                         </Link>
-                      ))}
-                    </div>
+                      ))
+                    ) : (
+                      <Link
+                        href={cat.href}
+                        className="block text-[13px] font-normal py-[7px] no-underline
+                          transition-colors duration-150"
+                        style={{ color: '#9CA3AF' }}
+                        onMouseEnter={e => { e.currentTarget.style.color = BLUE; }}
+                        onMouseLeave={e => { e.currentTarget.style.color = '#9CA3AF'; }}
+                      >
+                        View service page →
+                      </Link>
+                    )}
+                  </div>
+                </div>
+              ))}
+            </div>
 
+            {/* ── Footer strip ── */}
+            <div className="mt-8 pt-6 border-t border-gray-100
+              flex items-center justify-between gap-4">
+
+              <div className="flex items-center gap-6">
+                <Link
+                  href="/services"
+                  className="flex items-center gap-2 text-[13px] font-medium
+                    text-gray-400 hover:text-gray-800 no-underline
+                    transition-colors duration-150"
+                >
+                  <svg width="15" height="15" viewBox="0 0 14 14" fill="none" className="shrink-0">
+                    <rect x="1" y="1" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                    <rect x="8" y="1" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                    <rect x="1" y="8" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                    <rect x="8" y="8" width="5" height="5" rx="1" stroke="currentColor" strokeWidth="1.4"/>
+                  </svg>
+                  All Services
+                </Link>
+
+                <span className="text-gray-200 select-none">|</span>
+
+                <Link
+                  href="/case-studies"
+                  className="text-[13px] font-medium text-gray-400
+                    hover:text-gray-800 no-underline transition-colors duration-150"
+                >
+                  Case Studies →
+                </Link>
+
+                <Link
+                  href="/industries"
+                  className="text-[13px] font-medium text-gray-400
+                    hover:text-gray-800 no-underline transition-colors duration-150"
+                >
+                  Industries →
+                </Link>
+              </div>
+
+              <Link
+                href="/contact"
+                className="px-5 py-2 rounded-full text-[13px] font-semibold
+                  text-white no-underline whitespace-nowrap
+                  transition-all duration-200 hover:opacity-90
+                  hover:shadow-[0_4px_14px_rgba(37,99,235,0.4)]"
+                style={{ backgroundColor: BLUE }}
+              >
+                Talk to an Expert ↗
+              </Link>
+            </div>
+          </div>
+        </div>
+
+        {/* ═══════════════════════════════════════
+            MOBILE MENU
+        ═══════════════════════════════════════ */}
+        <div
+          className={`fixed left-0 right-0 lg:hidden
+            bg-[#07080e] border-b border-white/[0.07]
+            overflow-y-auto overscroll-contain
+            transition-all duration-300 ease-in-out
+            ${menuOpen
+              ? 'opacity-100 translate-y-0 pointer-events-auto shadow-[0_16px_40px_rgba(0,0,0,0.7)]'
+              : 'opacity-0 -translate-y-2 pointer-events-none'
+            }`}
+          style={{ top: '70px', maxHeight: 'calc(100dvh - 70px)' }}
+        >
+          <div className="divide-y divide-white/[0.06]">
+
+            {/* Services accordion */}
+            <div>
+              <button
+                onClick={() => setMobileServicesOpen(v => !v)}
+                className={`w-full flex items-center justify-between
+                  px-5 py-4 bg-transparent border-none cursor-pointer
+                  text-[15px] font-medium transition-colors duration-150
+                  ${mobileServicesOpen || isActive('/services')
+                    ? 'text-white'
+                    : 'text-white/65 hover:text-white'
+                  }`}
+              >
+                <span>Services</span>
+                <Chevron open={mobileServicesOpen} />
+              </button>
+
+              <div className={`overflow-hidden transition-all duration-300
+                ${mobileServicesOpen ? 'max-h-[1600px]' : 'max-h-0'}`}>
+                <div className="bg-black/20 border-t border-white/[0.05]">
+
+                  {/* quick browse all */}
+                  <div className="px-5 pt-3 pb-2">
                     <Link
                       href="/services"
-                      className="flex items-center gap-1 text-[#00D2FF] text-[0.73rem]
-                        font-medium px-2 pt-2 pb-1 no-underline hover:underline w-fit"
+                      className="text-[12.5px] font-medium no-underline
+                        transition-colors duration-150"
+                      style={{ color: BLUE }}
                     >
-                      View All Services →
+                      Browse all services →
+                    </Link>
+                  </div>
+
+                  {SERVICE_CATEGORIES.map((cat, ci) => (
+                    <div key={cat.id} className="border-t border-white/[0.05]">
+
+                      <div className="flex items-stretch">
+                        {/* category label → navigates */}
+                        <Link
+                          href={cat.href}
+                          className={`flex items-center gap-3 flex-1 px-5 py-3.5
+                            no-underline transition-colors duration-150
+                            ${isActive(cat.href)
+                              ? 'text-white'
+                              : 'text-white/55 hover:text-white'
+                            }`}
+                        >
+                          <span className="text-[11px] font-bold tracking-widest"
+                            style={{ color: BLUE + '80' }}>
+                            {cat.num}
+                          </span>
+                          <span className="text-[14px] font-medium leading-snug">
+                            {cat.label}
+                          </span>
+                        </Link>
+
+                        {/* chevron expander — only if sub-services exist */}
+                        {cat.services.length > 0 && (
+                          <button
+                            onClick={() => setMobileCatOpen(mobileCatOpen === ci ? null : ci)}
+                            className="px-4 text-white/30 hover:text-white/60
+                              bg-transparent border-none cursor-pointer
+                              transition-colors duration-150 shrink-0"
+                            aria-label={`Expand ${cat.label}`}
+                          >
+                            <Chevron open={mobileCatOpen === ci} />
+                          </button>
+                        )}
+                      </div>
+
+                      {cat.services.length > 0 && (
+                        <div className={`overflow-hidden transition-all duration-200
+                          ${mobileCatOpen === ci ? 'max-h-[240px]' : 'max-h-0'}`}>
+                          <div className="ml-[52px] mr-4 border-l border-white/[0.08] pb-2">
+                            {cat.services.map((svc) => (
+                              <Link
+                                key={svc.href}
+                                href={svc.href}
+                                className={`flex items-center justify-between
+                                  px-4 py-2.5 text-[13.5px] font-normal no-underline
+                                  border-b border-white/[0.04] last:border-0
+                                  transition-colors duration-150
+                                  ${isActive(svc.href)
+                                    ? 'text-white'
+                                    : 'text-white/40 hover:text-white/80'
+                                  }`}
+                              >
+                                {svc.title}
+                                <span className="text-[10px] text-white/20 shrink-0">↗</span>
+                              </Link>
+                            ))}
+                          </div>
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+
+            {/* Industries & Case Studies */}
+            {SECONDARY_NAV.map((item) => (
+              <div key={item.href}>
+                <button
+                  onClick={() => setMobileSecOpen(mobileSecOpen === item.label ? null : item.label)}
+                  className={`w-full flex items-center justify-between
+                    px-5 py-4 bg-transparent border-none cursor-pointer
+                    text-[15px] font-medium transition-colors duration-150
+                    ${mobileSecOpen === item.label || isActive(item.href)
+                      ? 'text-white'
+                      : 'text-white/65 hover:text-white'
+                    }`}
+                >
+                  <span>{item.label}</span>
+                  <Chevron open={mobileSecOpen === item.label} />
+                </button>
+
+                <div className={`overflow-hidden transition-all duration-250
+                  ${mobileSecOpen === item.label ? 'max-h-[320px]' : 'max-h-0'}`}>
+                  <div className="bg-black/20 border-t border-white/[0.05]
+                    ml-4 border-l border-l-white/[0.07]">
+                    {item.children.map((child) => (
+                      <Link
+                        key={child.href}
+                        href={child.href}
+                        className={`flex items-center justify-between px-5 py-3
+                          text-[13.5px] font-normal no-underline
+                          border-b border-white/[0.04] last:border-0
+                          transition-colors duration-150
+                          ${isActive(child.href)
+                            ? 'text-white'
+                            : 'text-white/45 hover:text-white/80'
+                          }`}
+                      >
+                        {child.title}
+                        <span className="text-[10px] text-white/20 shrink-0">↗</span>
+                      </Link>
+                    ))}
+                    <Link
+                      href={item.href}
+                      className="flex items-center gap-1 px-5 py-3
+                        text-[12.5px] font-semibold no-underline transition-colors duration-150"
+                      style={{ color: BLUE }}
+                    >
+                      All {item.label} →
                     </Link>
                   </div>
                 </div>
               </div>
-            ) : (
-              <Link
-                key={link.href}
-                href={link.href}
-                className="py-3 px-3 rounded-xl text-white/80 no-underline text-[0.92rem]
-                  font-medium tracking-[0.01em] transition-all duration-150
-                  hover:text-[#00D2FF] hover:bg-white/[0.03]"
-              >
-                {link.label}
-              </Link>
-            )
-          )}
+            ))}
+
+            {/* Static links */}
+            {[...STATIC_LINKS, { label: 'Blog', href: '/blog' }, { label: 'Contact', href: '/contact' }]
+              .filter((v, i, a) => a.findIndex(t => t.href === v.href) === i)
+              .map((link) => (
+                <Link
+                  key={link.href}
+                  href={link.href}
+                  className={`block px-5 py-4 text-[15px] font-medium no-underline
+                    transition-colors duration-150
+                    ${isActive(link.href) ? 'text-white' : 'text-white/65 hover:text-white'}`}
+                >
+                  {link.label}
+                </Link>
+              ))}
+          </div>
+
+          {/* Mobile CTAs */}
+          <div className="flex gap-3 p-4 border-t border-white/[0.07]">
+            <Link
+              href="/services"
+              className="flex-1 border border-white/[0.12] text-white/55
+                px-4 py-2.5 rounded-full text-[13.5px] font-medium
+                text-center no-underline transition-all duration-150
+                hover:border-white/25 hover:text-white"
+            >
+              All Services
+            </Link>
+            <Link
+              href="/contact"
+              className="flex-1 text-white px-4 py-2.5 rounded-full
+                text-[13.5px] font-semibold text-center no-underline
+                transition-all duration-150 hover:opacity-90"
+              style={{ backgroundColor: BLUE }}
+            >
+              Start a Project ↗
+            </Link>
+          </div>
         </div>
 
-        {/* Mobile CTA row */}
-        <div className="mt-3 pt-3 border-t border-white/[0.07] flex flex-col sm:flex-row gap-2">
-          <Link
-            href="/services"
-            className="flex-1 border border-[#00D2FF]/30 text-[#00D2FF] px-5 py-2.5
-              rounded-full text-[0.82rem] font-medium text-center no-underline
-              transition-all duration-200 hover:bg-[#00D2FF]/[0.08]"
-          >
-            All Services
-          </Link>
-          <Link
-            href="#contact"
-            className="flex-1 bg-[#00D2FF] text-[#0A0A0A] px-5 py-2.5 rounded-full
-              text-[0.82rem] font-semibold text-center no-underline
-              transition-all duration-300 hover:shadow-[0_0_20px_rgba(0,210,255,0.5)]"
-          >
-            Start a Project ↗
-          </Link>
-        </div>
       </div>
-
-    </div>
+    </>
   );
 }
