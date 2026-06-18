@@ -22,76 +22,146 @@ const SERVICE_CATEGORIES = [
     label: 'AI & Intelligent Systems',
     href: '/services/ai-intelligent-systems',
     services: [
+      // Created
       { title: 'Enterprise AI Assistant', href: '/services/ai-intelligent-systems/enterprise-ai-assistant' },
-      { title: 'AI on ERP & Finance',     href: '/services/ai-intelligent-systems/ai-on-erp-finance' },
+      { title: 'AI on ERP & Finance', href: '/services/ai-intelligent-systems/ai-on-erp-finance' },
+
+      // Remaining
+      { title: 'AI Financial Reconciliation', href: '/services/ai-intelligent-systems/ai-financial-reconciliation' },
+      { title: 'Enterprise RAG Implementation', href: '/services/ai-intelligent-systems/enterprise-rag-implementation' },
+      { title: 'AI Anomaly Detection', href: '/services/ai-intelligent-systems/ai-anomaly-detection' },
+      { title: 'Agentic AI & Automation', href: '/services/ai-intelligent-systems/agentic-ai-automation' },
     ],
   },
+
   {
     id: 'fabric',
     num: '02',
     label: 'Microsoft Fabric',
     href: '/services/microsoft-fabric',
-    services: [],
+    services: [
+      { title: 'Microsoft Fabric Implementation', href: '/services/microsoft-fabric/microsoft-fabric-implementation' },
+      { title: 'Fabric Lakehouse & Data Engineering', href: '/services/microsoft-fabric/fabric-lakehouse-data-engineering' },
+      { title: 'Fabric Data Warehouse', href: '/services/microsoft-fabric/fabric-data-warehouse' },
+      { title: 'Fabric Real-Time Intelligence', href: '/services/microsoft-fabric/fabric-real-time-intelligence' },
+      { title: 'Fabric Power BI & Semantic Models', href: '/services/microsoft-fabric/fabric-power-bi-semantic-models' },
+      { title: 'Fabric Data Activator & Governance', href: '/services/microsoft-fabric/fabric-data-activator-governance' },
+    ],
   },
+
   {
     id: 'dataeng',
     num: '03',
     label: 'Data Engineering & Integration',
     href: '/services/data-engineering-integration',
     services: [
+      // Created
       { title: 'Azure Data Factory', href: '/services/data-engineering-integration/azure-data-factory' },
+
+      // Remaining
+      { title: 'Data Pipeline Architecture', href: '/services/data-engineering-integration/data-pipeline-architecture' },
+      { title: 'ETL / ELT Services', href: '/services/data-engineering-integration/etl-elt-services' },
+      { title: 'Data Integration Solutions', href: '/services/data-engineering-integration/data-integration-solutions' },
+      { title: 'API & System Integration', href: '/services/data-engineering-integration/api-system-integration' },
+      { title: 'Real-Time Data Processing', href: '/services/data-engineering-integration/real-time-data-processing' },
     ],
   },
+
   {
     id: 'modelling',
     num: '04',
     label: 'Data Modelling & Warehousing',
     href: '/services/data-modelling-warehousing',
-    services: [],
+    services: [
+      { title: 'Data Architecture Design', href: '/services/data-modelling-warehousing/data-architecture-design' },
+      { title: 'Dimensional Modelling', href: '/services/data-modelling-warehousing/dimensional-modelling' },
+      { title: 'Master Data Management (MDM)', href: '/services/data-modelling-warehousing/master-data-management' },
+      { title: 'Data Warehouse Solutions', href: '/services/data-modelling-warehousing/data-warehouse-solutions' },
+      { title: 'Data Quality Management', href: '/services/data-modelling-warehousing/data-quality-management' },
+    ],
   },
+
   {
     id: 'bi',
     num: '05',
     label: 'Business Intelligence & Analytics',
     href: '/services/business-intelligence-analytics',
     services: [
+      // Created
       { title: 'Power BI Implementation', href: '/services/business-intelligence-analytics/power-bi-implementation' },
-      { title: 'CFO Dashboards',          href: '/services/business-intelligence-analytics/cfo-dashboards' },
-      { title: 'Construction Analytics',  href: '/services/business-intelligence-analytics/construction-analytics' },
+      { title: 'CFO Dashboards', href: '/services/business-intelligence-analytics/cfo-dashboards' },
+      { title: 'Construction Analytics', href: '/services/business-intelligence-analytics/construction-analytics' },
+
+      // Remaining
+      { title: 'Self-Service BI Enablement', href: '/services/business-intelligence-analytics/self-service-bi-enablement' },
+      { title: 'Operational Analytics', href: '/services/business-intelligence-analytics/operational-analytics' },
+      { title: 'Advanced Analytics & Forecasting', href: '/services/business-intelligence-analytics/advanced-analytics-forecasting' },
     ],
   },
+
   {
     id: 'cloud',
     num: '06',
     label: 'Cloud Migration & Modernisation',
     href: '/services/cloud-migration-modernisation',
     services: [
-      { title: 'Cloud Migration',  href: '/services/cloud-migration-modernisation/cloud-migration' },
+      // Created
+      { title: 'Cloud Migration', href: '/services/cloud-migration-modernisation/cloud-migration' },
       { title: 'Managed Services', href: '/services/cloud-migration-modernisation/managed-services' },
+
+      // Remaining
+      { title: 'Cloud Strategy & Roadmap', href: '/services/cloud-migration-modernisation/cloud-strategy-roadmap' },
+      { title: 'Azure / AWS Migration', href: '/services/cloud-migration-modernisation/azure-aws-migration' },
+      { title: 'ERP Cloud Migration Data Layer', href: '/services/cloud-migration-modernisation/erp-cloud-migration-data-layer' },
+      { title: 'Data Platform Build', href: '/services/cloud-migration-modernisation/data-platform-build' },
+      { title: 'DevOps for Data', href: '/services/cloud-migration-modernisation/devops-for-data' },
     ],
   },
+
   {
     id: 'governance',
     num: '07',
     label: 'Data Governance & Compliance',
     href: '/services/data-governance-compliance',
     services: [
+      // Created
       { title: 'Microsoft Purview', href: '/services/data-governance-compliance/microsoft-purview' },
+
+      // Remaining
+      { title: 'Data Governance Frameworks', href: '/services/data-governance-compliance/data-governance-frameworks' },
+      { title: 'Privacy & Regulatory Compliance', href: '/services/data-governance-compliance/privacy-regulatory-compliance' },
+      { title: 'Security & Access Control', href: '/services/data-governance-compliance/security-access-control' },
+      { title: 'AI Governance & Compliance', href: '/services/data-governance-compliance/ai-governance-compliance' },
     ],
   },
+
   {
     id: 'crm',
     num: '08',
     label: 'CRM & Business Applications',
     href: '/services/crm-business-applications',
-    services: [],
+    services: [
+      { title: 'Dynamics 365 Integration', href: '/services/crm-business-applications/dynamics-365-integration' },
+      { title: 'CRM Analytics & Reporting', href: '/services/crm-business-applications/crm-analytics-reporting' },
+      { title: 'Cortex Intell Platform', href: '/services/crm-business-applications/cortex-intell-platform' },
+      { title: 'Power Platform Consulting', href: '/services/crm-business-applications/power-platform-consulting' },
+      { title: 'Payroll Compliance & Remediation', href: '/services/crm-business-applications/payroll-compliance-remediation' },
+    ],
   },
+
   {
     id: 'custom',
     num: '09',
     label: 'Custom Web & Software Development',
     href: '/services/custom-web-software-development',
-    services: [],
+    services: [
+      { title: 'Custom Web Application Development', href: '/services/custom-web-software-development/custom-web-application-development' },
+      { title: 'Enterprise Software Development', href: '/services/custom-web-software-development/enterprise-software-development' },
+      // { title: 'SaaS Platform Development', href: '/services/custom-web-software-development/saas-platform-development' },
+      // { title: 'API Development & Integration', href: '/services/custom-web-software-development/api-development-integration' },
+      // { title: 'Portal & Dashboard Development', href: '/services/custom-web-software-development/portal-dashboard-development' },
+      // { title: 'Application Modernisation', href: '/services/custom-web-software-development/application-modernisation' },
+    ],
   },
 ];
 

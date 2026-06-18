@@ -7,6 +7,9 @@ import './globals.css'
 import Navigation from '@/components/Navigation'
 import Footer from '@/components/Footer'
 
+import SmoothScroll from "@/components/SmoothScroll";
+
+
 const _geist = Geist({
   subsets: ['latin'],
 })
@@ -51,7 +54,7 @@ export default function RootLayout({
       suppressHydrationWarning data-scroll-behavior="smooth"
     >
       <body className="bg-background text-white font-sans antialiased overflow-x-hidden w-full min-h-screen flex flex-col">
-        
+        <SmoothScroll />
         <Navigation />
 
         <main className="flex-1 w-full overflow-hidden">
