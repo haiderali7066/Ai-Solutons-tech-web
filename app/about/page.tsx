@@ -7,6 +7,8 @@ import {
   ChevronRight, Building2, Globe2 
 } from 'lucide-react';
 
+import TeamCard from '@/components/Teamcard';
+
 /* ══════════════════════════════════════
    DATA STRUCTURES
 ══════════════════════════════════════ */
@@ -336,6 +338,8 @@ AI Solution Technologies is a Microsoft-aligned data, analytics and AI consultan
         </div>
       </section>
 
+      
+
 <section className="py-24 px-6 bg-white overflow-hidden border-y border-slate-100">
   <div className="max-w-7xl mx-auto text-center mb-16">
     <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-3 block">Partnerships</span>
@@ -407,6 +411,10 @@ AI Solution Technologies is a Microsoft-aligned data, analytics and AI consultan
           ))}
         </div>
       </section>
+
+
+        <TeamCard/>
+
 
       {/* ════════ SECTION 9: PREMIUM CTA ════════ */}
       <section className="py-24 px-6 bg-white border-t border-slate-100">
