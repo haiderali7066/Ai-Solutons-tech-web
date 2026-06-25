@@ -56,6 +56,7 @@ export default function RootLayout({
       <body className="bg-background text-white font-sans antialiased overflow-x-hidden w-full min-h-screen flex flex-col">
         <SmoothScroll />
         <Navigation />
+        
 
         <main className="flex-1 w-full overflow-hidden">
           {children}

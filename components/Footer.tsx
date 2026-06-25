@@ -207,23 +207,58 @@ export default function Footer() {
             {/* COL 1: Membership + Socials */}
             <div className="flex flex-col gap-8">
               <div>
-                <h3 className="text-[11px] font-bold tracking-[0.22em] uppercase text-blue-400 mb-5">
-                  Membership
-                </h3>
-                {/* Microsoft Partner Badge */}
-                <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg px-4 py-3">
-                  <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
-                    <rect x="2" y="2" width="9" height="9" fill="#f25022" rx="1" />
-                    <rect x="13" y="2" width="9" height="9" fill="#7fba00" rx="1" />
-                    <rect x="2" y="13" width="9" height="9" fill="#00a4ef" rx="1" />
-                    <rect x="13" y="13" width="9" height="9" fill="#ffb900" rx="1" />
-                  </svg>
-                  <div>
-                    <p className="text-[10px] text-zinc-400 leading-none">Microsoft</p>
-                    <p className="text-[13px] font-bold text-white leading-tight">Partner</p>
-                  </div>
-                </div>
-              </div>
+  <h3 className="text-[11px] font-bold tracking-[0.22em] uppercase text-blue-400 mb-5">
+    Membership
+  </h3>
+
+  {/* Membership Badges */}
+  <div className="flex flex-wrap gap-3">
+
+    {/* Microsoft Partner */}
+    <div className="inline-flex items-center gap-3 bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none">
+        <rect x="2" y="2" width="9" height="9" fill="#f25022" rx="1" />
+        <rect x="13" y="2" width="9" height="9" fill="#7fba00" rx="1" />
+        <rect x="2" y="13" width="9" height="9" fill="#00a4ef" rx="1" />
+        <rect x="13" y="13" width="9" height="9" fill="#ffb900" rx="1" />
+      </svg>
+      <div>
+        <p className="text-[10px] text-zinc-400 leading-none">Microsoft</p>
+        <p className="text-[13px] font-bold text-white leading-tight">Partner</p>
+      </div>
+    </div>
+
+    {/* ISO 27001 */}
+    <div className="inline-flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+      <p className="text-[13px] font-bold text-white">ISO 27001</p>
+    </div>
+
+    {/* ISO 42001 */}
+    <div className="inline-flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+      <p className="text-[13px] font-bold text-white">ISO 42001</p>
+    </div>
+
+    {/* ICN Gateway */}
+    <div className="inline-flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+      <p className="text-[13px] font-bold text-white">ICN Gateway</p>
+    </div>
+
+    {/* Tech Council of Australia */}
+    <div className="inline-flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+      <p className="text-[13px] font-bold text-white">
+        Tech Council of Australia
+      </p>
+    </div>
+
+    {/* ICT Services SCM0020 */}
+    <div className="inline-flex items-center bg-white/5 border border-white/10 rounded-lg px-4 py-3">
+      <p className="text-[13px] font-bold text-white">
+        ICT_Services_SCM0020 Scheme
+      </p>
+    </div>
+
+  </div>
+</div>
 
               <div>
                 <h3 className="text-[11px] font-bold tracking-[0.22em] uppercase text-blue-400 mb-4">

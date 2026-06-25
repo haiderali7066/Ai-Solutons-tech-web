@@ -210,12 +210,10 @@ export default function ConstructionAnalyticsPage() {
               Real-World Impact: Australian Tier 2 Builder
             </h3>
             <p className="text-sm text-slate-400 font-light leading-relaxed mb-8">
-              An operator with an <span className="text-white font-medium">AUD $120M turnover and 12 active projects</span> was discovering overruns 2–3 weeks after they occurred. Following deployment:
             </p>
 
             <div className="grid grid-cols-2 gap-6 border-t border-slate-800 pt-6">
               <div>
-                <div className="text-2xl md:text-3xl font-black text-white">AUD $2.4M</div>
                 <div className="text-[10px] text-slate-400 uppercase tracking-wider mt-1">In-Flight Overruns Identified (Q1)</div>
               </div>
               <div>
@@ -231,17 +229,7 @@ export default function ConstructionAnalyticsPage() {
       <section className="py-24 px-6 max-w-5xl mx-auto">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
           
-          {/* Pricing Module */}
-          <div className="bg-white border border-slate-200/80 rounded-[2rem] p-8 text-center flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.02)]">
-            <div>
-              <span className="text-xs font-bold tracking-widest text-slate-400 uppercase block mb-2">Investment Structure</span>
-              <h3 className="text-lg font-bold text-[#0f172a] mb-6">Project Implementation Pricing</h3>
-              <div className="text-3xl md:text-4xl font-black text-blue-600 tracking-tight mb-3">
-                AUD $15K – $60K
-              </div>
-            </div>
-            <p className="text-xs text-slate-400 font-light mt-4">Scales natively based on organizational scope, dynamic ledger integrations, and custom dashboard variants.</p>
-          </div>
+          
 
           {/* Delivery Window Module */}
           <div className="bg-white border border-slate-200/80 rounded-[2rem] p-8 text-center flex flex-col justify-between shadow-[0_20px_40px_-15px_rgba(0,0,0,0.02)]">

@@ -170,13 +170,13 @@ const SECONDARY_NAV = [
     label: 'Industries',
     href: '/industries',
     children: [
-      { title: 'Construction & Engineering',      href: '/industries/construction-engineering' },
-      { title: 'Finance & Professional Services', href: '/industries/finance-professional-services' },
-      { title: 'Government & Public Sector',      href: '/industries/government-public-sector' },
+      { title: 'Construction & Engineering',      href: '/industries/construction' },
+      { title: 'Finance & Professional Services', href: '/industries/finance' },
+      { title: 'Government & Public Sector',      href: '/industries/government' },
     ],
   },
   {
-    label: 'Case Studies',
+    label: 'Solution we provided',
     href: '/case-studies',
     children: [
       { title: 'Australian Tier-2 Builder', href: '/case-studies/australian-tier-2-builder' },

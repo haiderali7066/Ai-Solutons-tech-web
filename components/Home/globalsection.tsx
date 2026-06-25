@@ -23,7 +23,7 @@ export default function CapabilitiesSection() {
   ];
 
   return (
-    <section className="relative min-h-[60vh] bg-[#0a0f1c] py-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center overflow-hidden font-poppins">
+    <section className="relative  min-h-[60vh] bg-[#0a0f1c] border-amber-50 border-10 py-24 px-4 sm:px-6 lg:px-8 flex items-center justify-center overflow-hidden font-poppins">
       <div className="absolute inset-0 z-0 opacity-20 mix-blend-luminosity pointer-events-none">
         <Image
           src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop"

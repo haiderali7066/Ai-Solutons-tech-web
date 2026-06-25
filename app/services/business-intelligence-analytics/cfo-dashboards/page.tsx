@@ -329,14 +329,7 @@ export default function CFODashboardPage() {
 
             {/* Logistics (Pricing & Delivery) */}
             <div className="lg:col-span-5 grid grid-rows-2 gap-8">
-              <div className="rounded-2xl bg-[#020817] border border-slate-800 p-8 flex flex-col justify-center relative overflow-hidden group">
-                <div className="absolute right-0 bottom-0 opacity-10 group-hover:scale-125 transition-transform duration-700">
-                  <DollarSign className="w-40 h-40 -mb-10 -mr-10" />
-                </div>
-                <h4 className="text-xs font-bold text-blue-400 uppercase tracking-[0.2em] mb-3">Indicative Pricing</h4>
-                <div className="text-3xl md:text-4xl font-black text-white font-syne mb-2">AUD $12K – $35K</div>
-                <p className="text-slate-400 text-sm font-light">Final pricing depends on data complexity and scope.</p>
-              </div>
+              
 
               <div className="rounded-2xl bg-[#fafbfe] border border-slate-200 p-8 flex flex-col justify-center relative overflow-hidden group shadow-sm">
                 <div className="absolute right-0 bottom-0 opacity-[0.03] group-hover:scale-125 transition-transform duration-700">
@@ -351,38 +344,28 @@ export default function CFODashboardPage() {
           </div>
         </div>
       </section>
-
-      {/* ════════ 8. FINAL CTA ════════ */}
-      <section className="bg-[#020817] px-6 py-24 border-t border-slate-800">
-        <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-[#0f172a] via-[#1e293b] to-[#0f172a] border border-slate-700 p-12 md:p-24 text-center shadow-2xl max-w-5xl mx-auto group">
+{/* ════════ PREMIUM CTA SECTION ════════ */}
+      <section className="pb-24 px-6 bg-[#fafbfe]">
+        <div className="max-w-5xl mx-auto relative bg-gradient-to-br from-[#1e40af] via-[#2563eb] to-[#3b82f6] rounded-[2.5rem] p-10 sm:p-16 text-center overflow-hidden shadow-[0_40px_100px_rgba(37,99,235,0.28)]">
+          {/* Decorative floating rings */}
+          <div className="absolute top-0 right-0 w-[400px] h-[400px] border border-white/10 rounded-full translate-x-1/3 -translate-y-1/3 pointer-events-none" />
+          <div className="absolute bottom-0 left-0 w-[300px] h-[300px] border border-white/10 rounded-full -translate-x-1/4 translate-y-1/4 pointer-events-none" />
           
-          {/* Animated Background Rays */}
-          <div className="absolute inset-0 opacity-[0.02] bg-[radial-gradient(ellipse_at_center,_var(--tw-gradient-stops))] from-white via-transparent to-transparent group-hover:opacity-[0.05] transition-opacity duration-1000"></div>
-
-          <div className="relative z-10 max-w-3xl mx-auto">
-            <h2 className="text-3xl md:text-5xl font-black tracking-tight text-white leading-tight font-syne uppercase">
-              Ready to discuss CFO dashboard development?
+          <div className="relative z-10">
+            <span className="text-xs font-bold tracking-widest text-blue-200 uppercase mb-4 block">Strategic Advisory</span>
+            <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-white tracking-tight leading-tight mb-6">
+              Ready to discuss ?
             </h2>
-
-            <p className="mt-6 text-lg md:text-xl leading-relaxed text-slate-300 font-light mb-10">
+            <p className="text-white/80 text-base max-w-2xl mx-auto mb-10 font-light">
               Book a 30-minute conversation. We'll look at your current setup, discuss your goals, and outline what an engagement would look like — at no cost and no commitment.
             </p>
-
             <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
-              <Link
-                href="/contact"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-amber-400 px-8 py-4 text-sm font-bold text-[#020817] transition-all duration-300 hover:-translate-y-1 hover:bg-amber-300 hover:shadow-[0_15px_40px_rgba(251,191,36,0.3)] uppercase tracking-widest"
+              <a 
+                href="/contact" 
+                className="px-8 py-4 bg-white text-blue-700 font-bold rounded-full hover:-translate-y-1 hover:shadow-xl transition-all duration-300 w-full sm:w-auto text-sm inline-flex items-center justify-center gap-2 group"
               >
-                Book a 30-minute conversation
-                <ArrowRight className="w-4 h-4" />
-              </Link>
-              
-              <a
-                href="mailto:rania@aisolutiontechnologies.com"
-                className="w-full sm:w-auto inline-flex items-center justify-center gap-3 rounded-full bg-white/5 border border-white/10 px-8 py-4 text-sm font-bold text-white transition-all duration-300 hover:-translate-y-1 hover:bg-white/10 hover:border-white/20 uppercase tracking-widest"
-              >
-                Email rania@...
-                <Mail className="w-4 h-4" />
+                Book a 30-minute conversation 
+                <span className="transition-transform duration-300 group-hover:translate-x-1">→</span>
               </a>
             </div>
           </div>
