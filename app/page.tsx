@@ -728,29 +728,35 @@ function TechSection() {
    ========================================================================== */
 const CASE_STUDIES = [
   {
-    tag: "CONSTRUCTION // POWER BI",
-    client: "Tier 2 Builder",
-    highlight: "Cut Reporting Time By 75%",
-    description: "Identified AUD $2.4M of in-flight project overruns that previously went unseen for weeks. Secured subsequent major tender victory driven directly by documented reporting maturity.",
-    link: "/case-studies/tier-2-builder",
-    image: "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop" // Modern structural architecture
+    tag: "CONSTRUCTION // POWER BI & ANALYTICS",
+    client: "Australian Tier 2 Builder",
+    highlight: "Project Visibility & Cost Control",
+    description:
+      "Delivered Power BI construction dashboards providing real-time project performance, budget tracking, variation monitoring, and executive reporting. Enabled leadership teams to identify cost overruns earlier and improve tender confidence.",
+    link: "/case-studies/australian-tier-2-builder",
+    image:
+      "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?q=80&w=800&auto=format&fit=crop",
   },
   {
-    tag: "FINANCIAL SERVICES // CFO DASHBOARDS",
-    client: "Professional Services",
-    highlight: "Month-End Closed in 2 Days",
-    description: "Automated board pack compilation to 30 minutes versus 2 days of manual aggregation. Implemented a 12-month rolling cash forecast to phase out static quarterly spreadsheets.",
+    tag: "PROFESSIONAL SERVICES // CFO DASHBOARDS",
+    client: "Professional Services Firm",
+    highlight: "Finance Reporting Automation",
+    description:
+      "Implemented executive CFO dashboards combining financial, operational, and forecasting data into a single reporting platform. Reduced manual reporting effort while improving decision-making through real-time visibility.",
     link: "/case-studies/professional-services-cfo",
-    image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop" // Abstract data/dashboard
+    image:
+      "https://images.unsplash.com/photo-1551288049-bebda4e38f71?q=80&w=800&auto=format&fit=crop",
   },
   {
-    tag: "GOVERNMENT // AZURE OPENAI",
+    tag: "GOVERNMENT // AZURE OPENAI & AI",
     client: "KSA Government Agency",
-    highlight: "-95% Public AI Exposure",
-    description: "Engineered and deployed Azure OpenAI structures aligned to PDPL compliance. Deployed 6 production-ready internal assistants, causing unvetted external tool utilization to drop 95%.",
+    highlight: "Secure Enterprise AI Deployment",
+    description:
+      "Designed and deployed Azure OpenAI-powered internal AI assistants within a secure government environment. Enabled compliant AI adoption, streamlined knowledge access, and accelerated employee productivity while maintaining governance controls.",
     link: "/case-studies/ksa-government-ai",
-    image: "https://images.unsplash.com/photo-1620825937374-87fc7d62828e?q=80&w=800&auto=format&fit=crop" // Futuristic AI abstract
-  }
+    image:
+      "https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?q=80&w=1470&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
+  },
 ];
 
 export function CaseStudiesSection() {
@@ -963,7 +969,7 @@ function CTASection() {
               </p>
 
               <div className="flex justify-center gap-3 flex-wrap">
-                <button className="bg-white text-blue-700 rounded-full px-8 py-4 text-[15px] font-bold
+                <Link href="/contact" className="bg-white text-blue-700 rounded-full px-8 py-4 text-[15px] font-bold
                                    flex items-center gap-2 border-0 cursor-pointer
                                    transition-all duration-200 hover:-translate-y-0.5 hover:shadow-xl">
                   Book a Free Consultation
@@ -971,12 +977,12 @@ function CTASection() {
                     <path d="M1 7h12M7 1l6 6-6 6" stroke="currentColor" strokeWidth="1.8"
                       strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                </button>
-                <button className="bg-transparent text-white/80 border-2 border-white/30 rounded-full
+                </Link>
+                <Link href="/contact" className="bg-transparent text-white/80 border-2 border-white/30 rounded-full
                                    px-8 py-4 text-[15px] font-medium cursor-pointer
                                    transition-all duration-200 hover:border-white/70 hover:text-white">
                   Talk to Sales
-                </button>
+                </Link>
               </div>
 
               {/* Awards */}

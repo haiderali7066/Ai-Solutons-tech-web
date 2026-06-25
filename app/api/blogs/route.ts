@@ -4,19 +4,31 @@ import { connectDB } from "@/lib/mongodb";
 
 export async function GET() {
   try {
+    console.log("Connecting to MongoDB...");
     await connectDB();
 
-    const blogs = await Blog.find()
-      .sort({ createdAt: -1 });
+    console.log("Fetching blogs...");
+    const blogs = await Blog.find().sort({
+      createdAt: -1,
+    });
+
+    console.log(`Found ${blogs.length} blogs`);
 
     return NextResponse.json({
       success: true,
       blogs,
     });
-  } catch {
+  } catch (error: any) {
+    console.error("GET BLOGS ERROR:", error);
+
     return NextResponse.json(
       {
         success: false,
+        error: error?.message || "Unknown error",
+        stack:
+          process.env.NODE_ENV === "development"
+            ? error?.stack
+            : undefined,
       },
       {
         status: 500,
@@ -63,12 +75,13 @@ export async function POST(req: NextRequest) {
       success: true,
       blog,
     });
-  } catch (error) {
-    console.log(error);
+  } catch (error: any) {
+    console.error("CREATE BLOG ERROR:", error);
 
     return NextResponse.json(
       {
         success: false,
+        error: error?.message || "Unknown error",
       },
       {
         status: 500,

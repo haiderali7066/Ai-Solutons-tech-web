@@ -559,21 +559,7 @@ export default function Navbar() {
                     <p className="text-[10.5px] font-semibold tracking-[0.12em] uppercase text-gray-300 mb-2">
                       Key Solutions
                     </p>
-                    {/* {ind.solutions.map((sol) => (
-                      <Link
-                        key={sol.href}
-                        href={sol.href}
-                        className="flex items-center justify-between py-[6px] text-[13px]
-                          font-normal no-underline transition-colors duration-150
-                          border-b border-gray-50 last:border-0"
-                        style={{ color: isActive(sol.href) ? BLUE : '#6B7280' }}
-                        onMouseEnter={e => (e.currentTarget.style.color = '#111827')}
-                        onMouseLeave={e => (e.currentTarget.style.color = isActive(sol.href) ? BLUE : '#6B7280')}
-                      >
-                        {sol.title}
-                        <span className="text-[10px] text-gray-300 shrink-0">↗</span>
-                      </Link>
-                    ))} */}
+                    
                   </div>
 
                   {/* "Explore industry" CTA */}
@@ -860,18 +846,7 @@ export default function Navbar() {
                         ${mobileIndustryCatOpen === ii ? 'max-h-[300px]' : 'max-h-0'}`}>
                         <div className="ml-[52px] mr-4 border-l border-white/[0.08] pb-2">
                           <p className="px-4 pt-2 pb-1.5 text-[11px] font-medium text-white/30">{ind.description}</p>
-                          {/* {ind.solutions.map((sol) => (
-                            <Link
-                              key={sol.href}
-                              href={sol.href}
-                              className={`flex items-center justify-between px-4 py-2.5 text-[13.5px] font-normal no-underline
-                                border-b border-white/[0.04] last:border-0 transition-colors duration-150
-                                ${isActive(sol.href) ? 'text-white' : 'text-white/40 hover:text-white/80'}`}
-                            >
-                              {sol.title}
-                              <span className="text-[10px] text-white/20 shrink-0">↗</span>
-                            </Link>
-                          ))} */}
+                          
                         </div>
                       </div>
                     </div>
