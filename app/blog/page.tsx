@@ -7,6 +7,13 @@ import {
   BookOpen, ChevronRight, Mail, Hash 
 } from 'lucide-react';
 
+// ✅ Added DB and Model imports
+import { connectDB } from "@/lib/mongodb";
+import BlogModel from "@/models/Blog";
+
+// ✅ Forces dynamic rendering, replacing the need for fetch cache: "no-store"
+export const dynamic = "force-dynamic";
+
 /* ══════════════════════════════════════
    TYPES & DATA FETCHING
 ══════════════════════════════════════ */
@@ -23,13 +30,16 @@ interface Blog {
   createdAt: string;
 }
 
+// ✅ Replaced fetch with direct MongoDB query
 async function getBlogs(): Promise<Blog[]> {
   try {
-    const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
-    const res = await fetch(`${baseUrl}/api/blogs`, { cache: "no-store" });
-    if (!res.ok) throw new Error("Failed to fetch blogs");
-    const data = await res.json();
-    return data.blogs || [];
+    await connectDB();
+
+    const blogs = await BlogModel.find({})
+      .sort({ createdAt: -1 })
+      .lean();
+
+    return JSON.parse(JSON.stringify(blogs));
   } catch (error) {
     console.error("Error fetching blogs:", error);
     return [];
