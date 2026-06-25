@@ -1,8 +1,9 @@
 import { NextRequest, NextResponse } from "next/server";
-import Blog from "@/models/Blog";
 import { connectDB } from "@/lib/mongodb";
+import Blog from "@/models/Blog";
+import mongoose from "mongoose";
 
-interface Params {
+interface Props {
   params: Promise<{
     id: string;
   }>;
@@ -10,12 +11,22 @@ interface Params {
 
 export async function GET(
   req: NextRequest,
-  { params }: Params
+  { params }: Props
 ) {
   try {
     await connectDB();
 
     const { id } = await params;
+
+    if (!mongoose.Types.ObjectId.isValid(id)) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Invalid ID",
+        },
+        { status: 400 }
+      );
+    }
 
     const blog = await Blog.findById(id);
 
@@ -25,9 +36,7 @@ export async function GET(
           success: false,
           message: "Blog not found",
         },
-        {
-          status: 404,
-        }
+        { status: 404 }
       );
     }
 
@@ -35,21 +44,21 @@ export async function GET(
       success: true,
       blog,
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       {
         success: false,
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
 
 export async function PUT(
   req: NextRequest,
-  { params }: Params
+  { params }: Props
 ) {
   try {
     await connectDB();
@@ -58,63 +67,74 @@ export async function PUT(
 
     const body = await req.json();
 
-    const blog =
-      await Blog.findByIdAndUpdate(
-        id,
+    const blog = await Blog.findByIdAndUpdate(
+      id,
+      body,
+      {
+        new: true,
+        runValidators: true,
+      }
+    );
+
+    if (!blog) {
+      return NextResponse.json(
         {
-          title: body.title,
-          slug: body.slug,
-          excerpt: body.excerpt,
-          content: body.content,
-          image: body.image,
-          category: body.category,
-          tags: body.tags,
-          status: body.status,
+          success: false,
+          message: "Blog not found",
         },
-        {
-          new: true,
-        }
+        { status: 404 }
       );
+    }
 
     return NextResponse.json({
       success: true,
       blog,
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       {
         success: false,
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
 
 export async function DELETE(
   req: NextRequest,
-  { params }: Params
+  { params }: Props
 ) {
   try {
     await connectDB();
 
     const { id } = await params;
 
-    await Blog.findByIdAndDelete(id);
+    const blog = await Blog.findByIdAndDelete(id);
+
+    if (!blog) {
+      return NextResponse.json(
+        {
+          success: false,
+          message: "Blog not found",
+        },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json({
       success: true,
-      message: "Deleted successfully",
+      message: "Blog deleted",
     });
-  } catch {
+  } catch (error) {
+    console.error(error);
+
     return NextResponse.json(
       {
         success: false,
       },
-      {
-        status: 500,
-      }
+      { status: 500 }
     );
   }
 }
