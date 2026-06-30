@@ -3,14 +3,225 @@
 import React, { useState } from 'react';
 
 // --- CURATED DATA WITH CONDENSED INFO & LIVE UNSPLASH IMAGE LINKS ---
+// const teamData = {
+//   executives: [
+//     {
+//       id: 'ceo',
+//       name: 'Rania Jamil Choudhury',
+//       roleTitle: 'Founder & Chief Executive Officer',
+//       badge: 'Strategy & Vision',
+//       image: '/rania.jpg',
+//       bio: 'Provides cross-functional strategic leadership aligning corporate vision with enterprise market growth.',
+//       responsibilities: [
+//         'Sets long-term corporate vision and strategic direction',
+//         'Drives executive alignment and cross-functional accountability',
+//         'Anchors critical enterprise and government relationships',
+//         'Secures investor relations and financial health milestones'
+//       ]
+//     },
+//     {
+//       id: 'coo',
+//       name: 'Chief Operating Officer',
+//       roleTitle: 'Chief Operating Officer',
+//       badge: 'Operations & Delivery',
+//       image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Manages core business operations, scaling delivery capacity while maintaining rigorous quality guardrails.',
+//       responsibilities: [
+//         'Oversees global end-to-end service delivery tracks',
+//         'Balances resource allocation and structural capacity',
+//         'Optimizes internal PMO and customer success workflows',
+//         'Governs operational KPIs and structural efficiency'
+//       ]
+//     },
+//     {
+//       id: 'cto',
+//       name: 'Chief Technology Officer',
+//       roleTitle: 'Chief Technology Officer',
+//       badge: 'Technology & Architecture',
+//       image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Architects complex ecosystem frameworks across Microsoft Fabric, Azure AI data engineering infrastructure.',
+//       responsibilities: [
+//         'Enforces enterprise technical architecture frameworks',
+//         'Directs Microsoft and Azure strategic technical alliances',
+//         'Maintains engineering standards for core Fabric solutions',
+//         'Architects zero-trust security and cloud governance models'
+//       ]
+//     },
+//     {
+//       id: 'caio',
+//       name: 'Chief AI & Innovation Officer',
+//       roleTitle: 'Chief AI & Innovation Officer',
+//       badge: 'AI Strategy & Innovation',
+//       image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Leads artificial intelligence strategy, agentic automation fabrics, and enterprise RAG architecture implementation.',
+//       responsibilities: [
+//         'Defines R&D roadmaps for GenAI and autonomous frameworks',
+//         'Deploys secure enterprise RAG and conversational tools',
+//         'Enforces strict alignment with international AI frameworks',
+//         'Integrates cognitive agents into existing system pipelines'
+//       ]
+//     },
+//     {
+//       id: 'cdao',
+//       name: 'Chief Data & Analytics Officer',
+//       roleTitle: 'Chief Data & Analytics Officer',
+//       badge: 'Data Strategy & Analytics',
+//       image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Oversees organizational data intelligence layouts, semantic asset modeling, and strict compliance tracks.',
+//       responsibilities: [
+//         'Establishes structural master data governance standards',
+//         'Directs automated lineage monitoring using Microsoft Purview',
+//         'Manages enterprise-wide Power BI Centers of Excellence',
+//         'Ensures adherence to global data regulatory policies'
+//       ]
+//     },
+//     {
+//       id: 'cro',
+//       name: 'Chief Revenue Officer',
+//       roleTitle: 'Chief Revenue Officer',
+//       badge: 'Revenue & Growth',
+//       image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Drives dynamic market acquisition channels, partnership opportunities, and commercial scaling operations.',
+//       responsibilities: [
+//         'Controls high-velocity enterprise pipeline optimization',
+//         'Maintains key cloud provider marketplace strategies',
+//         'Coordinates targeted cross-sell and retention playbooks',
+//         'Aligns market propositions with regional demands'
+//       ]
+//     },
+//     {
+//       id: 'cmo',
+//       name: 'Chief Marketing Officer',
+//       roleTitle: 'Chief Marketing Officer',
+//       badge: 'Brand & Market Growth',
+//       image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Fosters global brand positioning and digital pipeline growth across specialized technology verticals.',
+//       responsibilities: [
+//         'Directs global market positioning and research outputs',
+//         'Scales multichannel lead generation and SEO metrics',
+//         'Preserves digital assets and public capability footprints',
+//         'Architects structural partner co-marketing efforts'
+//       ]
+//     },
+//     {
+//       id: 'cfo',
+//       name: 'Chief Financial Officer',
+//       roleTitle: 'Chief Financial Officer',
+//       badge: 'Finance & Governance',
+//       image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Governs corporate fiscal policy, precision allocation modeling, and regulatory accounting infrastructure.',
+//       responsibilities: [
+//         'Manages enterprise P&L structures and forecasting engines',
+//         'Secures rigorous financial compliance and auditing rules',
+//         'Structures value pricing models for strategic contracts',
+//         'Advises boards on regional resource growth capitalization'
+//       ]
+//     }
+//   ],
+//   seniorLeadership: [
+//     {
+//       id: 'hpd',
+//       name: 'Head of Product & SaaS Platforms',
+//       roleTitle: 'Head of Product & SaaS Platforms',
+//       badge: 'Product & SaaS',
+//       image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Steers the structural roadmap and life-cycle development of HIVENOX and automated platforms.',
+//       responsibilities: [
+//         'Owns target product roadmaps and release cycles',
+//         'Synthesizes client data points into concrete architecture plans',
+//         'Optimizes monetization tiers and user conversion curves'
+//       ]
+//     },
+//     {
+//       id: 'hed',
+//       name: 'Head of Engineering & Delivery',
+//       roleTitle: 'Head of Engineering & Delivery',
+//       badge: 'Engineering & DevOps',
+//       image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Coordinates high-performance engineering groups to ship cloud deployments reliably.',
+//       responsibilities: [
+//         'Directs engineering agile groups across core workstreams',
+//         'Enforces secure automated CI/CD code transport paths',
+//         'Maintains target performance parameters for systems'
+//       ]
+//     },
+//     {
+//       id: 'hcs',
+//       name: 'Head of Customer Success',
+//       roleTitle: 'Head of Customer Success',
+//       badge: 'Customer Success',
+//       image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Guarantees scalable client business realization metrics across all deployed solutions.',
+//       responsibilities: [
+//         'Structures automated modern lifecycle onboarding modules',
+//         'Monitors active engagement risk indicators and client health',
+//         'Funnels critical operational loop feedback directly to product'
+//       ]
+//     },
+//     {
+//       id: 'hpm',
+//       name: 'Head of PMO & Implementations',
+//       roleTitle: 'Head of PMO & Implementations',
+//       badge: 'PMO & Governance',
+//       image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Implements precision delivery frameworks across multi-tiered transformation portfolios.',
+//       responsibilities: [
+//         'Coordinates project dependencies and delivery paths',
+//         'Mitigates active blockers through structured risk logic',
+//         'Secures operational alignment with core service delivery'
+//       ]
+//     },
+//     {
+//       id: 'hpc',
+//       name: 'Head of People & Culture',
+//       roleTitle: 'Head of People & Culture',
+//       badge: 'People & Capability',
+//       image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Handles technical sourcing models and continuous capability scaling strategies.',
+//       responsibilities: [
+//         'Optimizes international technical candidate recruitment tracks',
+//         'Designs strategic learning programs for specialized skill sets',
+//         'Maintains legal, visa, and cross-border organizational metrics'
+//       ]
+//     },
+//     {
+//       id: 'hgr',
+//       name: 'Head of Governance, Risk & Compliance',
+//       roleTitle: 'Head of Governance, Risk & Compliance',
+//       badge: 'GRC & Security',
+//       image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Protects systems through strict policy monitoring and structural compliance frameworks.',
+//       responsibilities: [
+//         'Manages centralized operational threat ledger systems',
+//         'Leads validation for complex SOC 2 and ISO procedures',
+//         'Structures data processing compliance across jurisdictions'
+//       ]
+//     },
+//     {
+//       id: 'ea',
+//       name: 'Executive Assistant',
+//       roleTitle: 'EA & Corporate Operations Manager',
+//       badge: 'Operations & Admin',
+//       image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=400&h=400&q=80',
+//       bio: 'Optimizes executive scheduling patterns and critical business operation functions.',
+//       responsibilities: [
+//         'Coordinates leadership operational pipelines and workflows',
+//         'Manages key administrative vendor service contracts',
+//         'Maintains compliance filing logs with statutory bodies'
+//       ]
+//     }
+//   ]
+// };
+
+
 const teamData = {
   executives: [
-    {
+   {
       id: 'ceo',
       name: 'Rania Jamil Choudhury',
       roleTitle: 'Founder & Chief Executive Officer',
       badge: 'Strategy & Vision',
-      image: 'https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?auto=format&fit=crop&w=400&h=400&q=80',
+      image: '/rania.jpeg',
       bio: 'Provides cross-functional strategic leadership aligning corporate vision with enterprise market growth.',
       responsibilities: [
         'Sets long-term corporate vision and strategic direction',
@@ -21,10 +232,10 @@ const teamData = {
     },
     {
       id: 'coo',
-      name: 'Chief Operating Officer',
+      name: 'Daniel Foster',
       roleTitle: 'Chief Operating Officer',
       badge: 'Operations & Delivery',
-      image: 'https://images.unsplash.com/photo-1560250097-0b93528c311a?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/men/32.jpg',
       bio: 'Manages core business operations, scaling delivery capacity while maintaining rigorous quality guardrails.',
       responsibilities: [
         'Oversees global end-to-end service delivery tracks',
@@ -35,10 +246,10 @@ const teamData = {
     },
     {
       id: 'cto',
-      name: 'Chief Technology Officer',
+      name: 'Ethan Brooks',
       roleTitle: 'Chief Technology Officer',
       badge: 'Technology & Architecture',
-      image: 'https://images.unsplash.com/photo-1519085360753-af0119f7cbe7?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/men/75.jpg',
       bio: 'Architects complex ecosystem frameworks across Microsoft Fabric, Azure AI data engineering infrastructure.',
       responsibilities: [
         'Enforces enterprise technical architecture frameworks',
@@ -49,10 +260,10 @@ const teamData = {
     },
     {
       id: 'caio',
-      name: 'Chief AI & Innovation Officer',
+      name: 'Sophia Carter',
       roleTitle: 'Chief AI & Innovation Officer',
       badge: 'AI Strategy & Innovation',
-      image: 'https://images.unsplash.com/photo-1580489944761-15a19d654956?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/women/65.jpg',
       bio: 'Leads artificial intelligence strategy, agentic automation fabrics, and enterprise RAG architecture implementation.',
       responsibilities: [
         'Defines R&D roadmaps for GenAI and autonomous frameworks',
@@ -63,10 +274,10 @@ const teamData = {
     },
     {
       id: 'cdao',
-      name: 'Chief Data & Analytics Officer',
+      name: 'Emily Watson',
       roleTitle: 'Chief Data & Analytics Officer',
       badge: 'Data Strategy & Analytics',
-      image: 'https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/women/21.jpg',
       bio: 'Oversees organizational data intelligence layouts, semantic asset modeling, and strict compliance tracks.',
       responsibilities: [
         'Establishes structural master data governance standards',
@@ -77,10 +288,10 @@ const teamData = {
     },
     {
       id: 'cro',
-      name: 'Chief Revenue Officer',
+      name: 'Jacob Harrison',
       roleTitle: 'Chief Revenue Officer',
       badge: 'Revenue & Growth',
-      image: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/men/68.jpg',
       bio: 'Drives dynamic market acquisition channels, partnership opportunities, and commercial scaling operations.',
       responsibilities: [
         'Controls high-velocity enterprise pipeline optimization',
@@ -91,10 +302,10 @@ const teamData = {
     },
     {
       id: 'cmo',
-      name: 'Chief Marketing Officer',
+      name: 'Ava Mitchell',
       roleTitle: 'Chief Marketing Officer',
       badge: 'Brand & Market Growth',
-      image: 'https://images.unsplash.com/photo-1551836022-d5d88e9218df?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/women/52.jpg',
       bio: 'Fosters global brand positioning and digital pipeline growth across specialized technology verticals.',
       responsibilities: [
         'Directs global market positioning and research outputs',
@@ -105,10 +316,10 @@ const teamData = {
     },
     {
       id: 'cfo',
-      name: 'Chief Financial Officer',
+      name: 'Michael Turner',
       roleTitle: 'Chief Financial Officer',
       badge: 'Finance & Governance',
-      image: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/men/47.jpg',
       bio: 'Governs corporate fiscal policy, precision allocation modeling, and regulatory accounting infrastructure.',
       responsibilities: [
         'Manages enterprise P&L structures and forecasting engines',
@@ -118,96 +329,97 @@ const teamData = {
       ]
     }
   ],
+
   seniorLeadership: [
     {
       id: 'hpd',
-      name: 'Head of Product & SaaS Platforms',
+      name: 'Grace Anderson',
       roleTitle: 'Head of Product & SaaS Platforms',
       badge: 'Product & SaaS',
-      image: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=400&h=400&q=80',
-      bio: 'Steers the structural roadmap and life-cycle development of HIVENOX and automated platforms.',
+      image: 'https://randomuser.me/api/portraits/women/34.jpg',
+      bio: 'Steers the structural roadmap and life-cycle development of enterprise SaaS platforms.',
       responsibilities: [
         'Owns target product roadmaps and release cycles',
-        'Synthesizes client data points into concrete architecture plans',
+        'Synthesizes client data into architecture plans',
         'Optimizes monetization tiers and user conversion curves'
       ]
     },
     {
       id: 'hed',
-      name: 'Head of Engineering & Delivery',
+      name: 'Ryan Collins',
       roleTitle: 'Head of Engineering & Delivery',
       badge: 'Engineering & DevOps',
-      image: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=400&h=400&q=80',
+      image: 'https://randomuser.me/api/portraits/men/28.jpg',
       bio: 'Coordinates high-performance engineering groups to ship cloud deployments reliably.',
       responsibilities: [
-        'Directs engineering agile groups across core workstreams',
-        'Enforces secure automated CI/CD code transport paths',
-        'Maintains target performance parameters for systems'
+        'Directs engineering agile groups',
+        'Enforces secure automated CI/CD pipelines',
+        'Maintains target performance parameters'
       ]
     },
     {
       id: 'hcs',
-      name: 'Head of Customer Success',
+      name: 'Natalie Reed',
       roleTitle: 'Head of Customer Success',
       badge: 'Customer Success',
-      image: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=400&h=400&q=80',
-      bio: 'Guarantees scalable client business realization metrics across all deployed solutions.',
+      image: 'https://randomuser.me/api/portraits/women/48.jpg',
+      bio: 'Guarantees scalable client business realization metrics across deployed solutions.',
       responsibilities: [
-        'Structures automated modern lifecycle onboarding modules',
-        'Monitors active engagement risk indicators and client health',
-        'Funnels critical operational loop feedback directly to product'
+        'Structures customer onboarding',
+        'Monitors client health metrics',
+        'Funnels customer feedback to product teams'
       ]
     },
     {
       id: 'hpm',
-      name: 'Head of PMO & Implementations',
+      name: 'Christopher Hall',
       roleTitle: 'Head of PMO & Implementations',
       badge: 'PMO & Governance',
-      image: 'https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=400&h=400&q=80',
-      bio: 'Implements precision delivery frameworks across multi-tiered transformation portfolios.',
+      image: 'https://randomuser.me/api/portraits/men/58.jpg',
+      bio: 'Implements precision delivery frameworks across transformation portfolios.',
       responsibilities: [
-        'Coordinates project dependencies and delivery paths',
-        'Mitigates active blockers through structured risk logic',
-        'Secures operational alignment with core service delivery'
+        'Coordinates project dependencies',
+        'Mitigates delivery risks',
+        'Aligns operations with service delivery'
       ]
     },
     {
       id: 'hpc',
-      name: 'Head of People & Culture',
+      name: 'Victoria Evans',
       roleTitle: 'Head of People & Culture',
       badge: 'People & Capability',
-      image: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=400&h=400&q=80',
-      bio: 'Handles technical sourcing models and continuous capability scaling strategies.',
+      image: 'https://randomuser.me/api/portraits/women/59.jpg',
+      bio: 'Handles technical sourcing models and continuous capability scaling.',
       responsibilities: [
-        'Optimizes international technical candidate recruitment tracks',
-        'Designs strategic learning programs for specialized skill sets',
-        'Maintains legal, visa, and cross-border organizational metrics'
+        'Optimizes recruitment strategies',
+        'Designs employee learning programs',
+        'Maintains legal and HR compliance'
       ]
     },
     {
       id: 'hgr',
-      name: 'Head of Governance, Risk & Compliance',
+      name: 'Matthew Cooper',
       roleTitle: 'Head of Governance, Risk & Compliance',
       badge: 'GRC & Security',
-      image: 'https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=400&h=400&q=80',
-      bio: 'Protects systems through strict policy monitoring and structural compliance frameworks.',
+      image: 'https://randomuser.me/api/portraits/men/41.jpg',
+      bio: 'Protects systems through strict policy monitoring and compliance frameworks.',
       responsibilities: [
-        'Manages centralized operational threat ledger systems',
-        'Leads validation for complex SOC 2 and ISO procedures',
-        'Structures data processing compliance across jurisdictions'
+        'Manages operational risk registers',
+        'Leads SOC 2 and ISO compliance',
+        'Structures data governance policies'
       ]
     },
     {
       id: 'ea',
-      name: 'Executive Assistant',
+      name: 'Chloe Morgan',
       roleTitle: 'EA & Corporate Operations Manager',
       badge: 'Operations & Admin',
-      image: 'https://images.unsplash.com/photo-1607746882042-944635dfe10e?auto=format&fit=crop&w=400&h=400&q=80',
-      bio: 'Optimizes executive scheduling patterns and critical business operation functions.',
+      image: 'https://randomuser.me/api/portraits/women/12.jpg',
+      bio: 'Optimizes executive scheduling and business operations.',
       responsibilities: [
-        'Coordinates leadership operational pipelines and workflows',
-        'Manages key administrative vendor service contracts',
-        'Maintains compliance filing logs with statutory bodies'
+        'Coordinates executive workflows',
+        'Manages vendor relationships',
+        'Maintains corporate compliance records'
       ]
     }
   ]

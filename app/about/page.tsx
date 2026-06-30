@@ -56,11 +56,7 @@ const teamMembers = [
     role: "Full Stack Developer",
     img: "/osama.jpeg",
   },
-  {
-    name: "Ahmed Nadeem Khan",
-    role: "Business Development Manager",
-    img: "/ahmed-nadeem.jpeg",
-  },
+  
   {
     name: "Ahmed Khan",
     role: "Technical Lead",
