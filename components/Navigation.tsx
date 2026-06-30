@@ -873,7 +873,7 @@ export default function Navbar() {
                 <div className="bg-black/20 border-t border-white/[0.05]">
                   <div className="px-5 pt-3 pb-2">
                     <Link href="/case-studies" className="text-[12.5px] font-medium no-underline" style={{ color: BLUE }}>
-                      All case studies →
+                      All solutions we provided→
                     </Link>
                   </div>
                   {SOLUTION_CASES.map((cs) => (
