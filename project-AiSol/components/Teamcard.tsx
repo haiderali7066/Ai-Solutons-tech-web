@@ -495,32 +495,45 @@ export default function LeadershipTeam() {
 
   return (
     <section className="py-16 bg-gray-50/50 min-h-screen">
-  <div className="max-w-6xl mx-auto px-4 sm:px-6">
-    
-    {/* Short Executive Header */}
-    <div className="max-w-3xl mb-12">
-      <p className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2">
-        Leadership Matrix
-      </p>
-      <h1 className="text-3xl font-black text-gray-900 mb-4 tracking-tight sm:text-4xl">
-        Our Leadership Team
-      </h1>
-      <p className="text-sm text-gray-600 leading-relaxed">
-        AI Solution Technologies is led by enterprise technology veterans, data architects, and solution specialists spanning all functional vectors. Together, this multi-disciplinary team covers the full lifecycle of complex enterprise data governance, custom engineering, and automated RAG execution.
-      </p>
-    </div>
+      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+        
+        {/* Short Executive Header */}
+        <div className="max-w-3xl mb-12">
+          <p className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2">
+            Leadership Matrix
+          </p>
+          <h1 className="text-3xl font-black text-gray-900 mb-4 tracking-tight sm:text-4xl">
+            Our Leadership Team
+          </h1>
+          <p className="text-sm text-gray-600 leading-relaxed">
+            AI Solution Technologies is led by enterprise technology veterans, data architects, and solution specialists spanning all functional vectors. Together, this multi-disciplinary team covers the full lifecycle of complex enterprise data governance, custom engineering, and automated RAG execution.
+          </p>
+        </div>
 
-    {/* Dynamic Card Display Grid (Combined) */}
-    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-      {/* Fix: We merge the arrays from the object into a single array here. 
-        The '|| []' acts as a fallback just in case one of the categories is empty/undefined.
-      */}
-      {[...(teamData.executives || []), ...(teamData.seniorLeadership || [])].map((member) => (
-        <TeamCard key={member.id} member={member} />
-      ))}
-    </div>
+        {/* Navigation Category Switcher */}
+        <div className="flex border-b border-gray-200 mb-8 max-w-md">
+          <button
+            onClick={() => setActiveTab('executives')}
+            className={`flex-1 pb-3 text-sm font-semibold transition-all border-b-2 focus:outline-none ${activeTab === 'executives' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-400 hover:text-gray-600'}`}
+          >
+            Executive Leadership (C-Suite)
+          </button>
+          <button
+            onClick={() => setActiveTab('seniorLeadership')}
+            className={`flex-1 pb-3 text-sm font-semibold transition-all border-b-2 focus:outline-none ${activeTab === 'seniorLeadership' ? 'border-blue-600 text-blue-600' : 'border-transparent text-gray-400 hover:text-gray-600'}`}
+          >
+            Functional Heads
+          </button>
+        </div>
 
-  </div>
-</section>
+        {/* Dynamic Card Display Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          {teamData[activeTab].map((member) => (
+            <TeamCard key={member.id} member={member} />
+          ))}
+        </div>
+
+      </div>
+    </section>
   );
 }

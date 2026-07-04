@@ -119,23 +119,11 @@ function ChevronDoubleRight() {
   );
 }
 
-
-
-// Placeholder for the landmark line-art in the circles
-const LandmarkIcon = ({ className }) => (
-  <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth={1.2} stroke="currentColor" className={className}>
-    <path strokeLinecap="round" strokeLinejoin="round" d="M2.25 21h19.5m-18-18v18m10.5-18v18m6-13.5V21M6.75 6.75h.75m-.75 3h.75m-.75 3h.75m3-6h.75m-.75 3h.75m-.75 3h.75M6.75 21v-3.375c0-.621.504-1.125 1.125-1.125h2.25c.621 0 1.125.504 1.125 1.125V21M3 3h12m-.75 4.5H21m-3.75 3.75h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008zm0 3h.008v.008h-.008v-.008z" />
-  </svg>
-);
-
 /* ═══════════════════════════════════════════════════════════
     FOOTER COMPONENT
 ═══════════════════════════════════════════════════════════ */
 export default function Footer() {
   const currentYear = new Date().getFullYear();
-
-
-  
 
   return (
     <footer className="font-sans selection:bg-blue-600 selection:text-white border-t border-white/5">
@@ -342,142 +330,78 @@ export default function Footer() {
         </div>
 
         {/* ── NEW HORIZONTAL BOTTOM SECTION: GLOBAL OFFICES ───────────────── */}
-        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-12 bg-[#0B0F19]">
-      <div className="flex flex-col items-center md:items-start mb-8">
-        <h3 className="text-[11px] font-bold tracking-[0.22em] uppercase text-blue-400">
-          Our Global Footprint
-        </h3>
-      </div>
-
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-        {/* Office Card: Australia */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#0F1623] border border-blue-500/10 p-6 hover:border-blue-500/30 transition-all duration-300 group flex flex-col min-h-[220px]">
-          {/* Left Border Indicator */}
-          <div className="absolute left-0 top-0 h-full w-[3px] bg-blue-500" />
-          
-          {/* Top Section: Landmark & Title */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 rounded-full border border-blue-500/20 flex items-center justify-center shrink-0 bg-blue-500/5">
-              <LandmarkIcon className="w-8 h-8 text-blue-400/80" />
-            </div>
-            <div className="flex flex-col items-start">
-              <span className="text-xl leading-none mb-1" role="img" aria-label="Australia Flag">🇦🇺</span>
-              <h4 className="text-white font-bold text-lg mb-1.5">Australia</h4>
-              <span className="rounded-full bg-blue-500/10 text-blue-400 text-[10px] font-bold px-3 py-0.5 uppercase tracking-wider">
-                Global Headquarters
-              </span>
-            </div>
+        <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-12">
+          <div className="flex flex-col items-center md:items-start mb-6">
+            <h3 className="text-[11px] font-bold tracking-[0.22em] uppercase text-blue-400">
+              Our Global Footprint
+            </h3>
           </div>
 
-          <div className="w-full h-px bg-white/5 mb-5" />
-
-          {/* Address Section */}
-          <div className="flex items-center gap-4 mb-5">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-              <LocationIcon className="w-4 h-4 text-blue-400" />
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+            {/* Office Card: Australia */}
+            <div className="relative overflow-hidden rounded-xl border border-blue-500/10 bg-white/[0.02] p-5 hover:border-blue-500/30 transition-all duration-300 group flex flex-col justify-between min-h-[190px]">
+              <div className="absolute left-0 top-0 h-full w-1 bg-blue-500" />
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <h4 className="text-white font-bold text-base flex items-center gap-2">
+                    <span className="text-xl inline-block" role="img" aria-label="Australia Flag">🇦🇺</span> Australia
+                  </h4>
+                  <span className="rounded-full bg-blue-500/10 text-blue-400 text-[9px] font-bold px-2.5 py-0.5 uppercase tracking-wider border border-blue-500/20">
+                    Global HQ
+                  </span>
+                </div>
+                <p className="text-sm text-zinc-300 font-medium">33 East Street, Granville</p>
+                <p className="text-xs text-zinc-500">Sydney, NSW 2142</p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-xs text-zinc-400">
+                <LocationIcon className="text-blue-400 shrink-0" />
+                <span>+61 466 558 862</span>
+              </div>
             </div>
-            <div className="flex flex-col">
-              <span className="text-sm text-zinc-200 font-semibold">33 East Street, Granville</span>
-              <span className="text-xs text-zinc-500 mt-0.5">Sydney, NSW 2142</span>
-            </div>
-          </div>
 
-          <div className="w-full h-px bg-white/5 mb-5" />
-
-          {/* Phone Section */}
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-              <PhoneIcon className="w-4 h-4 text-blue-400" />
+            {/* Office Card: UAE */}
+            <div className="relative overflow-hidden rounded-xl border border-emerald-500/10 bg-white/[0.02] p-5 hover:border-emerald-500/30 transition-all duration-300 group flex flex-col justify-between min-h-[190px]">
+              <div className="absolute left-0 top-0 h-full w-1 bg-emerald-500" />
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <h4 className="text-white font-bold text-base flex items-center gap-2">
+                    <span className="text-xl inline-block" role="img" aria-label="UAE Flag">🇦🇪</span> United Arab Emirates
+                  </h4>
+                  <span className="rounded-full bg-emerald-500/10 text-emerald-400 text-[9px] font-bold px-2.5 py-0.5 uppercase tracking-wider border border-emerald-500/20">
+                    MENA Hub
+                  </span>
+                </div>
+                <p className="text-sm text-zinc-300 font-medium">Dubai Technology Center</p>
+                <p className="text-xs text-zinc-500">Dubai, UAE</p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-xs text-zinc-400">
+                <LocationIcon className="text-emerald-400 shrink-0" />
+                <span>+971 4 123 4567</span>
+              </div>
             </div>
-            <span className="text-sm text-zinc-300 font-medium">+61 2 9876 5432</span>
-          </div>
-        </div>
 
-        {/* Office Card: UAE */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#0F1623] border border-emerald-500/10 p-6 hover:border-emerald-500/30 transition-all duration-300 group flex flex-col min-h-[220px]">
-          <div className="absolute left-0 top-0 h-full w-[3px] bg-emerald-500" />
-          
-          {/* Top Section */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 rounded-full border border-emerald-500/20 flex items-center justify-center shrink-0 bg-emerald-500/5">
-              <LandmarkIcon className="w-8 h-8 text-emerald-400/80" />
+            {/* Office Card: Saudi Arabia */}
+            <div className="relative overflow-hidden rounded-xl border border-purple-500/10 bg-white/[0.02] p-5 hover:border-purple-500/30 transition-all duration-300 group flex flex-col justify-between min-h-[190px]">
+              <div className="absolute left-0 top-0 h-full w-1 bg-purple-500" />
+              <div>
+                <div className="flex items-center justify-between gap-2 mb-3">
+                  <h4 className="text-white font-bold text-base flex items-center gap-2">
+                    <span className="text-xl inline-block" role="img" aria-label="Saudi Arabia Flag">🇸🇦</span> Saudi Arabia
+                  </h4>
+                  <span className="rounded-full bg-purple-500/10 text-purple-400 text-[9px] font-bold px-2.5 py-0.5 uppercase tracking-wider border border-purple-500/20">
+                    Enterprise
+                  </span>
+                </div>
+                <p className="text-sm text-zinc-300 font-medium">Riyadh Digital City</p>
+                <p className="text-xs text-zinc-500">Riyadh, KSA</p>
+              </div>
+              <div className="mt-4 pt-3 border-t border-white/5 flex items-center gap-2 text-xs text-zinc-400">
+                <LocationIcon className="text-purple-400 shrink-0" />
+                <span>+966 11 876 5432</span>
+              </div>
             </div>
-            <div className="flex flex-col items-start">
-              <span className="text-xl leading-none mb-1" role="img" aria-label="UAE Flag">🇦🇪</span>
-              <h4 className="text-white font-bold text-lg mb-1.5">United Arab Emirates</h4>
-              <span className="rounded-full bg-emerald-500/10 text-emerald-400 text-[10px] font-bold px-3 py-0.5 uppercase tracking-wider">
-                MENA Enterprise Hub
-              </span>
-            </div>
-          </div>
-
-          <div className="w-full h-px bg-white/5 mb-5" />
-
-          {/* Address Section */}
-          <div className="flex items-center gap-4 mb-5">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-              <LocationIcon className="w-4 h-4 text-emerald-500" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm text-zinc-200 font-semibold">Dubai Technology Center</span>
-              <span className="text-xs text-zinc-500 mt-0.5">Dubai, UAE</span>
-            </div>
-          </div>
-
-          <div className="w-full h-px bg-white/5 mb-5" />
-
-          {/* Phone Section */}
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-              <PhoneIcon className="w-4 h-4 text-emerald-500" />
-            </div>
-            <span className="text-sm text-zinc-300 font-medium">+971 4 123 4567</span>
           </div>
         </div>
-
-        {/* Office Card: Saudi Arabia */}
-        <div className="relative overflow-hidden rounded-2xl bg-[#0F1623] border border-purple-500/10 p-6 hover:border-purple-500/30 transition-all duration-300 group flex flex-col min-h-[220px]">
-          <div className="absolute left-0 top-0 h-full w-[3px] bg-purple-500" />
-          
-          {/* Top Section */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-16 h-16 rounded-full border border-purple-500/20 flex items-center justify-center shrink-0 bg-purple-500/5">
-              <LandmarkIcon className="w-8 h-8 text-purple-400/80" />
-            </div>
-            <div className="flex flex-col items-start">
-              <span className="text-xl leading-none mb-1" role="img" aria-label="Saudi Arabia Flag">🇸🇦</span>
-              <h4 className="text-white font-bold text-lg mb-1.5">Saudi Arabia</h4>
-              <span className="rounded-full bg-purple-500/10 text-purple-400 text-[10px] font-bold px-3 py-0.5 uppercase tracking-wider">
-                Digital Transformation
-              </span>
-            </div>
-          </div>
-
-          <div className="w-full h-px bg-white/5 mb-5" />
-
-          {/* Address Section */}
-          <div className="flex items-center gap-4 mb-5">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-              <LocationIcon className="w-4 h-4 text-purple-500" />
-            </div>
-            <div className="flex flex-col">
-              <span className="text-sm text-zinc-200 font-semibold">Riyadh Digital City</span>
-              <span className="text-xs text-zinc-500 mt-0.5">Riyadh, KSA</span>
-            </div>
-          </div>
-
-          <div className="w-full h-px bg-white/5 mb-5" />
-
-          {/* Phone Section */}
-          <div className="flex items-center gap-4">
-            <div className="w-8 h-8 rounded-full bg-white/5 flex items-center justify-center shrink-0">
-              <PhoneIcon className="w-4 h-4 text-purple-500" />
-            </div>
-            <span className="text-sm text-zinc-300 font-medium">+966 11 876 5432</span>
-          </div>
-        </div>
-      </div>
-    </div>
 
         {/* ── BOTTOM BAR ────────────────────────────────────── */}
         <div className="relative z-10 border-t border-white/5 bg-black/20">

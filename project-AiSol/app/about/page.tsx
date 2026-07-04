@@ -6,7 +6,6 @@ import {
   Users, Zap, Award, BarChart, 
   ChevronRight, Building2, Globe2 
 } from 'lucide-react';
-import { motion } from 'framer-motion';
 
 import TeamCard from '@/components/Teamcard';
 
@@ -43,49 +42,27 @@ const companyTimeline = [
     id: '2024', year: '2024', title: 'Unified Ecosystem & Green IT',
     description: 'Broadening and inventing with portfolio growth. Debuted a unified ecosystem merging diverse AI utilities (NLP, visual recognition, cloud hosting). Deployed AI modules for ecological preservation and bolstered headcount with global data experts.',
     statLabel: 'Workforce', statValue: 'Global Scale-up'
-  },
-  {
-    id: '2025', year: '2025', title: 'Enterprise Generative AI & Autonomous Agents',
-    description: 'Pioneered the deployment of multi-agent autonomous systems for large-scale enterprise operations. Integrated advanced LLMs directly into core business workflows, enabling dynamic decision-making and unprecedented operational efficiency across global markets.',
-    statLabel: 'Innovation', statValue: 'Autonomous Systems'
-  },
-  {
-    id: '2026', year: '2026', title: 'Edge AI & Next-Gen Intelligence',
-    description: 'Pushed the boundaries of decentralized intelligence with the rollout of Edge AI frameworks, processing data closer to the source for zero-latency insights. Continued our global expansion by establishing specialized AI research hubs across three new continents.',
-    statLabel: 'Architecture', statValue: 'Edge Computing'
   }
 ];
 
 const teamMembers = [
   {
+    name: "Rania Jamil Choudhury",
+    role: "Founder & CEO",
+    img: "/rania.jpeg",
+  },
+  {
     name: "Osama Sagheer",
     role: "Full Stack Developer",
     img: "/osama.jpeg",
-    bio: "Osama brings 5 years of industry experience developing full-stack software solutions, with a strong focus on building scalable, reliable, and user-centric applications. He holds a Bachelor's degree in Computer Science, which laid the foundation for his deep understanding of software design principles and problem-solving. He specializes in translating business requirements into efficient technical architectures, working across the entire development lifecycle from front-end interfaces to back-end systems and databases."
   },
+  
   {
     name: "Ahmed Khan",
     role: "Technical Lead",
     img: "/ahmed.jpeg",
-    bio: "Ahmed brings 7+ years of experience in building scalable digital systems, AI-powered solutions, automation workflows, and business-driven technology platforms. With a Bachelor’s degree in Computer Science and a Master’s background in Entrepreneurship and AI, he combines technical depth with commercial thinking. At AI Solution Technologies, he contributes across solution execution, marketing strategy, business growth, and long-term client value creation."
   },
 ];
-
-// Animation Variants
-const fadeInUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } }
-};
-
-const staggerContainer = {
-  hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.2 }
-  }
-};
-
-
 
 const whyUsFeatures = [
   { icon: Award, title: 'Quality Comes First', desc: 'Uncompromising standards in our code, algorithms, and service delivery.' },
@@ -191,157 +168,88 @@ AI Solution Technologies is a Microsoft-aligned data, analytics and AI consultan
       </section>
 
       {/* ════════ SECTION 4: EVOLUTIONARY TIMELINE / MAJOR MILESTONES ════════ */}
-      <section className="relative py-28 px-6 md:px-12 max-w-7xl mx-auto border-t border-slate-200/80 overflow-hidden bg-gradient-to-b from-transparent via-slate-50/50 to-transparent">
-      
-      {/* Background Decorative Glow */}
-      <div className="absolute top-1/2 right-10 -translate-y-1/2 w-96 h-96 bg-blue-500/5 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-start relative z-10">
-        
-        {/* LEFT COLUMN: Interactive Accordion List */}
-        <div className="w-full lg:col-span-7 flex flex-col justify-center">
-          <div className="mb-10">
-            <span className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-blue-50 border border-blue-100 text-xs font-bold tracking-widest text-blue-600 uppercase mb-4">
-              <span className="w-1.5 h-1.5 rounded-full bg-blue-600 animate-pulse" />
-              Evolution & Growth
-            </span>
-            <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-syne">
+      <section className="relative py-24 px-6 md:px-12 max-w-7xl mx-auto border-t border-slate-200/60">
+        <div className="w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center relative z-10">
+          
+          {/* LEFT: Accordion List */}
+          <div className="w-full lg:col-span-7 flex flex-col justify-center">
+            <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2 block">Timeline</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0f172a] tracking-tight mb-8 font-syne">
               Major Milestones.
             </h2>
-          </div>
-          
-          <div className="flex flex-col divide-y divide-slate-200/80 border-y border-slate-200/80">
-            {companyTimeline.map((item) => {
-              const isOpen = activeEra === item.id;
-              
-              return (
-                <div key={item.id} className="group transition-colors duration-300">
-                  <button 
-                    onClick={() => setActiveEra(item.id)} 
-                    className="w-full py-6 flex items-center justify-between text-left transition-all duration-300 focus:outline-none"
-                  >
-                    <div className="flex items-center gap-5 sm:gap-6">
-                      {/* Year Badge */}
-                      <span className={`px-3 py-1 rounded-lg text-xs font-bold font-mono tracking-wider transition-all duration-300 ${
-                        isOpen 
-                          ? 'bg-blue-600 text-white shadow-md shadow-blue-500/20 scale-105' 
-                          : 'bg-slate-100 text-slate-500 group-hover:bg-slate-200/70 group-hover:text-slate-900'
-                      }`}>
-                        {item.year}
-                      </span>
-
-                      {/* Title */}
-                      <span className={`text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300 ${
-                        isOpen ? 'text-blue-600' : 'text-slate-700 group-hover:text-slate-950'
-                      }`}>
-                        {item.title}
-                      </span>
-                    </div>
-
-                    {/* Expand/Collapse Indicator */}
-                    <div className={`w-8 h-8 rounded-full flex items-center justify-center border transition-all duration-300 ${
-                      isOpen 
-                        ? 'border-blue-200 bg-blue-50 text-blue-600 rotate-180' 
-                        : 'border-slate-200 text-slate-400 group-hover:border-slate-300'
-                    }`}>
-                      <span className="text-sm font-semibold leading-none">{isOpen ? '−' : '+'}</span>
-                    </div>
-                  </button>
-
-                  {/* Accordion Content Panel */}
-                  <div 
-                    className={`grid transition-all duration-500 ease-in-out ${
-                      isOpen ? 'grid-rows-[1fr] opacity-100 pb-6' : 'grid-rows-[0fr] opacity-0'
-                    }`}
-                  >
-                    <div className="overflow-hidden">
-                      <div className="relative pl-6 sm:pl-16 border-l-2 border-blue-500/30 ml-4 sm:ml-6 py-1">
-                        <p className="text-slate-600 text-base leading-relaxed font-normal">
-                          {item.description}
-                        </p>
-                        
-                        {/* Stat Tag */}
-                        <div className="mt-5 inline-flex items-center gap-3 px-4 py-2 rounded-xl bg-white border border-slate-200/80 shadow-sm">
-                          <span className="text-[11px] font-bold tracking-wider text-slate-400 uppercase">
-                            {item.statLabel}:
-                          </span>
-                          <span className="text-xs font-black text-blue-600 tracking-tight">
-                            {item.statValue}
-                          </span>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-
-        {/* RIGHT COLUMN: Blueprint Visualizer Stack */}
-        <div className="w-full lg:col-span-5 flex items-center justify-center lg:sticky lg:top-32 pt-6 lg:pt-12">
-          <div className="relative w-full max-w-[380px] flex flex-col items-center py-6">
             
-            {/* Animated Center Spine Line */}
-            <div className="absolute inset-y-8 w-[2px] bg-gradient-to-b from-blue-100 via-blue-200 to-slate-100 z-0">
-              <div className="w-full bg-blue-600 shadow-[0_0_8px_#2563eb] transition-all duration-700 h-1/2 animate-pulse" />
-            </div>
-
-            {/* Interactive Cards */}
-            <div className="w-full flex flex-col gap-3.5 z-10">
-              {companyTimeline.map((item, index) => {
-                const isSelected = activeEra === item.id;
-                
+            <div className="flex flex-col border-b border-slate-200/60">
+              {companyTimeline.map((item) => {
+                const isOpen = activeEra === item.id;
                 return (
-                  <div
-                    key={item.id} 
-                    onClick={() => setActiveEra(item.id)}
-                    className={`group relative w-full p-4 rounded-2xl transition-all duration-500 cursor-pointer flex items-center justify-between border ${
-                      isSelected 
-                        ? 'bg-slate-900 border-slate-800 text-white shadow-xl shadow-slate-900/15 scale-[1.03] translate-x-2' 
-                        : 'bg-white/90 backdrop-blur-sm border-slate-200/80 text-slate-700 hover:border-slate-300 hover:bg-white hover:scale-[1.01]'
-                    }`}
-                  >
-                    {/* Left Connector Dot */}
-                    <div className="flex items-center gap-3.5">
-                      <div className={`w-3 h-3 rounded-full border-2 transition-all duration-300 shrink-0 ${
-                        isSelected 
-                          ? 'bg-blue-500 border-white ring-4 ring-blue-500/20' 
-                          : 'bg-slate-200 border-white group-hover:bg-slate-400'
-                      }`} />
-                      
-                      <div className="flex flex-col text-left">
-                        <span className={`text-xs font-mono font-bold tracking-widest uppercase transition-colors ${
-                          isSelected ? 'text-blue-400' : 'text-slate-400 group-hover:text-slate-500'
-                        }`}>
-                          FY  {item.year}
+                  <div key={item.id} className="border-t border-slate-200/60">
+                    <button onClick={() => setActiveEra(item.id)} className="w-full py-5 flex items-center justify-between text-left transition-all duration-300 group focus:outline-none">
+                      <div className="flex items-center gap-4">
+                        <span className={`text-sm font-bold tracking-wider font-mono transition-colors duration-300 ${isOpen ? 'text-blue-600' : 'text-slate-400'}`}>
+                          {item.year} //
                         </span>
-                        <span className={`text-sm sm:text-base font-bold tracking-tight line-clamp-1 transition-colors ${
-                          isSelected ? 'text-white font-black' : 'text-slate-800'
-                        }`}>
+                        <span className={`text-lg sm:text-xl font-bold tracking-tight transition-colors duration-300 ${isOpen ? 'text-[#0f172a]' : 'text-slate-500 group-hover:text-slate-800'}`}>
                           {item.title}
                         </span>
                       </div>
-                    </div>
+                      <span className={`text-xl font-light transition-transform duration-300 px-2 ${isOpen ? 'text-blue-600 rotate-180' : 'text-slate-400'}`}>
+                        {isOpen ? '−' : '+'}
+                      </span>
+                    </button>
 
-                    {/* Right Active Indicator Icon */}
-                    <div className={`w-6 h-6 rounded-full flex items-center justify-center transition-all duration-300 shrink-0 ${
-                      isSelected ? 'opacity-100 bg-white/10 text-blue-400' : 'opacity-0 -translate-x-2'
-                    }`}>
-                      <svg className="w-3.5 h-3.5" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={3}>
-                        <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-                      </svg>
+                    <div className={`overflow-hidden transition-all duration-500 ease-in-out ${isOpen ? 'max-h-60 opacity-100 pb-6' : 'max-h-0 opacity-0 pointer-events-none'}`}>
+                      <div className="bg-slate-50 border border-slate-200 rounded-2xl p-5 ml-14">
+                        <p className="text-slate-600 text-sm leading-relaxed font-light">{item.description}</p>
+                        <div className="mt-4 pt-4 border-t border-slate-200 flex gap-8 items-center">
+                          <div>
+                            <div className="text-[10px] font-bold tracking-widest text-slate-400 uppercase">{item.statLabel}</div>
+                            <div className="text-sm font-black text-blue-600 tracking-tight mt-0.5">{item.statValue}</div>
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 );
               })}
             </div>
+          </div>
 
+          {/* RIGHT: Blueprint Visualizer Stack */}
+          <div className="w-full lg:col-span-5 flex items-center justify-center">
+            <div className="relative w-full max-w-[400px] flex flex-col items-center justify-center py-8">
+              <svg className="absolute inset-y-0 w-full h-full pointer-events-none z-0" xmlns="http://www.w3.org/2000/svg">
+                <path d="M 50% 0 Q 48% 25% 50% 50% T 50% 100%" fill="none" stroke="#e2e8f0" strokeWidth="1.5" strokeDasharray="3 3" />
+                <circle r="4" fill="#2563eb" className="animate-pulse">
+                  <animateMotion dur="8s" repeatCount="indefinite" path="M 50% 0 Q 48% 25% 50% 50% T 50% 100%" />
+                </circle>
+              </svg>
+
+              {companyTimeline.map((item) => {
+                const isSelected = activeEra === item.id;
+                return (
+                  <div
+                    key={item.id} onClick={() => setActiveEra(item.id)}
+                    className={`relative w-full max-w-[320px] h-[64px] rounded-full flex items-center justify-center border transition-all duration-500 cursor-pointer text-center z-10 ${
+                      isSelected ? 'bg-[#0f172a] border-[#0f172a] text-white shadow-xl scale-105 z-20' : 'bg-white border-slate-200 text-slate-800 hover:border-slate-300 hover:bg-slate-50'
+                    }`}
+                    style={{ marginTop: '-12px' }}
+                  >
+                    <div className="px-6 flex flex-col items-center justify-center">
+                      <span className={`text-sm font-bold tracking-tight font-syne ${isSelected ? 'text-white' : 'text-slate-900'}`}>
+                        {item.title}
+                      </span>
+                      <span className={`text-[9px] font-mono tracking-widest uppercase mt-0.5 ${isSelected ? 'text-blue-400 font-bold' : 'text-slate-400'}`}>
+                        Fiscal Year {item.year}
+                      </span>
+                    </div>
+                    {isSelected && <span className="absolute right-5 w-2 h-2 rounded-full bg-blue-500 shadow-[0_0_10px_#3b82f6]" />}
+                  </div>
+                );
+              })}
+            </div>
           </div>
         </div>
-
-      </div>
-    </section>
+      </section>
 
       {/* ════════ SECTION 5: CEO SPOTLIGHT & MISSION ════════ */}
       <section className="py-24 px-6 max-w-7xl mx-auto border-t border-slate-200/60">
@@ -468,103 +376,37 @@ AI Solution Technologies is a Microsoft-aligned data, analytics and AI consultan
 </section>
 
       {/* ════════ SECTION 8: THE TEAM ════════ */}
-      <section className="relative py-24 px-6 overflow-hidden bg-gradient-to-b from-[#fafbfe] to-white">
-      {/* Subtle Background Decoration */}
-      <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-        <div className="absolute -top-[20%] -right-[10%] w-[50%] h-[50%] rounded-full bg-blue-50/50 blur-3xl" />
-        <div className="absolute -bottom-[10%] -left-[10%] w-[40%] h-[40%] rounded-full bg-indigo-50/50 blur-3xl" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto">
-        {/* Header Section */}
-        <motion.div 
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.3 }}
-          variants={staggerContainer}
-          className="flex flex-col md:flex-row md:items-end justify-between mb-24 gap-8"
-        >
-          <motion.div variants={fadeInUp} className="max-w-2xl">
-            <div className="flex items-center gap-3 mb-4">
-              <span className="w-8 h-[2px] bg-blue-600 rounded-full"></span>
-              <span className="text-sm font-bold tracking-widest text-blue-600 uppercase">
-                The Masterminds
-              </span>
-            </div>
-            <h2 className="text-4xl sm:text-5xl font-black text-slate-900 tracking-tight font-syne leading-tight">
-              Meet our <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-indigo-600">Skilled Experts</span>
-            </h2>
-          </motion.div>
-          
-          <motion.p variants={fadeInUp} className="text-slate-500 max-w-md text-base leading-relaxed border-l-2 border-slate-200 pl-4">
-            Our team comprises industry veterans in machine learning, data science, and software engineering, committed to delivering cutting-edge AI solutions globally.
-          </motion.p>
-        </motion.div>
-
-        {/* Team Members List */}
-        <div className="flex flex-col gap-24 lg:gap-32">
-          {teamMembers.map((member, i) => {
-            const isImageRight = i % 2 === 0;
-
-            return (
-              <motion.div 
-                key={i} 
-                initial="hidden"
-                whileInView="visible"
-                viewport={{ once: true, margin: "-100px" }}
-                variants={staggerContainer}
-                className={`flex flex-col gap-12 lg:gap-20 items-center ${
-                  isImageRight ? 'md:flex-row-reverse' : 'md:flex-row'
-                }`}
-              >
-                {/* Image Column */}
-                <motion.div variants={fadeInUp} className="w-full md:w-1/2 relative group perspective-1000">
-                  {/* Decorative background block */}
-                  <div className={`absolute inset-0 bg-gradient-to-tr from-blue-100 to-indigo-50 rounded-[2rem] transform ${isImageRight ? 'translate-x-4 translate-y-4' : '-translate-x-4 translate-y-4'} transition-transform duration-500 group-hover:translate-x-0 group-hover:translate-y-0 -z-10`} />
-                  
-                  <div className="relative aspect-[4/3] md:aspect-square lg:aspect-[4/3] rounded-[2rem] overflow-hidden bg-slate-200 shadow-2xl transition-all duration-500 group-hover:shadow-blue-500/20">
-                    <img 
-                      src={member.img} 
-                      alt={member.name} 
-                      className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
-                    />
-                    {/* Glassmorphism overlay on hover */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-slate-900/80 via-slate-900/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500 flex items-end p-8">
-                      <div className="translate-y-4 opacity-0 group-hover:translate-y-0 group-hover:opacity-100 transition-all duration-500 delay-100">
-                        <p className="text-white font-medium text-sm tracking-wide">{member.name} • {member.role}</p>
-                      </div>
-                    </div>
-                  </div>
-                </motion.div>
-
-                {/* Text/Bio Column */}
-                <motion.div variants={fadeInUp} className="w-full md:w-1/2 flex flex-col justify-center">
-                  <div className="inline-flex items-center justify-center py-2 px-5 rounded-full bg-blue-50 text-blue-700 text-xs font-bold tracking-wider uppercase mb-6 w-max border border-blue-100 shadow-sm transition-all hover:shadow-md hover:bg-blue-100 cursor-default">
-                    {member.role}
-                  </div>
-                  
-                  <h3 className="text-3xl md:text-4xl font-black text-slate-900 tracking-tight mb-6 relative">
-                    {member.name}
-                  </h3>
-                  
-                  <p className="text-slate-600 text-lg leading-relaxed mb-8 font-medium">
-                    {member.bio}
-                  </p>
-                  
-                  {/* Interactive Decorative Line */}
-                  <div className="group/line cursor-pointer flex items-center gap-4">
-                    <div className="h-1.5 w-12 bg-blue-600 rounded-full transition-all duration-300 group-hover/line:w-24 group-hover/line:bg-indigo-600"></div>
-                    <span className="text-sm font-bold text-slate-400 opacity-0 -translate-x-4 transition-all duration-300 group-hover/line:opacity-100 group-hover/line:translate-x-0">
-                      View Profile
-                    </span>
-                  </div>
-                </motion.div>
-              </motion.div>
-            );
-          })}
+      <section className="py-24 px-6 max-w-7xl mx-auto bg-[#fafbfe]">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-16 gap-6">
+          <div>
+            <span className="text-xs font-bold tracking-widest text-blue-600 uppercase mb-2 block">Our Expert Team Members</span>
+            <h2 className="text-3xl sm:text-4xl font-black text-[#0f172a] tracking-tight font-syne">Top Skilled Experts.</h2>
+          </div>
+          <p className="text-slate-500 max-w-md text-sm leading-relaxed">
+            Our team comprises experts in machine learning, data science, and software engineering, all committed to delivering cutting-edge AI products and services globally.
+          </p>
         </div>
-      </div>
-    </section>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+          {teamMembers.map((member, i) => (
+            <div key={i} className="group relative">
+              <div className="relative aspect-[4/5] rounded-[2rem] overflow-hidden mb-6 bg-slate-200 border border-slate-200">
+                <img 
+                  src={member.img} 
+                  alt={member.name} 
+                  className="w-full h-full object-cover transition-all duration-700 group-hover:scale-105 filter grayscale group-hover:grayscale-0"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0f172a]/90 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </div>
+              
+              <div>
+                <h3 className="text-lg font-bold text-[#0f172a] tracking-tight">{member.name}</h3>
+                <p className="text-sm font-semibold text-blue-600 mt-1">{member.role}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </section>
 
 
         <TeamCard/>
