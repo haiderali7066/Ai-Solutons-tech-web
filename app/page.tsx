@@ -153,7 +153,7 @@ function SHead({ tag, h, sub, dark = false }: {
         <Tag label={tag} />
         <div className={`mt-4 text-[2rem] sm:text-[2.6rem] lg:text-[3rem] font-extrabold leading-[1.1] tracking-tight ${dark ? "text-white" : "text-slate-900"}`}>
           {h}
-        </div>
+        </div> 
         {sub && (
           <p className={`mt-3 text-sm sm:text-[15px] max-w-[460px] mx-auto leading-[1.75] ${dark ? "text-slate-400" : "text-slate-500"}`}>
             {sub}
