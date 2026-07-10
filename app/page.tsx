@@ -247,22 +247,30 @@ function Hero() {
         </div>
 
         {/* Social proof */}
-        <div className="ha5 flex items-center justify-center gap-3 mt-10">
-          <div className="flex">
-            {["photo-1531123897727-8f129e1bf98a","photo-1507003211169-0a1dd7228f2d","photo-1500648767791-00dcc994a43e"].map((id,i) => (
-              <img key={id}
-                src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=80&q=80`}
-                alt="" className="w-9 h-9 rounded-full object-cover border-2 border-slate-950"
-                style={{ marginLeft: i === 0 ? 0 : -9 }} />
-            ))}
-          </div>
-          <div className="text-left">
-            <div className="text-blue-400 text-xs tracking-[0.15em]">★★★★★</div>
-            <div className="text-[12px] text-white/40">
-              Rated <strong className="text-white font-semibold">4.9</strong> by 200+ enterprise clients
-            </div>
-          </div>
-        </div>
+<div className="ha5 flex items-center justify-center gap-3 mt-10">
+  <div className="flex">
+    {[
+      "photo-1517841905240-472988babdf9",
+      "photo-1544723795-3fb6469f5b39",
+      "photo-1521119989659-a83eee488004",
+    ].map((id, i) => (
+      <img
+        key={id}
+        src={`https://images.unsplash.com/${id}?auto=format&fit=crop&w=80&q=80`}
+        alt=""
+        className="w-9 h-9 rounded-full object-cover border-2 border-slate-950"
+        style={{ marginLeft: i === 0 ? 0 : -9 }}
+      />
+    ))}
+  </div>
+
+  <div className="text-left">
+    <div className="text-blue-400 text-xs tracking-[0.15em]">★★★★★</div>
+    <div className="text-[12px] text-white/40">
+      Rated <strong className="text-white font-semibold">4.9</strong> by 200+ enterprise clients
+    </div>
+  </div>
+</div>
 
         {/* Scroll cue */}
         <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 opacity-25">
@@ -608,9 +616,21 @@ function FeaturesSection() {
             <div className="h-44 rounded-xl bg-gradient-to-br from-slate-50 to-indigo-50 mb-6
                             flex flex-col justify-center gap-3 px-5">
               {[
-                { id:"photo-1531123897727-8f129e1bf98a", name:"Sarah Chen", role:"Data Engineer" },
-                { id:"photo-1507003211169-0a1dd7228f2d", name:"James Porter", role:"AI Lead" },
-                { id:"photo-1519085360753-af0119f7cbe7", name:"Michael Ross", role:"Cloud Architect" },
+               {
+    id: "photo-1517841905240-472988babdf9",
+    name: "Emma Brooks",
+    role: "Data Engineer",
+  },
+  {
+    id: "photo-1544723795-3fb6469f5b39",
+    name: "Daniel Carter",
+    role: "AI Lead",
+  },
+  {
+    id: "photo-1521119989659-a83eee488004",
+    name: "Olivia Bennett",
+    role: "Cloud Architect",
+  },
               ].map((u,i) => (
                 <div key={u.name} className="flex items-center gap-2.5" style={{ opacity:1-i*0.22 }}>
                   <img src={`https://images.unsplash.com/${u.id}?auto=format&fit=crop&w=80&q=80`}
@@ -865,12 +885,27 @@ export function CaseStudiesSection() {
    TESTIMONIALS
 ════════════════════════════════════ */
 const TESTI = [
-  { q:"Ai Solutiontechnologies transformed our entire data infrastructure in under 6 months. The impact on decision-making speed has been extraordinary.",
-    name:"Sarah Allen", role:"CTO, FinCore Australia", img:"photo-1531123897727-8f129e1bf98a", offset:false },
-  { q:"They built our SaaS platform from scratch in 8 weeks. The code quality and AI features were beyond what we expected.",
-    name:"David Matthews", role:"VP Engineering, Telstra", img:"photo-1506794778202-cad84cf45f1d", offset:true },
-  { q:"Working with Ai Solutiontechnologies transformed how we handle onboarding. What took 3 days is now fully automated — incredible execution.",
-    name:"Tariq Hussain", role:"COO, FinEdge Capital", img:"photo-1472099645785-5658abf4ff4e", offset:false },
+  {
+    q: "Ai Solutiontechnologies modernized our analytics platform and automated key reporting workflows. The improvement in operational efficiency has been remarkable.",
+    name: "Emily Carter",
+    role: "Head of Data, Nexus Analytics",
+    img: "photo-1494790108377-be9c29b29330",
+    offset: false,
+  },
+  {
+    q: "Their engineering team delivered a scalable cloud platform with AI capabilities ahead of schedule. The collaboration was smooth from start to finish.",
+    name: "Ryan Foster",
+    role: "Director of Technology, Horizon Systems",
+    img: "photo-1500648767791-00dcc994a43e",
+    offset: true,
+  },
+  {
+    q: "From architecture planning to deployment, Ai Solutiontechnologies exceeded our expectations. Our internal processes are now faster, smarter, and easier to manage.",
+    name: "Olivia Bennett",
+    role: "Operations Director, Vertex Solutions",
+    img: "photo-1544005313-94ddf0286df2",
+    offset: false,
+  },
 ];
 
 function TestimonialsSection() {

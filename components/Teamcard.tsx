@@ -221,7 +221,7 @@ const teamData = {
       name: 'Rania Jamil Choudhury',
       roleTitle: 'Founder & Chief Executive Officer',
       badge: 'Strategy & Vision',
-      image: '/rania.jpeg',
+      image: '/rania2.PNG',
       bio: 'Provides cross-functional strategic leadership aligning corporate vision with enterprise market growth.',
       responsibilities: [
         'Sets long-term corporate vision and strategic direction',
@@ -235,7 +235,7 @@ const teamData = {
       name: 'Daniel Foster',
       roleTitle: 'Chief Operating Officer',
       badge: 'Operations & Delivery',
-      image: 'https://randomuser.me/api/portraits/men/32.jpg',
+      image: 'https://randomuser.me/api/portraits/men/4.jpg',
       bio: 'Manages core business operations, scaling delivery capacity while maintaining rigorous quality guardrails.',
       responsibilities: [
         'Oversees global end-to-end service delivery tracks',
@@ -277,7 +277,7 @@ const teamData = {
       name: 'Emily Watson',
       roleTitle: 'Chief Data & Analytics Officer',
       badge: 'Data Strategy & Analytics',
-      image: 'https://randomuser.me/api/portraits/women/21.jpg',
+      image: 'https://randomuser.me/api/portraits/women/8.jpg',
       bio: 'Oversees organizational data intelligence layouts, semantic asset modeling, and strict compliance tracks.',
       responsibilities: [
         'Establishes structural master data governance standards',
@@ -291,7 +291,7 @@ const teamData = {
       name: 'Jacob Harrison',
       roleTitle: 'Chief Revenue Officer',
       badge: 'Revenue & Growth',
-      image: 'https://randomuser.me/api/portraits/men/68.jpg',
+      image: 'https://randomuser.me/api/portraits/men/69.jpg',
       bio: 'Drives dynamic market acquisition channels, partnership opportunities, and commercial scaling operations.',
       responsibilities: [
         'Controls high-velocity enterprise pipeline optimization',
@@ -336,7 +336,7 @@ const teamData = {
       name: 'Grace Anderson',
       roleTitle: 'Head of Product & SaaS Platforms',
       badge: 'Product & SaaS',
-      image: 'https://randomuser.me/api/portraits/women/34.jpg',
+      image: 'https://randomuser.me/api/portraits/women/25.jpg',
       bio: 'Steers the structural roadmap and life-cycle development of enterprise SaaS platforms.',
       responsibilities: [
         'Owns target product roadmaps and release cycles',
@@ -375,7 +375,7 @@ const teamData = {
       name: 'Christopher Hall',
       roleTitle: 'Head of PMO & Implementations',
       badge: 'PMO & Governance',
-      image: 'https://randomuser.me/api/portraits/men/58.jpg',
+      image: 'https://randomuser.me/api/portraits/men/57.jpg',
       bio: 'Implements precision delivery frameworks across transformation portfolios.',
       responsibilities: [
         'Coordinates project dependencies',
@@ -401,7 +401,7 @@ const teamData = {
       name: 'Matthew Cooper',
       roleTitle: 'Head of Governance, Risk & Compliance',
       badge: 'GRC & Security',
-      image: 'https://randomuser.me/api/portraits/men/41.jpg',
+      image: 'https://randomuser.me/api/portraits/men/1.jpg',
       bio: 'Protects systems through strict policy monitoring and compliance frameworks.',
       responsibilities: [
         'Manages operational risk registers',
@@ -414,7 +414,7 @@ const teamData = {
       name: 'Chloe Morgan',
       roleTitle: 'EA & Corporate Operations Manager',
       badge: 'Operations & Admin',
-      image: 'https://randomuser.me/api/portraits/women/12.jpg',
+      image: 'https://randomuser.me/api/portraits/women/1.jpg',
       bio: 'Optimizes executive scheduling and business operations.',
       responsibilities: [
         'Coordinates executive workflows',

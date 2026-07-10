@@ -169,30 +169,96 @@ const INDUSTRY_CATEGORIES = [
 /* ─────────────────────────────────────────────
    SOLUTIONS (CASE STUDIES) DATA
 ───────────────────────────────────────────── */
-const SOLUTION_CASES = [
+export const SOLUTION_CASES = [
   {
-    id: 'tier2',
-    client: 'Australian Tier-2 Builder',
-    href: '/case-studies/australian-tier-2-builder',
-    industry: 'Construction',
-    outcome: 'Reduced cost-reporting time by 70% with a real-time Power BI + Fabric analytics platform.',
-    tags: ['Microsoft Fabric', 'Power BI', 'Construction Analytics'],
+    id: "mining-fabric",
+    client: "Mining Enterprise",
+    href: "/case-studies/mining-microsoft-fabric",
+    industry: "Mining",
+    outcome: "Unified mining data with a real-time Microsoft Fabric platform.",
+    tags: ["Microsoft Fabric", "OneLake", "Real-Time"],
   },
   {
-    id: 'cfo',
-    client: 'Professional Services CFO',
-    href: '/case-studies/professional-services-cfo',
-    industry: 'Finance',
-    outcome: 'Unified multi-entity P&L visibility with an automated CFO dashboard suite in under 6 weeks.',
-    tags: ['CFO Dashboards', 'Azure Data Factory', 'Data Warehouse'],
+    id: "oil-gas-data-engineering",
+    client: "Oil & Gas Operator",
+    href: "/case-studies/oil-gas-data-engineering",
+    industry: "Oil & Gas",
+    outcome: "Built resilient data pipelines across energy operations.",
+    tags: ["Data Engineering", "ADF", "IoT"],
   },
   {
-    id: 'ksa',
-    client: 'KSA Government AI',
-    href: '/case-studies/ksa-government-ai',
-    industry: 'Government',
-    outcome: 'Deployed a sovereign-compliant enterprise RAG system for a national government agency.',
-    tags: ['Enterprise RAG', 'AI Governance', 'Microsoft Purview'],
+    id: "transport-data-warehouse",
+    client: "Transport & Logistics",
+    href: "/case-studies/transport-data-warehouse",
+    industry: "Transport & Logistics",
+    outcome: "Created a unified warehouse for real-time logistics insights.",
+    tags: ["Warehouse", "Star Schema", "Power BI"],
+  },
+  {
+    id: "construction-bi",
+    client: "Construction Firm",
+    href: "/case-studies/construction-business-intelligence",
+    industry: "Construction",
+    outcome: "Replaced manual reporting with live Power BI dashboards.",
+    tags: ["Power BI", "BI", "Fabric"],
+  },
+  {
+    id: "health-ai",
+    client: "Healthcare Organisation",
+    href: "/case-studies/healthcare-private-ai",
+    industry: "Healthcare",
+    outcome: "Deployed a secure AI assistant for clinical knowledge.",
+    tags: ["Azure OpenAI", "Enterprise RAG", "AI Search"],
+  },
+  {
+    id: "rail-cloud",
+    client: "Rail Operator",
+    href: "/case-studies/rail-cloud-modernisation",
+    industry: "Rail",
+    outcome: "Modernised legacy rail systems on Microsoft Azure.",
+    tags: ["Azure", "Cloud", "Fabric"],
+  },
+  {
+    id: "water-governance",
+    client: "Water Utility",
+    href: "/case-studies/water-data-governance",
+    industry: "Water",
+    outcome: "Implemented enterprise-wide data governance and compliance.",
+    tags: ["Purview", "Governance", "Compliance"],
+  },
+  {
+    id: "crm-customer360",
+    client: "IT & Communications",
+    href: "/case-studies/customer360-crm",
+    industry: "IT & Communications",
+    outcome: "Built a Customer 360 platform with AI-powered insights.",
+    tags: ["Dynamics 365", "Customer 360", "AI"],
+  },
+
+  // Featured
+  {
+    id: "tier2",
+    client: "Australian Tier-2 Builder",
+    href: "/case-studies/australian-tier-2-builder",
+    industry: "Construction",
+    outcome: "Reduced reporting time by 70% using Microsoft Fabric.",
+    tags: ["Microsoft Fabric", "Power BI", "Construction"],
+  },
+  {
+    id: "cfo",
+    client: "Professional Services CFO",
+    href: "/case-studies/professional-services-cfo",
+    industry: "Finance",
+    outcome: "Delivered automated CFO dashboards in six weeks.",
+    tags: ["CFO", "ADF", "Warehouse"],
+  },
+  {
+    id: "ksa",
+    client: "KSA Government AI",
+    href: "/case-studies/ksa-government-ai",
+    industry: "Government",
+    outcome: "Delivered a secure enterprise RAG platform.",
+    tags: ["Enterprise RAG", "AI Governance", "Purview"],
   },
 ];
 
@@ -362,7 +428,7 @@ export default function Navbar() {
                   onClick={() => setActiveDropdown(v => v === 'solutions' ? null : 'solutions')}
                   className={capsuleLink(solutionsOpen || isActive('/case-studies'))}
                 >
-                  Solutions we provide
+                  Case Studies
                   <Chevron open={solutionsOpen} />
                 </button>
               </div>
@@ -864,7 +930,7 @@ export default function Navbar() {
                   text-[15px] font-medium transition-colors duration-150
                   ${mobileSolutionsOpen || isActive('/case-studies') ? 'text-white' : 'text-white/65 hover:text-white'}`}
               >
-                <span>Solutions we provide</span>
+                <span>Case Studies</span>
                 <Chevron open={mobileSolutionsOpen} />
               </button>
 
@@ -873,7 +939,7 @@ export default function Navbar() {
                 <div className="bg-black/20 border-t border-white/[0.05]">
                   <div className="px-5 pt-3 pb-2">
                     <Link href="/case-studies" className="text-[12.5px] font-medium no-underline" style={{ color: BLUE }}>
-                      All solutions we provided→
+                      All Case Studies→
                     </Link>
                   </div>
                   {SOLUTION_CASES.map((cs) => (

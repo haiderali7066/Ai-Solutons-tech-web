@@ -343,11 +343,21 @@ export default function Footer() {
 
         {/* ── NEW HORIZONTAL BOTTOM SECTION: GLOBAL OFFICES ───────────────── */}
         <div className="relative z-10 max-w-[1400px] mx-auto px-6 md:px-12 py-12 bg-[#0B0F19]">
-      <div className="flex flex-col items-center md:items-start mb-8">
-        <h3 className="text-[11px] font-bold tracking-[0.22em] uppercase text-blue-400">
-          Our Global Footprint
-        </h3>
-      </div>
+      {/* ════════ HEADER SECTION ════════ */}
+        <div className="text-center">
+          <div className="inline-flex items-center gap-2 text-[10px] font-bold tracking-[0.3em] text-blue-400 uppercase mb-1">
+            <span className="w-1.5 h-1.5 rounded-full bg-blue-500"></span>
+            Global Presence
+            <span className="w-8 h-[1px] bg-blue-500/30"></span>
+          </div>
+          <h2 className="text-2xl md:text-3xl lg:text-4xl font-black tracking-tight font-syne text-white">
+            Global Network
+          </h2>
+          <p className="text-xs md:text-sm text-slate-400 max-w-2xl mx-auto mt-1 font-light">
+            .
+          </p>
+        </div>
+
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
         {/* Office Card: Australia */}
@@ -500,6 +510,9 @@ export default function Footer() {
         </div>
 
       </div>
+
+
+      
     </footer>
   );
 }
